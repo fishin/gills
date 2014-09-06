@@ -1,0 +1,29 @@
+{
+  "name": "angler",
+  "version": "0.0.0",
+  "description": "angler ======",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test-cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fishin/angler"
+  },
+  "author": "Lloyd Benson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fishin/angler/issues"
+  },
+  "homepage": "https://github.com/fishin/angler",
+  "dependencies": {
+    "boom": "2.x.x",
+    "handlebars": "2.0.x",
+    "hapi": "6.x.x",
+    "hoek": "2.x.x",
+    "joi": "4.x.x"
+  },
+  "devDependencies": {
+    "lab": "4.x.x"
+  }
+}
