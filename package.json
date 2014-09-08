@@ -1,21 +1,21 @@
 {
-  "name": "angler",
-  "version": "0.0.0",
-  "description": "angler ======",
+  "name": "gills",
+  "version": "0.0.2",
+  "description": "gills ======",
   "main": "index.js",
   "scripts": {
     "test": "make test-cov"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/fishin/angler"
+    "url": "git://github.com/fishin/gills"
   },
   "author": "Lloyd Benson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fishin/angler/issues"
+    "url": "https://github.com/fishin/gills/issues"
   },
-  "homepage": "https://github.com/fishin/angler",
+  "homepage": "https://github.com/fishin/gills",
   "dependencies": {
     "boom": "2.x.x",
     "handlebars": "2.0.x",
