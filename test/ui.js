@@ -25,13 +25,24 @@ internals.prepareServer = function (callback) {
 
 describe('ui', function () {    
 
-    it('hello world', function (done) {
+    it('redirect /', function (done) {
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/'}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('home', function (done) {
         internals.prepareServer(function (server) {
 
             server.inject({ method: 'GET', url: '/ui'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
-                expect(response.result).to.equal('hello world');
+                expect(response.result).to.exist;
                 done();
             });
         });

@@ -18,7 +18,6 @@
   "homepage": "https://github.com/fishin/gills",
   "dependencies": {
     "boom": "2.x.x",
-    "bootstrap": "3.2.x",
     "handlebars": "2.0.x",
     "hapi": "6.x.x",
     "hoek": "2.x.x",
