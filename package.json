@@ -27,6 +27,6 @@
   "devDependencies": {
     "lab": "4.x.x",
     "lout": "5.x.x",
-    "tacklebox": "git+ssh://git@github.com:fishin/tacklebox.git"
+    "tacklebox": "https+ssh://github.com/fishin/tacklebox.git"
   }
 }
