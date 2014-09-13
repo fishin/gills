@@ -8,13 +8,13 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Jobs</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/ui/css/bootstrap.css" rel="stylesheet">
+    <link href="/gills/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/ui/css/dashboard.css" rel="stylesheet">
+    <link href="/gills/css/dashboard.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -122,34 +122,15 @@
                 </tr>
               </thead>
               <tbody>
+                {{#each jobs}}
                 <tr>
-                  <td>1001</td>
+                  <td>{{id}}</td>
                   <td>Lorem</td>
                   <td>ipsum</td>
                   <td>dolor</td>
                   <td>sit</td>
                 </tr>
-                <tr>
-                  <td>1002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1004</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
+                {{/each}}
               </tbody>
             </table>
           </div>
@@ -161,8 +142,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="/ui/js/bootstrap.min.js"></script>
-    <script src="/ui/js/docs.min.js"></script>
+    <script src="/gills/js/bootstrap.min.js"></script>
+    <script src="/gills/js/docs.min.js"></script>
   </body>
 </html>
 

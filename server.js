@@ -34,7 +34,7 @@ server.on('internalError', function (request, error) {
 
     console.error(JSON.stringify(error));
 });
-
+/*
 server.on('request', function (request, event, tags) {
 
     if (!tags.response) {
@@ -68,6 +68,8 @@ server.on('response', function (request) {
     Purdy(reqToRender);
     console.log('-------------------------------');
 });
+
+*/
 
 server.start(function () {
 

@@ -1,5 +1,6 @@
 var Lab = require('lab');
 var Hapi = require('hapi');
+var Tacklebox = require('tacklebox');
 
 var internals = {};
 
@@ -19,11 +20,18 @@ internals.prepareServer = function (callback) {
     }, function (err) {
 
         expect(err).to.not.exist;
-        callback(server);
-    });
+        server.pack.register({
+
+            plugin: require('tacklebox')
+        }, function (err) {
+
+            expect(err).to.not.exist;
+            callback(server);
+        });
+   });
 };
 
-describe('ui', function () {    
+describe('', function () {    
 
     it('redirect /', function (done) {
         internals.prepareServer(function (server) {
@@ -36,10 +44,10 @@ describe('ui', function () {
         });
     });
 
-    it('home', function (done) {
+    it('gills jobs', function (done) {
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/ui'}, function (response) {
+            server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
