@@ -1,5 +1,7 @@
 var Hapi = require('hapi');
 var Purdy = require('purdy');
+var Tacklebox = require('tacklebox');
+var Lout = require('lout');
 var Gills = require('./index');
 
 var server = new Hapi.Server(8080);
@@ -7,7 +9,19 @@ var options = {};
 
 server.pack.register({ plugin: Gills, options: options }, function(err) {
    if (err) {
-       console.log('plugin did not load');
+       console.log('gills did not load');
+   }
+});
+
+server.pack.register({ plugin: Lout, options: options }, function(err) {
+   if (err) {
+       console.log('lout did not load');
+   }
+});
+
+server.pack.register({ plugin: Tacklebox , options: options }, function(err) {
+   if (err) {
+       console.log('tacklebox did not load');
    }
 });
 

@@ -24,6 +24,8 @@
     "joi": "4.x.x"
   },
   "devDependencies": {
-    "lab": "4.x.x"
+    "lab": "4.x.x",
+    "lout": "5.x.x",
+    "tacklebox": "git+ssh://git@github.com:fishin/tacklebox.git"
   }
 }
