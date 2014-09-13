@@ -106,6 +106,7 @@
           <li><a href="#builds" role="tab" data-toggle="tab">Builds</a></li>
           <li><a href="#deploys" role="tab" data-toggle="tab">Deploys</a></li>
           <li><a href="#tests" role="tab" data-toggle="tab">Tests</a></li>
+          <li><a href="#createTray" role="tab" data-toggle="tab">+</a></li>
           </ul>
 <!--
           <h2 class="sub-header">Job View</h2>
@@ -124,11 +125,11 @@
               <tbody>
                 {{#each jobs}}
                 <tr>
-                  <td>{{id}}</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <td><a href="#{{id}}">{{id}}</a></td>
+                  <td>name</td>
+                  <td>description</td>
+                  <td><a href="#latest">{{id}}</a></td>
+                  <td>success (color row instead)</td>
                 </tr>
                 {{/each}}
               </tbody>
