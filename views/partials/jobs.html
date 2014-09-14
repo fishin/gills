@@ -1,0 +1,60 @@
+          <h1 class="page-header">Job - list</h1>
+<!--
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+-->
+          <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#home" role="tab" data-toggle="tab">All</a></li>
+          <li><a href="#builds" role="tab" data-toggle="tab">Builds</a></li>
+          <li><a href="#deploys" role="tab" data-toggle="tab">Deploys</a></li>
+          <li><a href="#tests" role="tab" data-toggle="tab">Tests</a></li>
+          <li><a href="#createTray" role="tab" data-toggle="tab">+</a></li>
+          </ul>
+<!--
+          <h2 class="sub-header">Job View</h2>
+-->
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>description</th>
+                  <th>run</th>
+                  <th>status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each jobs}}
+                <tr>
+                  <td><a href="#{{id}}">{{id}}</a></td>
+                  <td>name</td>
+                  <td>description</td>
+                  <td><a href="#latest">{{id}}</a></td>
+                  <td>success (color row instead)</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>

@@ -1,0 +1,112 @@
+          <h1 class="page-header">Job - create</h1>
+          <h2 class="sub-header">Basic</h2>
+          <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputName" class="control-label col-xs-2">Name</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputName" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription" class="control-label col-xs-2">Description</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+            </div>
+          </div>
+          <h2 class="sub-header">Source Control</h2>
+          <div class="form-group">
+            <label for="inputSCM" class="control-label col-xs-2">Type</label>
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="scmtype" value="none" checked>
+                </span>
+               <input type="text" class="form-control" value="None" readonly>
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="scmtype" value="git">
+                </span>
+               <input type="text" class="form-control" value="Git" readonly>
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+          </div>
+          <div class="form-group">
+            <label for="inputUrl" class="control-label col-xs-2">Url</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputUrl" placeholder="http://github.com/fishin/gills">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBranch" class="control-label col-xs-2">Branch</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputBranch" placeholder="master">
+            </div>
+          </div>
+          <h2 class="sub-header">Commands</h2>
+          <div class="form-group">
+            <label for="inputHead" class="control-label col-xs-2">Head</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputHead" placeholder="bin/head.sh">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBody" class="control-label col-xs-2">Body</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputHead" placeholder="bin/body.sh">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTail" class="control-label col-xs-2">Tail</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputTail" placeholder="bin/tail.sh">
+            </div>
+          </div>
+          <h2 class="sub-header">Notify</h2>
+          <div class="form-group">
+            <label for="inputNotify" class="control-label col-xs-2">Type</label>
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="notifytype" value="none" checked>
+                </span>
+               <input type="text" class="form-control" value="None" readonly>
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="notifytype" value="email">
+                </span>
+               <input type="text" class="form-control" value="Email" readonly>
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+          </div>
+          <div class="form-group">
+            <label for="inputTo" class="control-label col-xs-2">To</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputTo" placeholder="lloyd.benson@gmail.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputSubject" class="control-label col-xs-2">Subject</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputSubject" placeholder="[ficion]">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmailBody" class="control-label col-xs-2">Body</label>
+            <div class="col-xs-10">
+                <textarea class="form-control" id="inputEmailBody" rows=10>emailBodyText</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+          </form>
+          </div>
+        </div>
