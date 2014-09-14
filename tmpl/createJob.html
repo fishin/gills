@@ -76,64 +76,80 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Jobs</h1>
-<!--
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
+          <h1 class="page-header">Jobs - Create</h1>
+          <h2 class="page-header">Basic</h2>
+          <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputName" class="control-label col-xs-2">Name</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputName" placeholder="Name">
             </div>
           </div>
--->
-          <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#home" role="tab" data-toggle="tab">All</a></li>
-          <li><a href="#builds" role="tab" data-toggle="tab">Builds</a></li>
-          <li><a href="#deploys" role="tab" data-toggle="tab">Deploys</a></li>
-          <li><a href="#tests" role="tab" data-toggle="tab">Tests</a></li>
-          <li><a href="#createTray" role="tab" data-toggle="tab">+</a></li>
-          </ul>
-<!--
-          <h2 class="sub-header">Job View</h2>
--->
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>description</th>
-                  <th>run</th>
-                  <th>status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each jobs}}
-                <tr>
-                  <td><a href="#{{id}}">{{id}}</a></td>
-                  <td>name</td>
-                  <td>description</td>
-                  <td><a href="#latest">{{id}}</a></td>
-                  <td>success (color row instead)</td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
+          <div class="form-group">
+            <label for="inputDescription" class="control-label col-xs-2">Description</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+            </div>
+          </div>
+          <h2 class="page-header">Source Control</h2>
+          <div class="form-group">
+            <label for="inputSCM" class="control-label col-xs-2">Type</label>
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="scmtype" checked>
+                </span>
+               <input type="text" class="form-control" value="None">
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="scmtype">
+                </span>
+               <input type="text" class="form-control" value="Git">
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+          </div>
+          <div class="form-group">
+            <label for="inputUrl" class="control-label col-xs-2">Url</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputUrl" placeholder="http://github.com/fishin/gills">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBranch" class="control-label col-xs-2">Branch</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputBranch" placeholder="master">
+            </div>
+          </div>
+          <h2 class="page-header">Commands</h2>
+          <div class="form-group">
+            <label for="inputHead" class="control-label col-xs-2">Head</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputHead" placeholder="bin/head.sh">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBody" class="control-label col-xs-2">Body</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputHead" placeholder="bin/body.sh">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTail" class="control-label col-xs-2">Tail</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputTail" placeholder="bin/tail.sh">
+            </div>
+          </div>
+          <h2 class="page-header">Notify</h2>
+          <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+          </form>
+
           </div>
         </div>
       </div>
