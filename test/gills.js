@@ -56,4 +56,16 @@ describe('', function () {
         });
     });
 
+    it('gills create job', function (done) {
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/job/create'}, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                expect(response.result).to.exist;
+                done();
+            });
+        });
+    });
+
 });
