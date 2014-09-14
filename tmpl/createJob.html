@@ -144,6 +144,43 @@
           </div>
           <h2 class="page-header">Notify</h2>
           <div class="form-group">
+            <label for="inputNotify" class="control-label col-xs-2">Type</label>
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="notifytype" checked>
+                </span>
+               <input type="text" class="form-control" value="None">
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+            <div class="col-lg-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="notifytype">
+                </span>
+               <input type="text" class="form-control" value="Email">
+             </div><!-- /input-group -->
+           </div><!-- /.col-lg-2 -->
+          </div>
+          <div class="form-group">
+            <label for="inputTo" class="control-label col-xs-2">To</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputTo" placeholder="lloyd.benson@gmail.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputCC" class="control-label col-xs-2">CC</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputCC" placeholder="nvcexploder">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmailBody" class="control-label col-xs-2">Body</label>
+            <div class="col-xs-10">
+                <textarea class="form-control" id="inputEmailBody">emailBodyText</textarea>
+            </div>
+          </div>
+          <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
