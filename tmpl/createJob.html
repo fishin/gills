@@ -14,7 +14,7 @@
     <link href="/gills/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/gills/css/dashboard.css" rel="stylesheet">
+    <link href="/gills/css/gills.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -97,17 +97,17 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype" checked>
+                  <input type="radio" name="scmtype" value="none" checked>
                 </span>
-               <input type="text" class="form-control" value="None">
+               <input type="text" class="form-control" value="None" readonly>
              </div><!-- /input-group -->
            </div><!-- /.col-lg-2 -->
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype">
+                  <input type="radio" name="scmtype" value="git">
                 </span>
-               <input type="text" class="form-control" value="Git">
+               <input type="text" class="form-control" value="Git" readonly>
              </div><!-- /input-group -->
            </div><!-- /.col-lg-2 -->
           </div>
@@ -148,17 +148,17 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype" checked>
+                  <input type="radio" name="notifytype" value="none" checked>
                 </span>
-               <input type="text" class="form-control" value="None">
+               <input type="text" class="form-control" value="None" readonly>
              </div><!-- /input-group -->
            </div><!-- /.col-lg-2 -->
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype">
+                  <input type="radio" name="notifytype" value="email">
                 </span>
-               <input type="text" class="form-control" value="Email">
+               <input type="text" class="form-control" value="Email" readonly>
              </div><!-- /input-group -->
            </div><!-- /.col-lg-2 -->
           </div>
@@ -169,15 +169,15 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputCC" class="control-label col-xs-2">CC</label>
+            <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputCC" placeholder="nvcexploder">
+                <input type="text" class="form-control" id="inputSubject" placeholder="[ficion]">
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmailBody" class="control-label col-xs-2">Body</label>
             <div class="col-xs-10">
-                <textarea class="form-control" id="inputEmailBody">emailBodyText</textarea>
+                <textarea class="form-control" id="inputEmailBody" rows=10>emailBodyText</textarea>
             </div>
           </div>
           <div class="form-group">

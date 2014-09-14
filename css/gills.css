@@ -7,6 +7,14 @@ body {
   padding-top: 50px;
 }
 
+.navbar-inverse {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
 
 /*
  * Global add-ons

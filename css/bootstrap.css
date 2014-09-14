@@ -2392,8 +2392,7 @@ fieldset[disabled] .form-control {
   opacity: 1;
 }
 textarea.form-control {
-  //height: auto;
-  height: 200px;
+  height: auto;
 }
 input[type="search"] {
   -webkit-appearance: none;
@@ -4189,14 +4188,12 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  //background-color: #222;
-  background-color: #428bca;
-  //border-color: #080808;
-  border-color: #428bca;
+  background-color: #222;
+  border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  //color: #777;
-  color: #fff;
+  color: #777;
+  //color: #fff;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
