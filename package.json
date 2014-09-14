@@ -6,10 +6,6 @@
   "scripts": {
     "test": "make test-cov"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/fishin/gills"
-  },
   "author": "Lloyd Benson",
   "license": "MIT",
   "bugs": {
