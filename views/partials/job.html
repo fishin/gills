@@ -19,7 +19,7 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype" value="none" checked>
+                  <input type="radio" name="scmtype" value="none">
                 </span>
                <input type="text" class="form-control" value="None" readonly>
              </div><!-- /input-group -->
@@ -27,7 +27,7 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype" value="git">
+                  <input type="radio" name="scmtype" value="git" checked>
                 </span>
                <input type="text" class="form-control" value="Git" readonly>
              </div><!-- /input-group -->
@@ -70,7 +70,7 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype" value="none" checked>
+                  <input type="radio" name="notifytype" value="none">
                 </span>
                <input type="text" class="form-control" value="None" readonly>
              </div><!-- /input-group -->
@@ -78,7 +78,7 @@
             <div class="col-lg-2">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype" value="email">
+                  <input type="radio" name="notifytype" value="email" checked>
                 </span>
                <input type="text" class="form-control" value="Email" readonly>
              </div><!-- /input-group -->
@@ -93,13 +93,13 @@
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputSubject" placeholder="[ficion]">
+                <input type="text" class="form-control" id="inputSubject" placeholder="[ficion] {status} for {name}">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmailBody" class="control-label col-xs-2">Body</label>
+            <label for="inputMessage" class="control-label col-xs-2">Message</label>
             <div class="col-xs-10">
-                <textarea class="form-control" id="inputEmailBody" rows=10>emailBodyText</textarea>
+                <textarea class="form-control" id="inputMessage" rows=10>run: {run.url}</textarea>
             </div>
           </div>
           <div class="form-group">
