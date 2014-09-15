@@ -1,6 +1,14 @@
           <h1 class="page-header">Job - create</h1>
           <h2 class="sub-header">Basic</h2>
           <form class="form-horizontal">
+          {{#if id}}
+          <div class="form-group">
+            <label for="inputId" class="control-label col-xs-2">Id</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputId" placeholder="{{id}}" disabled>
+            </div>
+          </div>
+          {{/if}}
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
             <div class="col-xs-10">
@@ -16,22 +24,22 @@
           <h2 class="sub-header">Source Control</h2>
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
-            <div class="col-lg-2">
+            <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scmtype" value="none">
                 </span>
-               <input type="text" class="form-control" value="None" readonly>
+                <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-2 -->
-            <div class="col-lg-2">
+           </div><!-- /.col-lg-1 -->
+            <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scmtype" value="git" checked>
                 </span>
-               <input type="text" class="form-control" value="Git" readonly>
+                <button type="button" class="btn btn-default" disabled>Git</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-2 -->
+           </div><!-- /.col-lg-1 -->
           </div>
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
@@ -49,13 +57,13 @@
           <div class="form-group">
             <label for="inputHead" class="control-label col-xs-2">Head</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputHead" placeholder="bin/head.sh">
+                <input type="text" class="form-control" id="inputHead" placeholder="npm install">
             </div>
           </div>
           <div class="form-group">
             <label for="inputBody" class="control-label col-xs-2">Body</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputHead" placeholder="bin/body.sh">
+                <input type="text" class="form-control" id="inputHead" placeholder="npm test">
             </div>
           </div>
           <div class="form-group">
@@ -67,22 +75,22 @@
           <h2 class="sub-header">Notify</h2>
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-lg-2">
+            <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notifytype" value="none">
                 </span>
-               <input type="text" class="form-control" value="None" readonly>
+                <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-2 -->
-            <div class="col-lg-2">
+           </div><!-- /.col-lg-1 -->
+            <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notifytype" value="email" checked>
                 </span>
-               <input type="text" class="form-control" value="Email" readonly>
+                <button type="button" class="btn btn-default" disabled>Email</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-2 -->
+           </div><!-- /.col-lg-1 -->
           </div>
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>
