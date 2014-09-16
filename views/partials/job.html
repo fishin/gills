@@ -1,6 +1,6 @@
           <h1 class="page-header">Job - {{#if id}}update{{else}}create{{/if}}</h1>
           <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal" method="post" action="/gills/job">
+          <form class="form-horizontal" method="post" action="{{post_url}}">
           {{#if id}}
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Id</label>
