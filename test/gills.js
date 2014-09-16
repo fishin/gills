@@ -44,6 +44,25 @@ describe('', function () {
         });
     });
 
+
+    it('gills create job', function (done) {
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'name',
+                description: 'description',
+                head: 'npm install',
+                body: 'npm test',
+                tail: ''
+            };
+            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
     it('gills jobs', function (done) {
         internals.prepareServer(function (server) {
 
@@ -56,7 +75,7 @@ describe('', function () {
         });
     });
 
-    it('gills create job', function (done) {
+    it('gills get job', function (done) {
         internals.prepareServer(function (server) {
 
             server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
