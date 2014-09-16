@@ -59,7 +59,19 @@ describe('', function () {
     it('gills create job', function (done) {
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/job/create'}, function (response) {
+            server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                expect(response.result).to.exist;
+                done();
+            });
+        });
+    });
+
+    it('gills update job', function (done) {
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/job/1001'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
