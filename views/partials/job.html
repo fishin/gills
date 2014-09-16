@@ -1,6 +1,6 @@
-          <h1 class="page-header">Job - create</h1>
+          <h1 class="page-header">Job - {{#if id}}update{{else}}create{{/if}}</h1>
           <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal">
+          <form class="form-horizontal" method="post" action="/gills/job">
           {{#if id}}
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Id</label>
@@ -12,13 +12,13 @@
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="name">
             </div>
           </div>
           <div class="form-group">
             <label for="inputDescription" class="control-label col-xs-2">Description</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="description">
             </div>
           </div>
           <h2 class="sub-header">Source Control</h2>
@@ -44,32 +44,32 @@
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputUrl" placeholder="http://github.com/fishin/gills">
+                <input type="text" class="form-control" name="url" id="inputUrl" placeholder="http://github.com/fishin/gills" value="http://github.com/fishin/gills">
             </div>
           </div>
           <div class="form-group">
             <label for="inputBranch" class="control-label col-xs-2">Branch</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputBranch" placeholder="master">
+                <input type="text" class="form-control" name="branch" id="inputBranch" placeholder="master" value="master">
             </div>
           </div>
           <h2 class="sub-header">Commands</h2>
           <div class="form-group">
             <label for="inputHead" class="control-label col-xs-2">Head</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputHead" placeholder="npm install">
+                <input type="text" class="form-control" name="head" id="inputHead" placeholder="npm install" value="npm install">
             </div>
           </div>
           <div class="form-group">
             <label for="inputBody" class="control-label col-xs-2">Body</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputHead" placeholder="npm test">
+                <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm test" value="npm test">
             </div>
           </div>
           <div class="form-group">
             <label for="inputTail" class="control-label col-xs-2">Tail</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputTail" placeholder="bin/tail.sh">
+                <input type="text" class="form-control" name="tail" id="inputTail" placeholder="bin/tail.sh">
             </div>
           </div>
           <h2 class="sub-header">Notify</h2>
@@ -95,19 +95,19 @@
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputTo" placeholder="lloyd.benson@gmail.com">
+                <input type="text" class="form-control" name="to" id="inputTo" placeholder="lloyd.benson@gmail.com">
             </div>
           </div>
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputSubject" placeholder="[ficion] {status} for {name}">
+                <input type="text" class="form-control" name="subject" id="inputSubject" placeholder="[ficion] {status} for {name}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputMessage" class="control-label col-xs-2">Message</label>
             <div class="col-xs-10">
-                <textarea class="form-control" id="inputMessage" rows=10>run: {run.url}</textarea>
+                <textarea class="form-control" name="message" id="inputMessage" rows=10>run: {run.url}</textarea>
             </div>
           </div>
           <div class="form-group">

@@ -19,11 +19,11 @@ server.pack.register({ plugin: Lout, options: options }, function(err) {
    }
 });
 
-server.pack.register({ plugin: Tacklebox , options: options }, function(err) {
-   if (err) {
-       console.log('tacklebox did not load');
-   }
-});
+//server.pack.register({ plugin: Tacklebox , options: options }, function(err) {
+//   if (err) {
+//       console.log('tacklebox did not load');
+//   }
+//});
 
 server.on('log', function (event) {
 

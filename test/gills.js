@@ -1,6 +1,6 @@
 var Lab = require('lab');
 var Hapi = require('hapi');
-var Tacklebox = require('tacklebox');
+//var Tacklebox = require('tacklebox');
 
 var internals = {};
 
@@ -20,14 +20,14 @@ internals.prepareServer = function (callback) {
     }, function (err) {
 
         expect(err).to.not.exist;
-        server.pack.register({
-
-            plugin: require('tacklebox')
-        }, function (err) {
+//        server.pack.register({
+//
+//            plugin: require('tacklebox')
+//        }, function (err) {
 
             expect(err).to.not.exist;
             callback(server);
-        });
+//        });
    });
 };
 
