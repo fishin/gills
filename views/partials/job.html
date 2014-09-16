@@ -12,13 +12,13 @@
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="name">
+                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputDescription" class="control-label col-xs-2">Description</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="description">
+                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
             </div>
           </div>
           <h2 class="sub-header">Source Control</h2>
@@ -27,7 +27,7 @@
             <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype" value="none">
+                  <input type="radio" name="scm_type" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
@@ -35,7 +35,7 @@
             <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scmtype" value="git" checked>
+                  <input type="radio" name="scm_type" value="git" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>Git</button>
              </div><!-- /input-group -->
@@ -44,32 +44,32 @@
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="url" id="inputUrl" placeholder="http://github.com/fishin/gills" value="http://github.com/fishin/gills">
+                <input type="text" class="form-control" name="scm_url" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scm_url}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputBranch" class="control-label col-xs-2">Branch</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="branch" id="inputBranch" placeholder="master" value="master">
+                <input type="text" class="form-control" name="scm_branch" id="inputBranch" placeholder="master" value="{{scm_branch}}">
             </div>
           </div>
           <h2 class="sub-header">Commands</h2>
           <div class="form-group">
             <label for="inputHead" class="control-label col-xs-2">Head</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="head" id="inputHead" placeholder="npm install" value="npm install">
+                <input type="text" class="form-control" name="head" id="inputHead" placeholder="npm install" value="{{head}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputBody" class="control-label col-xs-2">Body</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm test" value="npm test">
+                <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm test" value="{{body}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputTail" class="control-label col-xs-2">Tail</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="tail" id="inputTail" placeholder="bin/tail.sh">
+                <input type="text" class="form-control" name="tail" id="inputTail" placeholder="bin/tail.sh" value="{{tail}}">
             </div>
           </div>
           <h2 class="sub-header">Notify</h2>
@@ -78,7 +78,7 @@
             <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype" value="none">
+                  <input type="radio" name="notify_type" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
@@ -86,7 +86,7 @@
             <div class="col-lg-1">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notifytype" value="email" checked>
+                  <input type="radio" name="notify_type" value="email" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>Email</button>
              </div><!-- /input-group -->
@@ -95,24 +95,28 @@
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="to" id="inputTo" placeholder="lloyd.benson@gmail.com">
+                <input type="text" class="form-control" name="notify_to" id="inputTo" placeholder="lloyd.benson@gmail.com" value="{{notify_to}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="subject" id="inputSubject" placeholder="[ficion] {status} for {name}">
+                <input type="text" class="form-control" name="notify_subject" id="inputSubject" placeholder="[ficion] {status} for {name}" value="{{notify_subject}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputMessage" class="control-label col-xs-2">Message</label>
             <div class="col-xs-10">
-                <textarea class="form-control" name="message" id="inputMessage" rows=10>run: {run.url}</textarea>
+                <textarea class="form-control" name="notify_message" id="inputMessage" rows=10>{{notify_message}}</textarea>
             </div>
           </div>
           <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
+                {{#if id}}
+                <button type="submit" class="btn btn-primary">Update</button>
+                {{else}}
                 <button type="submit" class="btn btn-primary">Create</button>
+                {{/if}}
             </div>
           </div>
           </form>
