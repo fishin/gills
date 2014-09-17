@@ -43,6 +43,9 @@ describe('', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
+                scm_type: 'git',
+                scm_url: 'https://github.com/fishin/pail',
+                scm_branch: 'master',
                 head: 'npm install',
                 body: 'npm test',
                 tail: ''
