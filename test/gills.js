@@ -8,14 +8,28 @@ var after = lab.after;
 var describe = lab.describe;
 var it = lab.it;
 
-var internals = {};
+var internals = {
+    defaults: {
+        apiPath: '/gills',
+        job: {
+            pailPath: '/tmp/test/job',
+            workspace: 'workspace',
+            configFile: 'config.json'
+        },
+        run: {
+            pailPath: '/tmp/test/run',
+            workspace: 'workspace',
+            configFile: 'config.json'
+        }
+    }
+};
 
 internals.prepareServer = function (callback) {
     var server = new Hapi.Server();
 
     server.pack.register({
-
-        plugin: require('..')
+        plugin: require('..'),
+        options: internals.defaults
     }, function (err) {
 
         expect(err).to.not.exist;
