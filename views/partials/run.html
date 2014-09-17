@@ -1,0 +1,35 @@
+          <h1 class="page-header">Run - {{name}}</h1>
+          <h2 class="sub-header">Basic</h2>
+            <label for="inputRunId" class="control-label col-xs-2">Id</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputRunId" placeholder="{{run_id}}" disabled>
+            </div>
+          <h2 class="sub-header">Commands</h2>
+          {{#each commands}}
+          <h3 class="sub-header">{{command}}</h3>
+            <label for="inputHead" class="control-label col-xs-2">startTime</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputRunId" placeholder="{{startTime}}" disabled>
+            </div>
+            <label for="inputHead" class="control-label col-xs-2">finishTime</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="inputRunId" placeholder="{{finishTime}}" disabled>
+            </div>
+            <label for="inputHead" class="control-label col-xs-2">stdout</label>
+            <div class="col-xs-10">
+                {{#if stdout}}
+                <textarea class="form-control" name="stdout" id="inputMessage" rows=10 disabled>{{stdout}}</textarea>
+                {{else}}
+                <textarea class="form-control" name="stdout" id="inputMessage" disabled></textarea>
+                {{/if}}
+            </div>
+            <label for="inputHead" class="control-label col-xs-2">stderr</label>
+            <div class="col-xs-10">
+                {{#if stderr}}
+                <textarea class="form-control" name="stderr" id="inputMessage" rows=10 disabled>{{stderr}}</textarea>
+                {{else}}
+                <textarea class="form-control" name="stderr" id="inputMessage" disabled></textarea>
+                {{/if}}
+            </div>
+          {{/each}}
+                <button type="submit" class="btn btn-danger">Delete</button>
