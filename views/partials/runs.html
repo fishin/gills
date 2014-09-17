@@ -2,15 +2,15 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>status</th>
+                  <th>finishTime</th>
                   <th>x</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each runs}}
-                <tr>
+                <tr class="{{classColor}}">
                   <td><a href="/gills/job/{{id}}/run/{{run_id}}">{{short_id}}</td>
-                  <td>Success</td>
+                  <td>{{finishTime}}</td>
                   <td><a href="/gills/job/{{id}}/run/{{run_id}}/delete">x</a></td>
                 </tr>
                 {{/each}}
