@@ -12,6 +12,12 @@ body {
   border-color: #428bca;
 }
 
+.runs-table {
+  background-color: #ffffff;
+  border-color: #000000;
+  border: 1px solid #c0c0c0;
+}
+
 .navbar-inverse .navbar-brand {
   color: #fff;
 }
