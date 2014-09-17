@@ -63,10 +63,14 @@ describe('', function () {
 
                             expect(response.statusCode).to.equal(200);
                             expect(response.result).to.exist;
-                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run'}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
-                                done();
+                                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                                    expect(response.statusCode).to.equal(302);
+                                    done();
+                                });
                             });
                         });
                     });
