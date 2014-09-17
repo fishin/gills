@@ -83,10 +83,14 @@ describe('', function () {
                             server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run'}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
-                                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
 
-                                    expect(response.statusCode).to.equal(302);
-                                    done();
+                                    expect(response.statusCode).to.equal(200);
+                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                                        expect(response.statusCode).to.equal(302);
+                                        done();
+                                    });
                                 });
                             });
                         });
