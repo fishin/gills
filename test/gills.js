@@ -67,8 +67,8 @@ describe('', function () {
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var location = response.headers.location.split('/');
-                var job_id = location[location.length-1];
+                var job_id = server.plugins.tacklebox.getJobs()[0];
+                expect(job_id).to.exist;
                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
        
                     expect(response.statusCode).to.equal(200);
@@ -86,10 +86,20 @@ describe('', function () {
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
 
                                     expect(response.statusCode).to.equal(200);
-                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                    var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
+                                    expect(run_id).to.exist; 
+                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id}, function (response) {
 
-                                        expect(response.statusCode).to.equal(302);
-                                        done();
+                                        expect(response.statusCode).to.equal(200);
+                                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id + '/delete'}, function (response) {
+
+                                            expect(response.statusCode).to.equal(302);
+                                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                                                expect(response.statusCode).to.equal(302);
+                                                done();
+                                            });
+                                        });
                                     });
                                 });
                             });
@@ -100,6 +110,37 @@ describe('', function () {
         });
     });
 
+    it('gills failed run', function (done) {
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'name',
+                description: 'description',
+                head: 'invalid'
+            };
+            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                var job_id = server.plugins.tacklebox.getJobs()[0];
+                expect(job_id).to.exist;
+                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run'}, function (response) {
+
+                    expect(response.statusCode).to.equal(302);
+                    var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
+                    expect(run_id).to.exist;
+                    server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+                        
+                        expect(response.statusCode).to.equal(200);
+                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                            expect(response.statusCode).to.equal(302);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
+    });
 
     it('gills new job', function (done) {
         internals.prepareServer(function (server) {
