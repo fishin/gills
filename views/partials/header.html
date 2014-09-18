@@ -7,7 +7,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">ficion - Fast Intelligent Continuous Integration On Node</a>
+          <a class="navbar-brand" href="/">ficion - Fast Intelligent Continuous Integration On Node</a>
+          <a class="navbar-brand" href="/gills/jobs">Jobs</a>
+          <a class="navbar-brand" href="">Statistics</a>
+          <a class="navbar-brand" href="#">Settings</a>
         </div>
         <div class="navbar-collapse collapse">
 <!--
@@ -18,6 +21,7 @@
 -->
           <form class="navbar-form navbar-right">
             {{#if angler}}
+            <a href="#">{{angler}}</a>
             <input type="button" class="form-control" value="logout">
             {{else}}
             <input type="text" class="form-control" placeholder="username">

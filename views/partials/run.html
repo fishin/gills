@@ -1,4 +1,6 @@
-          <h1 class="page-header">Run - {{name}}</h1>
+          <h1 class="page-header">Run - {{name}}
+                <a href="/gills/job/{{id}}/run/{{run_id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+          </h1>
           <h2 class="sub-header">Basic</h2>
             <label for="inputRunId" class="control-label col-xs-2">Id</label>
             <div class="col-xs-10">
@@ -32,4 +34,3 @@
                 {{/if}}
             </div>
           {{/each}}
-                <a href="/gills/job/{{id}}/run/{{run_id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>

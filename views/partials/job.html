@@ -1,4 +1,9 @@
-          <h1 class="page-header">Job - {{#if id}}update{{else}}create{{/if}}</h1>
+          <h1 class="page-header">Job
+                {{#if id}}
+                <a href="/gills/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+                <a href="/gills/job/{{id}}/run"><button type="submit" class="btn btn-info">Run</button></a>
+                {{/if}}
+          </h1>
           <h2 class="sub-header">Basic</h2>
           <form class="form-horizontal" method="post" action="{{post_url}}">
           {{#if id}}
@@ -24,22 +29,22 @@
           <h2 class="sub-header">Source Control</h2>
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
-            <div class="col-lg-1">
+            <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scm_type" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-1 -->
-            <div class="col-lg-1">
+           </div>
+            <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scm_type" value="git" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>Git</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-1 -->
+           </div>
           </div>
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
@@ -75,22 +80,22 @@
           <h2 class="sub-header">Notify</h2>
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-lg-1">
+            <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notify_type" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-1 -->
-            <div class="col-lg-1">
+           </div>
+            <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notify_type" value="email" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>Email</button>
              </div><!-- /input-group -->
-           </div><!-- /.col-lg-1 -->
+           </div>
           </div>
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>

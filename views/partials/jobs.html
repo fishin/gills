@@ -1,4 +1,6 @@
-          <h1 class="page-header">Job - list</h1>
+          <h1 class="page-header">Jobs
+          <a href="/gills/job/create"><button type="submit" class="btn btn-info">Create</button></a>
+          </h1>
 <!--
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -40,20 +42,14 @@
                   <th>name</th>
                   <th>description</th>
                   <th>status</th>
-                  <th>edit</th>
-                  <th>delete</th>
-                  <th>run</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each jobs}}
                 <tr>
-                  <td>{{name}}</td>
+                  <td><a href="/gills/job/{{id}}">{{name}}</a></td>
                   <td>{{description}}</td>
                   <td><a href="#latest"><button type="button" class="btn btn-success">Success</button></a></td>
-                  <td><a href="/gills/job/{{id}}"><button type="button" class="btn btn-default">Edit</button></a></td>
-                  <td><a href="/gills/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a></td>
-                  <td><a href="/gills/job/{{id}}/run"><button type="submit" class="btn btn-default">Run</button></a></td>
                 </tr>
                 {{/each}}
               </tbody>

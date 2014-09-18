@@ -22,6 +22,11 @@ body {
   color: #fff;
 }
 
+.navbar-right > a {
+  color: #fff;
+  font-size: 18px;
+}
+
 /*
  * Global add-ons
  */
@@ -46,6 +51,7 @@ body {
     top: 51px;
     bottom: 0;
     left: 0;
+    //width: 300px;
     z-index: 1000;
     display: block;
     padding: 20px;
@@ -61,6 +67,7 @@ body {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+  margin-top: -20px;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
