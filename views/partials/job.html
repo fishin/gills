@@ -1,19 +1,22 @@
           <h1 class="page-header">Job
+          </h1>
+          <h2 class="sub-header">Basic</h2>
+          {{#if id}}
+          <form class="form-horizontal" method="post" action="{{post_url}}">
+          <div class="form-group">
+            <label for="inputId" class="control-label col-xs-2">Id</label>
+            <div class="well col-xs-4">
+                {{id}}
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is used so it is easy to rename your job.">?</button>
                 {{#if id}}
                 <a href="/gills/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
                 <a href="/gills/job/{{id}}/run"><button type="submit" class="btn btn-info">Run</button></a>
                 {{/if}}
-          </h1>
-          <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal" method="post" action="{{post_url}}">
-          {{#if id}}
-          <div class="form-group">
-            <label for="inputId" class="control-label col-xs-2">Id</label>
-            <div class="col-xs-10">
-                <input type="text" class="form-control" id="inputId" placeholder="{{id}}" disabled>
             </div>
-          </div>
           {{/if}}
+          </div>
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
             <div class="col-xs-10">
