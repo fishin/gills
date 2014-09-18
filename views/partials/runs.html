@@ -7,7 +7,8 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Finish Time</th>
+                  <th>Finished</th>
+                  <th>Elapsed</th>
                   <th><span class="glyphicon glyphicon-remove"></span></a></th>
                 </tr>
               </thead>
@@ -16,6 +17,7 @@
                 <tr class="{{classColor}}">
                   <td><a href="/gills/job/{{id}}/run/{{run_id}}">{{short_id}}</td>
                   <td>{{finishTime}}</td>
+                  <td>{{elapsedTime}}</td>
                   <td><a href="/gills/job/{{id}}/run/{{run_id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
                 {{/each}}
