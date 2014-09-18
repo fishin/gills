@@ -1,5 +1,10 @@
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
-  <li><a href="#">Job</a></li>
-  <li class="active">name</li>
+  <li><a href="/gills/jobs">Jobs</a></li>
+  {{#if name}}
+  <li><a href="/gills/job/{{id}}">{{name}}</a></li>
+  {{#if run_id}}
+  <li><a href="/gills/job/{{id}}/run/{{run_id}}">{{short_run_id}}</a></li>
+  {{/if}}
+  {{/if}}
 </ol>
