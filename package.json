@@ -18,11 +18,11 @@
     "hapi": "6.x.x",
     "hoek": "2.x.x",
     "joi": "4.x.x",
-    "wreck": "5.x.x"
+    "wreck": "5.x.x",
+    "tacklebox": "git+https://github.com/fishin/tacklebox.git"
   },
   "devDependencies": {
     "lab": "4.x.x",
-    "lout": "5.x.x",
-    "tacklebox": "git+https://github.com/fishin/tacklebox.git"
+    "lout": "5.x.x"
   }
 }
