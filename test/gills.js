@@ -12,12 +12,12 @@ var internals = {
     defaults: {
         apiPath: '/gills',
         job: {
-            pailPath: '/tmp/test/job',
+            pailPath: '/tmp/testgills/job',
             workspace: 'workspace',
             configFile: 'config.json'
         },
         run: {
-            pailPath: '/tmp/test/run',
+            pailPath: '/tmp/testgills/run',
             workspace: 'workspace',
             configFile: 'config.json'
         }
