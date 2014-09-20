@@ -142,10 +142,22 @@ describe('', function () {
         });
     });
 
-    it('gills new job', function (done) {
+    it('gills job create form', function (done) {
         internals.prepareServer(function (server) {
 
             server.inject({ method: 'GET', url: '/gills/job/create'}, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                expect(response.result).to.exist;
+                done();
+            });
+        });
+    });
+
+    it('gills reel create form', function (done) {
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/reel/create'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
