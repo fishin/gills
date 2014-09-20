@@ -24,14 +24,17 @@
   </head>
 
   <body>
-
-    {{> header }}
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-4 col-md-3 sidebar">
         {{>sidebar }}
         </div>
         <div class="col-sm-9 col-sm-offset-4 col-md-8 col-md-offset-3 main">
+          <div class="navbar navbar-inverse col-sm-9 col-md-8" role="navigation">
+            <div class="container-fluid">
+              {{> header }}
+            </div>
+          </div>
         {{#if view_jobs}}
         {{>jobs }}
         {{/if}}

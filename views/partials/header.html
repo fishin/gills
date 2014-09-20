@@ -1,60 +1,14 @@
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">ficion - Fast Intelligent Continuous Integration On Node</a>
-          <div class="dropdown navbar-brand">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-            Jobs
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="/gills/jobs">list</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="/gills/job/create">create</a></li>
-            </ul>
-          </div>
-          <div class="dropdown navbar-brand">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-            Statistics
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">jobs</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">runs</a></li>
-            </ul>
-          </div>
-          <div class="dropdown navbar-brand">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-            Settings
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">login</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">global</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{angler}}</a></li>
-              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">logoff</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="navbar-collapse collapse">
-<!--
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">{{angler}}</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
--->
-          <form class="navbar-form navbar-right">
-            {{#if angler}}
-            <a href="#">{{angler}}</a>
-            <input type="button" class="form-control" value="logout">
-            {{else}}
-            <input type="text" class="form-control" placeholder="username">
-            <input type="text" class="form-control" placeholder="password">
-            <input type="button" class="form-control" value="login">
-            {{/if}}
-          </form>
-        </div>
-      </div>
-    </div>
+<div class="col-xs-10">
+  <a class="navbar-brand href="/">ficion - Fast Intelligent Continuous Integration On Node</a>
+  <div>
+    <form class="navbar-form">
+      {{#if angler}}
+      <input type="button" class="form-control" value="logout">
+      {{else}}
+      <input type="text" class="form-control" placeholder="username">
+      <input type="text" class="form-control" placeholder="password">
+      <input type="button" class="form-control" value="login">
+      {{/if}}
+    </form>
+  </div>
+</div>
