@@ -1,46 +1,64 @@
-          <h1 class="page-header">Queue
-                {{#if id}}
-                <a href="/gills/queue/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-                {{/if}}
-          </h1>
-          <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal" method="post" action="{{post_url}}">
-          {{#if id}}
-          <div class="form-group">
-            <label for="inputId" class="control-label col-xs-2">Id</label>
-            <div class="col-xs-4">
-                <input type="text" class="form-control" name="id" id="id" value="{{id}}" disabled>
-            </div>
-            <div class="col-xs-2">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is useful if you are looking at the filesystem.">?</button>
-            </div>
-          </div>
-          {{/if}}
-          <div class="form-group">
-            <label for="inputName" class="control-label col-xs-2">Name</label>
-            <div class="col-xs-8">
-                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputDescription" class="control-label col-xs-2">Description</label>
-            <div class="col-xs-8">
-                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputDescription" class="control-label col-xs-2">Size</label>
-            <div class="col-xs-8">
-                <input type="text" class="form-control" name="size" id="inputSize" placeholder="Size" value="{{size}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-8">
-                {{#if id}}
-                <button type="submit" class="btn btn-primary">Update</button>
-                {{else}}
-                <button type="submit" class="btn btn-primary">Create</button>
-                {{/if}}
-            </div>
-          </div>
-          </form>
+<h1 class="page-header">Reel
+  {{#if id}}
+  <a href="/gills/queue/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+  {{/if}}
+</h1>
+<h2 class="sub-header">Basic</h2>
+<form class="form-horizontal" method="post" action="{{post_url}}">
+  {{#if id}}
+  <div class="form-group">
+    <label for="inputId" class="control-label col-xs-2">Id</label>
+    <div class="col-xs-4">
+      <input type="text" class="form-control" name="id" id="id" value="{{id}}" disabled>
+    </div>
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is useful if you are looking at the filesystem.">?</button>
+    </div>
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label for="inputName" class="control-label col-xs-2">Name</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Description</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Host</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="size" id="inputSize" placeholder="Host" value="{{host}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Port</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="size" id="inputSize" placeholder="Port" value="{{port}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Directory</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="directory" id="inputDirectory" placeholder="/tmp/reel" value="{{directory}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Lines</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="size" id="inputSize" placeholder="Lines" value="{{lines}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-8">
+      {{#if id}}
+      <button type="submit" class="btn btn-primary">Update</button>
+      {{else}}
+      <button type="submit" class="btn btn-primary">Create</button>
+      {{/if}}
+    </div>
+  </div>
+</form>
