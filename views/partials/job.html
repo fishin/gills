@@ -5,8 +5,8 @@
                 {{/if}}
           </h1>
           <h2 class="sub-header">Basic</h2>
-          {{#if id}}
           <form class="form-horizontal" method="post" action="{{post_url}}">
+          {{#if id}}
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Id</label>
             <div class="col-xs-4">
@@ -15,8 +15,8 @@
             <div class="col-xs-2">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is used so it is easy to rename your job.">?</button>
             </div>
-          {{/if}}
           </div>
+          {{/if}}
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
             <div class="col-xs-10">
@@ -128,5 +128,3 @@
             </div>
           </div>
           </form>
-          </div>
-        </div>
