@@ -6,9 +6,10 @@
     </tr>
   </thead>
   <tbody>
+    {{#each reels}}
     <tr>
-      <th colspan=3>Reel - name (active)</th>
-      <th><a href="#"><span class="glyphicon glyphicon-remove"></span></a></th>
+      <th colspan=3>Reel - <a href="/gills/reel/{{id}}">{{name}}</a> (active)</th>
+      <th><a href="/gills/reel/{{id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></th>
     </tr>
     <tr>
       <th colspan=4>Pending Runs</th>
@@ -42,5 +43,6 @@
       <td>pid</td>
       <td><a href="/gills/job/{{id}}/run/{{run_id}}/cancel"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
+    {{/each}}
   </tbody>
 </table>

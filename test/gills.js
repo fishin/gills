@@ -50,7 +50,6 @@ describe('', function () {
         });
     });
 
-
     it('gills crud flow', function (done) {
         internals.prepareServer(function (server) {
 
@@ -162,6 +161,36 @@ describe('', function () {
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
                 done();
+            });
+        });
+    });
+
+    it('gills reel crud flow', function (done) {
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'name',
+                description: 'description'
+            };
+            server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                var reel_id = server.plugins.tacklebox.getReels()[0];
+                expect(reel_id).to.exist;
+                server.inject({ method: 'GET', url: '/gills/reel/'+reel_id}, function (response) {
+       
+                    expect(response.statusCode).to.equal(200);
+                    var updatePayload = { description: "description2" }; 
+                    server.inject({ method: 'POST', url: '/gills/reel/'+reel_id, payload: updatePayload}, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+
+                            expect(response.statusCode).to.equal(302);
+                            done();
+                        });
+                    });
+                });
             });
         });
     });
