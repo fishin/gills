@@ -1,31 +1,31 @@
-<div class="row col-xs-4">
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+<div class="btn-group">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
       Jobs<span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="/gills/jobs">list</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="/gills/job/create">create</a></li>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="/gills/jobs">list</a></li>
+      <li><a href="/gills/job/create">create</a></li>
     </ul>
   </div>
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-      Statistics<span class="caret"></span>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Dashboard<span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">jobs</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">runs</a></li>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">create</a></li>
+      <li><a href="#">statistics</a></li>
     </ul>
   </div>
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
       Settings<span class="caret"></span>
     </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="jobs">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">login</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">global</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{angler}}</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">logoff</a></li>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#">global</a></li>
+      {{#if angler}}
+      <li><a href="#">{{angler}}</a></li>
+      {{/if}}
     </ul>
   </div>
 </div>
