@@ -84,7 +84,7 @@ describe('', function () {
 
                             expect(response.statusCode).to.equal(200);
                             expect(response.result).to.exist;
-                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run'}, function (response) {
+                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
@@ -127,7 +127,7 @@ describe('', function () {
                 expect(response.statusCode).to.equal(302);
                 var job_id = server.plugins.tacklebox.getJobs()[0];
                 expect(job_id).to.exist;
-                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run'}, function (response) {
+                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
 
                     expect(response.statusCode).to.equal(302);
                     var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
