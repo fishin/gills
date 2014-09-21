@@ -20,6 +20,11 @@ var internals = {
             pailPath: '/tmp/testgills/run',
             workspace: 'workspace',
             configFile: 'config.json'
+        },
+        reel: {
+            pailPath: '/tmp/testgills/reel',
+            workspace: 'workspace',
+            configFile: 'config.json'
         }
     }
 };
@@ -144,7 +149,7 @@ describe('', function () {
     it('gills job create form', function (done) {
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/job/create'}, function (response) {
+            server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
@@ -156,7 +161,7 @@ describe('', function () {
     it('gills reel create form', function (done) {
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/reel/create'}, function (response) {
+            server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist;
@@ -201,13 +206,17 @@ describe('', function () {
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
        
                                     expect(response.statusCode).to.equal(200);
-                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                    server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
 
-                                        expect(response.statusCode).to.equal(302);
-                                        server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+                                        expect(response.statusCode).to.equal(200);
+                                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
 
                                             expect(response.statusCode).to.equal(302);
-                                            done();
+                                            server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+
+                                                expect(response.statusCode).to.equal(302);
+                                                done();
+                                            });
                                         });
                                     });
                                 });
