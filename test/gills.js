@@ -146,30 +146,6 @@ describe('', function () {
         });
     });
 
-    it('gills job create form', function (done) {
-        internals.prepareServer(function (server) {
-
-            server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
-
-                expect(response.statusCode).to.equal(200);
-                expect(response.result).to.exist;
-                done();
-            });
-        });
-    });
-
-    it('gills reel create form', function (done) {
-        internals.prepareServer(function (server) {
-
-            server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
-
-                expect(response.statusCode).to.equal(200);
-                expect(response.result).to.exist;
-                done();
-            });
-        });
-    });
-
     it('gills reel crud flow', function (done) {
         internals.prepareServer(function (server) {
 
@@ -209,13 +185,17 @@ describe('', function () {
                                     server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
 
                                         expect(response.statusCode).to.equal(200);
-                                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                        server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
 
-                                            expect(response.statusCode).to.equal(302);
-                                            server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+                                            expect(response.statusCode).to.equal(200);
+                                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
 
                                                 expect(response.statusCode).to.equal(302);
-                                                done();
+                                                server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+
+                                                    expect(response.statusCode).to.equal(302);
+                                                    done();
+                                                });
                                             });
                                         });
                                     });
