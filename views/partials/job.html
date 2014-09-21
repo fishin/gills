@@ -19,8 +19,11 @@
           {{/if}}
           <div class="form-group">
             <label for="inputName" class="control-label col-xs-2">Name</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="this name must be unique for link">?</button>
             </div>
           </div>
           <div class="form-group">
@@ -61,21 +64,23 @@
                 <input type="text" class="form-control" name="scm_branch" id="inputBranch" placeholder="master" value="{{scm_branch}}">
             </div>
           </div>
-          <h2 class="sub-header">Commands</h2>
+          <h2 class="sub-header">Head</h2>
           <div class="form-group">
-            <label for="inputHead" class="control-label col-xs-2">Head</label>
+            <label for="inputHead" class="control-label col-xs-2">Command</label>
             <div class="col-xs-10">
                 <input type="text" class="form-control" name="head" id="inputHead" placeholder="npm install" value="{{head}}">
             </div>
           </div>
+          <h2 class="sub-header">Body</h2>
           <div class="form-group">
-            <label for="inputBody" class="control-label col-xs-2">Body</label>
+            <label for="inputBody" class="control-label col-xs-2">Command</label>
             <div class="col-xs-10">
                 <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm test" value="{{body}}">
             </div>
           </div>
+          <h2 class="sub-header">Tail</h2>
           <div class="form-group">
-            <label for="inputTail" class="control-label col-xs-2">Tail</label>
+            <label for="inputTail" class="control-label col-xs-2">Command</label>
             <div class="col-xs-10">
                 <input type="text" class="form-control" name="tail" id="inputTail" placeholder="bin/tail.sh" value="{{tail}}">
             </div>
