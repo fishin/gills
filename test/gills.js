@@ -184,10 +184,34 @@ describe('', function () {
                     server.inject({ method: 'POST', url: '/gills/reel/'+reel_id, payload: updatePayload}, function (response) {
 
                         expect(response.statusCode).to.equal(302);
-                        server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+                        server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
 
-                            expect(response.statusCode).to.equal(302);
-                            done();
+                            expect(response.statusCode).to.equal(200);
+                            expect(response.result).to.exist;
+                            var payload = {
+                                name: 'name',
+                                description: 'description',
+                                body: 'date'
+                            };
+                            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+
+                                expect(response.statusCode).to.equal(302);
+                                var job_id = server.plugins.tacklebox.getJobs()[0];
+                                expect(job_id).to.exist;
+                                server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+       
+                                    expect(response.statusCode).to.equal(200);
+                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                                        expect(response.statusCode).to.equal(302);
+                                        server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+
+                                            expect(response.statusCode).to.equal(302);
+                                            done();
+                                        });
+                                    });
+                                });
+                            });
                         });
                     });
                 });
