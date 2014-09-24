@@ -12,17 +12,17 @@ var internals = {
     defaults: {
         apiPath: '/gills',
         job: {
-            pailPath: '/tmp/testgills/job',
+            dirpath: '/tmp/testgills/job',
             workspace: 'workspace',
             configFile: 'config.json'
         },
         run: {
-            pailPath: '/tmp/testgills/run',
+            dirpath: '/tmp/testgills/run',
             workspace: 'workspace',
             configFile: 'config.json'
         },
         reel: {
-            pailPath: '/tmp/testgills/reel',
+            dirpath: '/tmp/testgills/reel',
             workspace: 'workspace',
             configFile: 'config.json'
         }
