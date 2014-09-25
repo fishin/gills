@@ -87,25 +87,34 @@ describe('', function () {
                             server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
-                                server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+                                var run_id = server.plugins.tacklebox.getRuns()[0];
+                                expect(run_id).to.exist; 
+                                var intervalObj = setInterval(function() {
 
-                                    expect(response.statusCode).to.equal(200);
-                                    var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
-                                    expect(run_id).to.exist; 
-                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id}, function (response) {
+                                    var run = server.plugins.tacklebox.getRun(run_id);
+                                    if (run.finishTime) {
+                                        clearInterval(intervalObj);   
+                                        expect(run.finishTime);
+                                        expect(run.id);
+                                        server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
 
-                                        expect(response.statusCode).to.equal(200);
-                                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id + '/delete'}, function (response) {
+                                            expect(response.statusCode).to.equal(200);
+                                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id}, function (response) {
 
-                                            expect(response.statusCode).to.equal(302);
-                                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                                expect(response.statusCode).to.equal(200);
+                                                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/run/' + run_id + '/delete'}, function (response) {
 
-                                                expect(response.statusCode).to.equal(302);
-                                                done();
+                                                    expect(response.statusCode).to.equal(302);
+                                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+
+                                                        expect(response.statusCode).to.equal(302);
+                                                        done();
+                                                    });
+                                                });
                                             });
                                         });
-                                    });
-                                });
+                                    };
+                                }, 1000);
                             });
                         });
                     });
@@ -128,19 +137,28 @@ describe('', function () {
                 var job_id = server.plugins.tacklebox.getJobs()[0];
                 expect(job_id).to.exist;
                 server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
+                    
+                    //expect(response.statusCode).to.equal(302);
+                    var run_id = server.plugins.tacklebox.getRuns()[0];
+                    expect(run_id).to.exist; 
+                    var intervalObj = setInterval(function() {
 
-                    expect(response.statusCode).to.equal(302);
-                    var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
-                    expect(run_id).to.exist;
-                    server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+                        var run = server.plugins.tacklebox.getRun(run_id);
+                        if (run.finishTime) {
+                            clearInterval(intervalObj);
+                            expect(run.finishTime).to.exist;
+                            expect(run.status).to.equal('failed');
+                            server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
                         
-                        expect(response.statusCode).to.equal(200);
-                        server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                expect(response.statusCode).to.equal(200);
+                                server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
 
-                            expect(response.statusCode).to.equal(302);
-                            done();
-                        });
-                    });
+                                    expect(response.statusCode).to.equal(302);
+                                    done();
+                                });
+                            });
+                        }
+                    }, 1000);
                 });
             });
         });
