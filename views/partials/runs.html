@@ -14,7 +14,17 @@
     {{#each runs}}
     <tr class="{{classColor}}">
       <td><a href="/gills/job/{{id}}/run/{{run_id}}">{{short_id}}</td>
+      {{#if finishTime}}
       <td>{{finishTime}}</td>
+      {{else}}
+      <td>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+            0%
+          </div>
+        </div>
+      </td>
+      {{/if}}
       <td>{{elapsedTime}}</td>
       <td><a href="/gills/job/{{id}}/run/{{run_id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>

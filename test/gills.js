@@ -89,6 +89,9 @@ describe('', function () {
                                 expect(response.statusCode).to.equal(302);
                                 var run_id = server.plugins.tacklebox.getRuns()[0];
                                 expect(run_id).to.exist; 
+                                server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+                                    expect(response.statusCode).to.equal(200);
+                                });
                                 var intervalObj = setInterval(function() {
 
                                     var run = server.plugins.tacklebox.getRun(run_id);
