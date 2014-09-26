@@ -17,7 +17,7 @@ var internals = {
             configFile: 'config.json'
         },
         run: {
-            dirpath: '/tmp/testgills/run',
+//            dirpath: '/tmp/testgills/run',
             workspace: 'workspace',
             configFile: 'config.json'
         },
@@ -87,14 +87,14 @@ describe('', function () {
                             server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
-                                var run_id = server.plugins.tacklebox.getRuns()[0];
+                                var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
                                 expect(run_id).to.exist; 
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
                                     expect(response.statusCode).to.equal(200);
                                 });
                                 var intervalObj = setInterval(function() {
 
-                                    var run = server.plugins.tacklebox.getRun(run_id);
+                                    var run = server.plugins.tacklebox.getRun(job_id, run_id);
                                     if (run.finishTime) {
                                         clearInterval(intervalObj);   
                                         expect(run.finishTime);
@@ -142,11 +142,11 @@ describe('', function () {
                 server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
                     
                     //expect(response.statusCode).to.equal(302);
-                    var run_id = server.plugins.tacklebox.getRuns()[0];
+                    var run_id = server.plugins.tacklebox.getRuns(job_id)[0];
                     expect(run_id).to.exist; 
                     var intervalObj = setInterval(function() {
 
-                        var run = server.plugins.tacklebox.getRun(run_id);
+                        var run = server.plugins.tacklebox.getRun(job_id, run_id);
                         if (run.finishTime) {
                             clearInterval(intervalObj);
                             expect(run.finishTime).to.exist;
@@ -205,6 +205,7 @@ describe('', function () {
                                     expect(response.statusCode).to.equal(200);
                                     server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
 
+                                        //console.log(response);
                                         expect(response.statusCode).to.equal(200);
                                         server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
 
