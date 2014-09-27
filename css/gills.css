@@ -72,7 +72,7 @@ body {
     display: block;
     padding: 0px;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+//    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
 }
 
