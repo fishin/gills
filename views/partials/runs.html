@@ -1,32 +1,48 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Run List <span class="badge">{{runs.length}}</span></th>
+      <th colspan=4>Run List</th>
     </tr>
   </thead>
   <tbody>
+    {{#if activeRuns}}
+    <tr>
+      <td colspan=4>Active Runs <span class="badge">{{activeRuns.length}}</span></td>
+    </tr>
+    {{/if}}
+    {{#each activeRuns}}
+    <tr class="{{classColor}}">
+      <td><a href="/gills/job/{{job_id}}/run/{{run_id}}">{{short_id}}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent}}%">
+            <span>{{percent}}%</span>
+          </div>
+        </div>
+      </td>
+      <td>{{elapsedTime}} s</td>
+      <td><span class="glyphicon glyphicon-remove"></span></a></td>
+    </tr>
+    <tr class="{{classColor}}">
+      <td colspan=3>{{command}}</td>
+      <td><a href="/gills/job/{{job_id}}/run/{{run_id}}/cancel">{{pid}}</a></td>
+    </tr>
+    {{/each}}
+    <tr>
+      <td colspan=4>Finished Runs <span class="badge">{{finishedRuns.length}}</span></td>
+    </tr>
     <tr>
       <td>id</td>
       <td>Finished</td>
       <td>Elapsed</td>
       <td><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
-    {{#each runs}}
+    {{#each finishedRuns}}
     <tr class="{{classColor}}">
-      <td><a href="/gills/job/{{id}}/run/{{run_id}}">{{short_id}}</td>
-      {{#if finishTime}}
+      <td><a href="/gills/job/{{job_id}}/run/{{run_id}}">{{short_id}}</td>
       <td>{{finishTime}}</td>
-      {{else}}
-      <td>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{elapsedTime}}" aria-valuemin="0" aria-valuemax="100" style="width: {{elapsedTime}}%">
-            {{elapsedTime}}%
-          </div>
-        </div>
-      </td>
-      {{/if}}
-      <td>{{elapsedTime}} s</td>
-      <td><a href="/gills/job/{{id}}/run/{{run_id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+      <td>{{elapsedTime}} {{#if elapsedTime}}s{{/if}}</td>
+      <td><a href="/gills/job/{{job_id}}/run/{{run_id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
     {{/each}}
   </tbody>

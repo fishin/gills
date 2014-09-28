@@ -7,6 +7,17 @@ body {
   padding-top: 50px;
 }
 
+.progress {
+    position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+ //   color: black;
+ }
+
 .navbar-inverse {
   background-color: #428bca;
   border-color: #428bca;

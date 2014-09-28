@@ -6,20 +6,23 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th colspan=4>Pending Runs</th>
+    </tr>
+    <tr class="{{classColor}}">
+      <td><a href="/gills/job/{{id}}/run/{{run_id}}">id</td>
+      <td>
+      target
+      </td>
+      <td>
+      waittime
+      </td>
+      <td><a href="/gills/job/{{id}}/run/{{run_id}}/cancel"><span class="glyphicon glyphicon-remove"></span></a></td>
+    </tr>
     {{#each reels}}
     <tr>
       <th colspan=3>Reel - <a href="/gills/reel/{{id}}">{{name}}</a> (active)</th>
       <th><a href="/gills/reel/{{id}}/delete"><span class="glyphicon glyphicon-remove"></span></a></th>
-    </tr>
-    <tr>
-      <th colspan=4>Pending Runs</th>
-    </tr>
-    <tr>
-      <td colspan=3><a href="/gills/job/{{id}}/run/{{run_id}}">id</td>
-      <td><a href="/gills/job/{{id}}/run/{{run_id}}/cancel"><span class="glyphicon glyphicon-remove"></span></a></td>
-    </tr>
-    <tr>
-      <th colspan=4>Active Runs</th>
     </tr>
     <tr class="{{classColor}}">
       <td><a href="/gills/job/{{id}}/run/{{run_id}}">id</td>
