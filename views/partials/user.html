@@ -1,0 +1,46 @@
+<h1 class="page-header">User
+  {{#if id}}
+  <a href="/gills/user/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+  {{/if}}
+</h1>
+<h2 class="sub-header">Basic</h2>
+<form class="form-horizontal" method="post" action="{{post_url}}">
+  {{#if id}}
+  <div class="form-group">
+    <label for="inputId" class="control-label col-xs-2">Id</label>
+    <div class="col-xs-4">
+      <input type="text" class="form-control" name="id" id="id" value="{{id}}" disabled>
+    </div>
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is useful if you are looking at the filesystem.">?</button>
+    </div>
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label for="inputUser" class="control-label col-xs-2">username</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="name" id="inputUsername" placeholder="username" value="{{name}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Email</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="email" id="inputDescription" placeholder="user@domain.com" value="{{email}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Display Name</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="displayName" id="inputDisplayName" placeholder="Name" value="{{displayName}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-8">
+      {{#if id}}
+      <button type="submit" class="btn btn-primary">Update</button>
+      {{else}}
+      <button type="submit" class="btn btn-primary">Create</button>
+      {{/if}}
+    </div>
+  </div>
+</form>

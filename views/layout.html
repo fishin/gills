@@ -36,8 +36,12 @@
               {{> header }}
             </div>
           </div>
+        {{>menu}}
         {{#if view_jobs}}
         {{>jobs }}
+        {{/if}}
+        {{#if view_users}}
+        {{>users }}
         {{/if}}
         {{#if view_job}}
         {{>job }}
@@ -47,6 +51,9 @@
         {{/if}}
         {{#if view_reel}}
         {{>reel }}
+        {{/if}}
+        {{#if view_user}}
+        {{>user }}
         {{/if}}
         </div>
       </div>

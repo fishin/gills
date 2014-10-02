@@ -1,0 +1,24 @@
+          <h1 class="page-header">Users
+          <a href="/gills/user"><button type="submit" class="btn btn-info">Create</button></a>
+          </h1>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>username</th>
+                  <th>name</th>
+                  <th>email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each users}}
+                <tr class="{{classColor}}">
+                  <td><a href="/gills/user/{{id}}">{{name}}</a></td>
+                  <td>{{displayName}}</td>
+                  <td>{{email}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
