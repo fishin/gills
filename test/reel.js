@@ -55,7 +55,7 @@ describe('reel', function () {
             server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var reel_id = server.plugins.tacklebox.getReels()[0];
+                var reel_id = server.plugins.tacklebox.getReels()[0].id;
                 expect(reel_id).to.exist;
                 server.inject({ method: 'GET', url: '/gills/reel/'+reel_id}, function (response) {
        

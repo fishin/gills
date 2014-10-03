@@ -1,0 +1,31 @@
+<table class="table table-striped gills-table">
+  <thead>
+    <tr>
+      <th colspan=4>Queue <span class="badge">{{queue.length}}</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>job_id</td>
+      <td>
+      target
+      </td>
+      <td>
+      elapsed
+      </td>
+      <td><span class="glyphicon glyphicon-remove"></span></td>
+    </tr>
+    {{#each queue}}
+    <tr>
+      <td><a href="/gills/job/{{job_id}}">{{shortId}}</td>
+      <td>
+      {{target}}
+      </td>
+      <td>
+      {{elapsedTime}}
+      </td>
+      <td><a href="/gills/queue/{{job_id}}/remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
