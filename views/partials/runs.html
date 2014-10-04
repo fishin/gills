@@ -23,11 +23,13 @@
       <td>{{elapsedTime}} s</td>
       <td><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
+   {{#each processes}}
     <tr class="{{classColor}}">
-      <td colspan=2>{{command}}</td>
-      <td colspan=1>{{pid}}</td>
-      <td><a href="/gills/job/{{job_id}}/run/{{run_id}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+      <td colspan=2>{{this.command}}</td>
+      <td colspan=1>{{this.pid}}</td>
+      <td><a href="/gills/job/{{this.job_id}}/run/{{this.run_id}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
     </tr>
+    {{/each}}
     {{/each}}
     <tr>
       <td colspan=4>Finished Runs <span class="badge">{{finishedRuns.length}}</span></td>
