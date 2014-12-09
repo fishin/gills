@@ -1,10 +1,9 @@
+var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
 
 var lab = exports.lab = Lab.script();
-var expect = Lab.expect;
-var before = lab.before;
-var after = lab.after;
+var expect = Code.expect;
 var describe = lab.describe;
 var it = lab.it;
 
@@ -43,7 +42,7 @@ internals.prepareServer = function (callback) {
         options: internals.defaults
     }, function (err) {
 
-        expect(err).to.not.exist;
+        expect(err).to.not.exist();
         callback(server);
    });
 };
@@ -69,8 +68,8 @@ describe('queue', function () {
                 server.inject({ method: 'POST', url: '/gills/job', payload: payload2}, function (response) {
                     var job_id1 = server.plugins.tacklebox.getJobs()[0].id;
                     var job_id2 = server.plugins.tacklebox.getJobs()[1].id;
-                    expect(job_id1).to.exist;
-                    expect(job_id2).to.exist;
+                    expect(job_id1).to.exist();
+                    expect(job_id2).to.exist();
                     server.inject({ method: 'GET', url: '/gills/queue/'+job_id1+'/add'}, function (response) {
 
                         expect(response.statusCode).to.equal(302);

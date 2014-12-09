@@ -1,10 +1,9 @@
+var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
 
 var lab = exports.lab = Lab.script();
-var expect = Lab.expect;
-var before = lab.before;
-var after = lab.after;
+var expect = Code.expect;
 var describe = lab.describe;
 var it = lab.it;
 
@@ -43,7 +42,7 @@ internals.prepareServer = function (callback) {
         options: internals.defaults
     }, function (err) {
 
-        expect(err).to.not.exist;
+        expect(err).to.not.exist();
         callback(server);
    });
 };
@@ -62,7 +61,7 @@ describe('users', function () {
 
                 expect(response.statusCode).to.equal(302);
                 var user_id1 = server.plugins.tacklebox.getUsers()[0].id;
-                expect(user_id1).to.exist;
+                expect(user_id1).to.exist();
                 var payload2 = {
                     name: 'backer',
                     displayName: 'Ben Acker',
@@ -71,7 +70,7 @@ describe('users', function () {
                 server.inject({ method: 'POST', url: '/gills/user', payload: payload2}, function (response) {
                     expect(response.statusCode).to.equal(302);
                     var user_id2 = server.plugins.tacklebox.getUsers()[1].id;
-                    expect(user_id2).to.exist;
+                    expect(user_id2).to.exist();
                     server.inject({ method: 'GET', url: '/gills/users'}, function (response) {
 
                         expect(response.statusCode).to.equal(200);

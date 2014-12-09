@@ -1,10 +1,9 @@
+var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
 
 var lab = exports.lab = Lab.script();
-var expect = Lab.expect;
-var before = lab.before;
-var after = lab.after;
+var expect = Code.expect;
 var describe = lab.describe;
 var it = lab.it;
 
@@ -38,7 +37,7 @@ internals.prepareServer = function (callback) {
         options: internals.defaults
     }, function (err) {
 
-        expect(err).to.not.exist;
+        expect(err).to.not.exist();
         callback(server);
    });
 };
@@ -56,7 +55,7 @@ describe('reel', function () {
 
                 expect(response.statusCode).to.equal(302);
                 var reel_id = server.plugins.tacklebox.getReels()[0].id;
-                expect(reel_id).to.exist;
+                expect(reel_id).to.exist();
                 server.inject({ method: 'GET', url: '/gills/reel/'+reel_id}, function (response) {
        
                     expect(response.statusCode).to.equal(200);
@@ -67,7 +66,7 @@ describe('reel', function () {
                         server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
 
                             expect(response.statusCode).to.equal(200);
-                            expect(response.result).to.exist;
+                            expect(response.result).to.exist();
                             var payload = {
                                 name: 'name',
                                 description: 'description',
@@ -77,7 +76,7 @@ describe('reel', function () {
 
                                 expect(response.statusCode).to.equal(302);
                                 var job_id = server.plugins.tacklebox.getJobs()[0].id;
-                                expect(job_id).to.exist;
+                                expect(job_id).to.exist();
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
        
                                     expect(response.statusCode).to.equal(200);

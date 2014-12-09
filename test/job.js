@@ -1,10 +1,9 @@
+var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
 
 var lab = exports.lab = Lab.script();
-var expect = Lab.expect;
-var before = lab.before;
-var after = lab.after;
+var expect = Code.expect;
 var describe = lab.describe;
 var it = lab.it;
 
@@ -38,7 +37,7 @@ internals.prepareServer = function (callback) {
         options: internals.defaults
     }, function (err) {
 
-        expect(err).to.not.exist;
+        expect(err).to.not.exist();
         callback(server);
    });
 };
@@ -62,7 +61,7 @@ describe('job', function () {
 
                 expect(response.statusCode).to.equal(302);
                 var job_id = server.plugins.tacklebox.getJobs()[0].id;
-                expect(job_id).to.exist;
+                expect(job_id).to.exist();
                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
        
                     expect(response.statusCode).to.equal(200);
@@ -73,14 +72,14 @@ describe('job', function () {
                         server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
 
                             expect(response.statusCode).to.equal(200);
-                            expect(response.result).to.exist;
+                            expect(response.result).to.exist();
                             server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/start'}, function (response) {
 
                                 console.log('starting job: ' + job_id);
                                 expect(response.statusCode).to.equal(302);
                                 var run_id = server.plugins.tacklebox.getRuns(job_id)[0].id;
                                 console.log('run_id: ' + run_id);
-                                expect(run_id).to.exist; 
+                                expect(run_id).to.exist(); 
                                 server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
                                     expect(response.statusCode).to.equal(200);
                                 });
