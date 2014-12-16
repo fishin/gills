@@ -31,9 +31,10 @@ var internals = {
 internals.prepareServer = function (callback) {
 
     var server = new Hapi.Server();
+    server.connection();
 
-    server.pack.register({
-        plugin: require('..'),
+    server.register({
+        register: require('..'),
         options: internals.defaults
     }, function (err) {
 
