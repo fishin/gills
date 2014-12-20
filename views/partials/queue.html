@@ -6,7 +6,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>job_id</td>
+      <td>jobId</td>
       <td>
       target
       </td>
@@ -17,14 +17,14 @@
     </tr>
     {{#each queue}}
     <tr>
-      <td><a href="/gills/job/{{job_id}}">{{shortId}}</td>
+      <td><a href="/gills/job/{{jobId}}">{{shortId}}</td>
       <td>
       {{target}}
       </td>
       <td>
       {{elapsedTime}}
       </td>
-      <td><a href="/gills/queue/{{job_id}}/remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+      <td><a href="/gills/queue/{{jobId}}/remove"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
     {{/each}}
   </tbody>

@@ -56,21 +56,21 @@ describe('jobs', function () {
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var job_id1 = server.plugins.tacklebox.getJobs()[0].id;
-                expect(job_id1).to.exist();
-                server.inject({ method: 'GET', url: '/gills/job/'+job_id1+ '/start'}, function (response) {
+                var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
+                expect(jobId1).to.exist();
+                server.inject({ method: 'GET', url: '/gills/job/'+jobId1+ '/start'}, function (response) {
 
-                    console.log('starting job: ' + job_id1);
+                    console.log('starting job: ' + jobId1);
                     expect(response.statusCode).to.equal(302);
-                    server.inject({ method: 'GET', url: '/gills/job/'+job_id1}, function (response) {
+                    server.inject({ method: 'GET', url: '/gills/job/'+jobId1}, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                     });
-                    var run_id = server.plugins.tacklebox.getRuns(job_id1)[0].id;
-                    expect(run_id).to.exist(); 
+                    var runId = server.plugins.tacklebox.getRuns(jobId1)[0].id;
+                    expect(runId).to.exist(); 
                     var intervalObj1 = setInterval(function() {
 
-                        var run = server.plugins.tacklebox.getRun(job_id1, run_id);
+                        var run = server.plugins.tacklebox.getRun(jobId1, runId);
                         if (run.finishTime) {
 
                             clearInterval(intervalObj1);   
@@ -84,21 +84,21 @@ describe('jobs', function () {
                             };
                             server.inject({ method: 'POST', url: '/gills/job', payload: payload2}, function (response) {
                                 expect(response.statusCode).to.equal(302);
-                                var job_id2 = server.plugins.tacklebox.getJobs()[1].id;
-                                expect(job_id2).to.exist();
-                                server.inject({ method: 'GET', url: '/gills/job/'+job_id2+ '/start'}, function (response) {
+                                var jobId2 = server.plugins.tacklebox.getJobs()[1].id;
+                                expect(jobId2).to.exist();
+                                server.inject({ method: 'GET', url: '/gills/job/'+jobId2+ '/start'}, function (response) {
 
-                                    console.log('starting job: ' + job_id2);
+                                    console.log('starting job: ' + jobId2);
                                     expect(response.statusCode).to.equal(302);
-                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id2}, function (response) {
+                                    server.inject({ method: 'GET', url: '/gills/job/'+jobId2}, function (response) {
 
                                         expect(response.statusCode).to.equal(200);
                                     });
-                                    var run_id = server.plugins.tacklebox.getRuns(job_id2)[0].id;
-                                    expect(run_id).to.exist(); 
+                                    var runId = server.plugins.tacklebox.getRuns(jobId2)[0].id;
+                                    expect(runId).to.exist(); 
                                     var intervalObj2 = setInterval(function() {
 
-                                        var run = server.plugins.tacklebox.getRun(job_id2, run_id);
+                                        var run = server.plugins.tacklebox.getRun(jobId2, runId);
                                         if (run.finishTime) {
 
                                             clearInterval(intervalObj2);   
@@ -109,10 +109,10 @@ describe('jobs', function () {
 
                                                 expect(response.statusCode).to.equal(200);
 
-                                                server.inject({ method: 'GET', url: '/gills/job/'+job_id1+ '/delete'}, function (response) {
+                                                server.inject({ method: 'GET', url: '/gills/job/'+jobId1+ '/delete'}, function (response) {
 
                                                     expect(response.statusCode).to.equal(302);
-                                                    server.inject({ method: 'GET', url: '/gills/job/'+job_id2+ '/delete'}, function (response) {
+                                                    server.inject({ method: 'GET', url: '/gills/job/'+jobId2+ '/delete'}, function (response) {
                                                         expect(response.statusCode).to.equal(302);
                                                         done();
                                                     });

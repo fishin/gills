@@ -55,13 +55,13 @@ describe('reel', function () {
             server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var reel_id = server.plugins.tacklebox.getReels()[0].id;
-                expect(reel_id).to.exist();
-                server.inject({ method: 'GET', url: '/gills/reel/'+reel_id}, function (response) {
+                var reelId = server.plugins.tacklebox.getReels()[0].id;
+                expect(reelId).to.exist();
+                server.inject({ method: 'GET', url: '/gills/reel/'+reelId}, function (response) {
        
                     expect(response.statusCode).to.equal(200);
                     var updatePayload = { description: "description2" }; 
-                    server.inject({ method: 'POST', url: '/gills/reel/'+reel_id, payload: updatePayload}, function (response) {
+                    server.inject({ method: 'POST', url: '/gills/reel/'+reelId, payload: updatePayload}, function (response) {
 
                         expect(response.statusCode).to.equal(302);
                         server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
@@ -76,9 +76,9 @@ describe('reel', function () {
                             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
                                 expect(response.statusCode).to.equal(302);
-                                var job_id = server.plugins.tacklebox.getJobs()[0].id;
-                                expect(job_id).to.exist();
-                                server.inject({ method: 'GET', url: '/gills/job/'+job_id}, function (response) {
+                                var jobId = server.plugins.tacklebox.getJobs()[0].id;
+                                expect(jobId).to.exist();
+                                server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
        
                                     expect(response.statusCode).to.equal(200);
                                     server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
@@ -88,10 +88,10 @@ describe('reel', function () {
                                         server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
 
                                             expect(response.statusCode).to.equal(200);
-                                            server.inject({ method: 'GET', url: '/gills/job/'+job_id+ '/delete'}, function (response) {
+                                            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
 
                                                 expect(response.statusCode).to.equal(302);
-                                                server.inject({ method: 'GET', url: '/gills/reel/'+reel_id+ '/delete'}, function (response) {
+                                                server.inject({ method: 'GET', url: '/gills/reel/'+reelId+ '/delete'}, function (response) {
 
                                                     expect(response.statusCode).to.equal(302);
                                                     done();

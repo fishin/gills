@@ -61,8 +61,8 @@ describe('users', function () {
             server.inject({ method: 'POST', url: '/gills/user', payload: payload1}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var user_id1 = server.plugins.tacklebox.getUsers()[0].id;
-                expect(user_id1).to.exist();
+                var userId1 = server.plugins.tacklebox.getUsers()[0].id;
+                expect(userId1).to.exist();
                 var payload2 = {
                     name: 'backer',
                     displayName: 'Ben Acker',
@@ -70,16 +70,16 @@ describe('users', function () {
                 };
                 server.inject({ method: 'POST', url: '/gills/user', payload: payload2}, function (response) {
                     expect(response.statusCode).to.equal(302);
-                    var user_id2 = server.plugins.tacklebox.getUsers()[1].id;
-                    expect(user_id2).to.exist();
+                    var userId2 = server.plugins.tacklebox.getUsers()[1].id;
+                    expect(userId2).to.exist();
                     server.inject({ method: 'GET', url: '/gills/users'}, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.statusCode).to.equal(200);
-                        server.inject({ method: 'GET', url: '/gills/user/'+user_id1+ '/delete'}, function (response) {
+                        server.inject({ method: 'GET', url: '/gills/user/'+userId1+ '/delete'}, function (response) {
 
                             expect(response.statusCode).to.equal(302);
-                            server.inject({ method: 'GET', url: '/gills/user/'+user_id2+ '/delete'}, function (response) {
+                            server.inject({ method: 'GET', url: '/gills/user/'+userId2+ '/delete'}, function (response) {
                                 expect(response.statusCode).to.equal(302);
                                 done();
                             });

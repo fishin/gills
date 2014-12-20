@@ -4,22 +4,23 @@ var Tacklebox = require('tacklebox');
 var Lout = require('lout');
 var Gills = require('./index');
 
-var server = new Hapi.Server(8080);
+var server = new Hapi.Server();
+server.connection({ port: 8080 });
 var options = {};
 
-server.pack.register({ plugin: Gills, options: options }, function(err) {
+server.register({ register: Gills, options: options }, function(err) {
    if (err) {
        console.log('gills did not load');
    }
 });
 
-server.pack.register({ plugin: Lout, options: options }, function(err) {
+server.register({ register: Lout, options: options }, function(err) {
    if (err) {
        console.log('lout did not load');
    }
 });
 
-//server.pack.register({ plugin: Tacklebox , options: options }, function(err) {
+//server.pack.register({ register: Tacklebox , options: options }, function(err) {
 //   if (err) {
 //       console.log('tacklebox did not load');
 //   }
@@ -74,4 +75,6 @@ server.on('response', function (request) {
 server.start(function () {
 
     console.log('started server: ' + server.info.uri);
+    //console.log(server.connections);
+    console.log(server.connections[0]._load.settings);
 });
