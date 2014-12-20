@@ -39,7 +39,8 @@ internals.prepareServer = function (callback) {
 
 describe('user', function () {    
 
-    it('crud flow', function (done) {
+    it('createUser', function (done) {
+
         internals.prepareServer(function (server) {
 
             var payload = {
@@ -50,26 +51,51 @@ describe('user', function () {
             server.inject({ method: 'POST', url: '/gills/user', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var userId = server.plugins.tacklebox.getUsers()[0].id;
-                expect(userId).to.exist();
-                server.inject({ method: 'GET', url: '/gills/user/'+userId}, function (response) {
+                done();
+            });
+        });
+    });
+
+    it('getUser', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var userId = server.plugins.tacklebox.getUsers()[0].id;
+            server.inject({ method: 'GET', url: '/gills/user/'+userId}, function (response) {
        
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('updateUser', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var userId = server.plugins.tacklebox.getUsers()[0].id;
+            var updatePayload = { displayName: "Lloyd Benson" }; 
+            server.inject({ method: 'POST', url: '/gills/user/'+userId, payload: updatePayload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                server.inject({ method: 'GET', url: '/gills/user'}, function (response) {
+
                     expect(response.statusCode).to.equal(200);
-                    var updatePayload = { displayName: "Lloyd Benson" }; 
-                    server.inject({ method: 'POST', url: '/gills/user/'+userId, payload: updatePayload}, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
-                        server.inject({ method: 'GET', url: '/gills/user'}, function (response) {
-
-                            expect(response.statusCode).to.equal(200);
-                            server.inject({ method: 'GET', url: '/gills/user/'+userId+ '/delete'}, function (response) {
-
-                                expect(response.statusCode).to.equal(302);
-                                done();
-                            });
-                        });
-                    });
+                    done();
                 });
+            });
+        });
+    });
+
+    it('deleteUser', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var userId = server.plugins.tacklebox.getUsers()[0].id;
+            server.inject({ method: 'GET', url: '/gills/user/'+userId+ '/delete'}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
             });
         });
     });
