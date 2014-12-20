@@ -11,24 +11,13 @@ var internals = {
     defaults: {
         apiPath: '/gills',
         job: {
-            dirpath: '/tmp/testgills/job',
-            workspace: 'workspace',
-            configFile: 'config.json'
-        },
-        run: {
-//            dirpath: '/tmp/testgills/run',
-            workspace: 'workspace',
-            configFile: 'config.json'
+            dirpath: '/tmp/testgills/job'
         },
         user: {
-            dirpath: '/tmp/testgills/user',
-            workspace: 'workspace',
-            configFile: 'config.json'
+            dirpath: '/tmp/testgills/user'
         },
         reel: {
-            dirpath: '/tmp/testgills/reel',
-            workspace: 'workspace',
-            configFile: 'config.json'
+            dirpath: '/tmp/testgills/reel'
         }
     }
 };
