@@ -36,7 +36,7 @@ internals.prepareServer = function (callback) {
 
 describe('job', function () {    
 
-    it('createJob', function (done) {
+    it('POST /gills/job', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -61,7 +61,7 @@ describe('job', function () {
 
     });
 
-    it('getJob', function (done) {
+    it('GET /gills/job/{jobId}', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -75,7 +75,7 @@ describe('job', function () {
 
     });
 
-    it('updateJob', function (done) {
+    it('POST /gills/job/{jobId}', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -95,7 +95,7 @@ describe('job', function () {
 
     });
 
-    it('startJob', function (done) {
+    it('GET /gills/job/{jobId}/start', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -133,7 +133,7 @@ describe('job', function () {
         });
     });
 
-    it('deleteRun', function (done) {
+    it('GET /gills/job/{job_id}/run/{runId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -147,7 +147,7 @@ describe('job', function () {
         });
     });
 
-    it('deleteJob', function (done) {
+    it('GET /gills/job/{jobId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
