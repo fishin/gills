@@ -36,7 +36,8 @@ internals.prepareServer = function (callback) {
 
 describe('redirect', function () {    
 
-    it('/', function (done) {
+    it('GET /', function (done) {
+
         internals.prepareServer(function (server) {
 
             server.inject({ method: 'GET', url: '/'}, function (response) {
