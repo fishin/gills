@@ -39,7 +39,7 @@ internals.prepareServer = function (callback) {
 
 describe('user', function () {    
 
-    it('createUser', function (done) {
+    it('POST /gills/user', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -56,7 +56,7 @@ describe('user', function () {
         });
     });
 
-    it('getUser', function (done) {
+    it('GET /gills/user/{userId}', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -69,7 +69,7 @@ describe('user', function () {
         });
     });
 
-    it('updateUser', function (done) {
+    it('POST /gills/user/{userId}', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -87,7 +87,7 @@ describe('user', function () {
         });
     });
 
-    it('deleteUser', function (done) {
+    it('GET /gills/user/{userId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 

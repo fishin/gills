@@ -40,6 +40,7 @@ internals.prepareServer = function (callback) {
 describe('users', function () {    
 
     it('GET /gills/users', function (done) {
+
         internals.prepareServer(function (server) {
 
             var payload1 = {
