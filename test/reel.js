@@ -36,7 +36,8 @@ internals.prepareServer = function (callback) {
 
 describe('reel', function () {    
 
-    it('crud flow', function (done) {
+    it('POST /gills/reel', function (done) {
+
         internals.prepareServer(function (server) {
 
             var payload = {
@@ -46,57 +47,129 @@ describe('reel', function () {
             server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var reelId = server.plugins.tacklebox.getReels()[0].id;
-                expect(reelId).to.exist();
-                server.inject({ method: 'GET', url: '/gills/reel/'+reelId}, function (response) {
-       
-                    expect(response.statusCode).to.equal(200);
-                    var updatePayload = { description: "description2" }; 
-                    server.inject({ method: 'POST', url: '/gills/reel/'+reelId, payload: updatePayload}, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
-                        server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
-
-                            expect(response.statusCode).to.equal(200);
-                            expect(response.result).to.exist();
-                            var payload = {
-                                name: 'name',
-                                description: 'description',
-                                body: 'date'
-                            };
-                            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
-
-                                expect(response.statusCode).to.equal(302);
-                                var jobId = server.plugins.tacklebox.getJobs()[0].id;
-                                expect(jobId).to.exist();
-                                server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
-       
-                                    expect(response.statusCode).to.equal(200);
-                                    server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
-
-                                        //console.log(response);
-                                        expect(response.statusCode).to.equal(200);
-                                        server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
-
-                                            expect(response.statusCode).to.equal(200);
-                                            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
-
-                                                expect(response.statusCode).to.equal(302);
-                                                server.inject({ method: 'GET', url: '/gills/reel/'+reelId+ '/delete'}, function (response) {
-
-                                                    expect(response.statusCode).to.equal(302);
-                                                    done();
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
+                done();
             });
         });
     });
 
+    it('GET /gills/reel/{reelId}', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            server.inject({ method: 'GET', url: '/gills/reel/'+reelId}, function (response) {
+       
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('POST /gills/reel/{reelId}', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            var updatePayload = { description: "description2" }; 
+            server.inject({ method: 'POST', url: '/gills/reel/'+reelId, payload: updatePayload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/jobs', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                expect(response.result).to.exist();
+                done();
+            });
+        });
+    });
+
+    it('POST /gills/jobs', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'name',
+                description: 'description',
+                body: 'date'
+            };
+            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/job/{jobId}', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
+       
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/job', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
+
+                //console.log(response);
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/reel', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/job/{jobId}/delete', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /gills/reel/{reelId}/delete', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            server.inject({ method: 'GET', url: '/gills/reel/'+reelId+ '/delete'}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
 });
