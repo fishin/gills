@@ -4,7 +4,8 @@
   "description": "gills ======",
   "main": "index.js",
   "scripts": {
-    "test": "make test-cov"
+    "test": "node_modules/.bin/lab -t 100 -v -m 30000",
+    "json": "node_modules/.bin/lab -r json -t 100 -o lab.json -m 30000"
   },
   "author": "Lloyd Benson",
   "license": "MIT",
