@@ -4,8 +4,8 @@
   "description": "gills ======",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/lab -t 100 -v -m 30000",
-    "json": "node_modules/.bin/lab -r json -t 100 -o lab.json -m 30000"
+    "test": "lab -a code -t 100 -v -m 30000",
+    "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,6 @@
   "devDependencies": {
     "code": "1.x.x",
     "lab": "5.x.x",
-    "lout": "6.x.x",
-    "purdy": "1.x.x"
+    "lout": "6.x.x"
   }
 }

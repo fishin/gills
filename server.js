@@ -1,5 +1,4 @@
 var Hapi = require('hapi');
-var Purdy = require('purdy');
 var Tacklebox = require('tacklebox');
 var Lout = require('lout');
 var Gills = require('./index');
@@ -54,7 +53,7 @@ server.on('request', function (request, event, tags) {
     };
 
     console.log('------ REQUEST RECEIVED -------');
-    Purdy(reqToRender);
+    console.log(reqToRender);
     console.log('-------------------------------');
 });
 
@@ -66,7 +65,7 @@ server.on('response', function (request) {
     };
 
     console.log('------- RESPONSE SENT ---------');
-    Purdy(reqToRender);
+    console.log(reqToRender);
     console.log('-------------------------------');
 });
 
@@ -76,5 +75,5 @@ server.start(function () {
 
     console.log('started server: ' + server.info.uri);
     //console.log(server.connections);
-    console.log(server.connections[0]._load.settings);
+    //console.log(server.connections[0]._load.settings);
 });

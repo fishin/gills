@@ -116,8 +116,8 @@ describe('job', function () {
                     var run = server.plugins.tacklebox.getRun(jobId, runId);
                     if (run.finishTime) {
                         clearInterval(intervalObj);   
-                        expect(run.finishTime);
-                        expect(run.id);
+                        expect(run.finishTime).to.exist();
+                        expect(run.id).to.exist();
                         server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 
                             expect(response.statusCode).to.equal(200);
