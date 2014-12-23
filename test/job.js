@@ -105,7 +105,7 @@ describe('job', function () {
                 console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
-                console.log('runId: ' + runId);
+                //console.log('runId: ' + runId);
                 expect(runId).to.exist(); 
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 
