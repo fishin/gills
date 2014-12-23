@@ -7,6 +7,10 @@
     "test": "node_modules/.bin/lab -t 100 -v -m 30000",
     "json": "node_modules/.bin/lab -r json -t 100 -o lab.json -m 30000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fishin/gills"
+  },
   "author": "Lloyd Benson",
   "license": "MIT",
   "bugs": {
