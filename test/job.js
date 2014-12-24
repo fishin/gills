@@ -52,6 +52,7 @@ describe('job', function () {
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
+                //console.log(response);
                 expect(response.statusCode).to.equal(302);
                 var jobId = server.plugins.tacklebox.getJobs()[0].id;
                 expect(jobId).to.exist();

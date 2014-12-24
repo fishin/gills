@@ -34,6 +34,13 @@
                 <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
             </div>
           </div>
+          <h2 class="sub-header">Head</h2>
+          <div class="form-group">
+            <label for="inputHead" class="control-label col-xs-2">Command</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="head" id="inputHead" placeholder="" value="{{head}}">
+            </div>
+          </div>
           <h2 class="sub-header">Source Control</h2>
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
@@ -66,25 +73,18 @@
                 <input type="text" class="form-control" name="scm_branch" id="inputBranch" placeholder="master" value="{{scm_branch}}">
             </div>
           </div>
-          <h2 class="sub-header">Head</h2>
-          <div class="form-group">
-            <label for="inputHead" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-10">
-                <input type="text" class="form-control" name="head" id="inputHead" placeholder="npm install" value="{{head}}">
-            </div>
-          </div>
           <h2 class="sub-header">Body</h2>
           <div class="form-group">
             <label for="inputBody" class="control-label col-xs-2">Command</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm test" value="{{body}}">
+                <input type="text" class="form-control" name="body" id="inputBody" placeholder="npm install" value="{{body}}">
             </div>
           </div>
           <h2 class="sub-header">Tail</h2>
           <div class="form-group">
             <label for="inputTail" class="control-label col-xs-2">Command</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="tail" id="inputTail" placeholder="bin/tail.sh" value="{{tail}}">
+                <input type="text" class="form-control" name="tail" id="inputTail" placeholder="npm test" value="{{tail}}">
             </div>
           </div>
           <h2 class="sub-header">Notify</h2>
