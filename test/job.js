@@ -147,6 +147,19 @@ describe('job', function () {
         });
     });
 
+    it('GET /gills/job/{job_id}/workspace/delete', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/workspace/delete'}, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
     it('GET /gills/job/{jobId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
