@@ -48,7 +48,7 @@ describe('job', function () {
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
                 bodyCommand1: 'npm install',
-                tailCommand1: 'npm test'
+                bodyCommand2: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -81,7 +81,11 @@ describe('job', function () {
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            var updatePayload = { description: "description2" }; 
+            var updatePayload = {
+                headCommand1: 'date',
+                description: "description2",
+                tailCommand1: "bin/tail.sh"
+            }; 
             server.inject({ method: 'POST', url: '/gills/job/'+jobId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
