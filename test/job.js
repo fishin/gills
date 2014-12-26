@@ -43,12 +43,12 @@ describe('job', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
+                headCommand1: 'date',
                 scm_type: 'git',
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
-                head: 'npm install',
-                body: 'npm test',
-                tail: ''
+                bodyCommand1: 'npm install',
+                tailCommand1: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 

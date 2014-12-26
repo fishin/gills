@@ -46,7 +46,7 @@ describe('queue', function () {
             var payload1 = {
                 name: 'name1',
                 description: 'description',
-                body: 'date'
+                bodyCommand1: 'date'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload1}, function (response) {
 
@@ -63,7 +63,7 @@ describe('queue', function () {
             var payload2 = {
                 name: 'name2',
                 description: 'description',
-                body: 'date'
+                bodyCommand1: 'date'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload2}, function (response) {
 
