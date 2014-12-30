@@ -42,10 +42,13 @@ describe('reel', function () {
 
             var payload = {
                 name: 'name',
-                description: 'description'
+                description: 'description',
+                host: 'localhost',
+                size: 2
             };
             server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
 
+                //console.log(response);
                 expect(response.statusCode).to.equal(302);
                 done();
             });
