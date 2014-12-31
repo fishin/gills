@@ -43,7 +43,7 @@ describe('jobs', function () {
             var payload = {
                 name: 'invalid',
                 description: 'description',
-                bodyCommand1: 'invalid'
+                bodyCommand0: 'invalid'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -91,7 +91,7 @@ describe('jobs', function () {
             var payload2 = {
                 name: 'date',
                 description: 'description',
-                bodyCommand1: 'date'
+                bodyCommand0: 'date'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload2}, function (response) {
 

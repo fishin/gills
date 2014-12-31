@@ -102,7 +102,7 @@ describe('reel', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
-                bodyCommand1: 'date'
+                bodyCommand0: 'date'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 

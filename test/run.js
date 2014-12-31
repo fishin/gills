@@ -43,7 +43,7 @@ describe('run', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
-                bodyCommand1: 'invalid'
+                bodyCommand0: 'invalid'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -114,8 +114,8 @@ describe('run', function () {
                 scm_type: 'git',
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
-                bodyCommand1: 'npm install',
-                bodyCommand2: 'npm test'
+                bodyCommand0: 'npm install',
+                bodyCommand1: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 

@@ -75,6 +75,14 @@
     </div>
   </div>
   {{/if}}
+  {{#if signal}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Signal</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{signal}}" disabled>
+    </div>
+  </div>
+  {{/if}}
   {{#if stdout}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">stdout</label>

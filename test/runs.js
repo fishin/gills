@@ -43,7 +43,7 @@ describe('runs', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
-                bodyCommand1: 'date'
+                bodyCommand0: 'date'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -90,7 +90,7 @@ describe('runs', function () {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             var updatePayload = {
-                bodyCommand1: 'invalid'
+                bodyCommand0: 'invalid'
             }; 
             server.inject({ method: 'POST', url: '/gills/job/'+jobId, payload: updatePayload}, function (response) {
 
@@ -137,7 +137,7 @@ describe('runs', function () {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             var updatePayload = {
-                bodyCommand1: 'date'
+                bodyCommand0: 'date'
             }; 
             server.inject({ method: 'POST', url: '/gills/job/'+jobId, payload: updatePayload}, function (response) {
 
@@ -202,8 +202,8 @@ describe('runs', function () {
                 scm_type: 'git',
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
-                bodyCommand1: 'npm install',
-                tailCommand1: 'npm test'
+                bodyCommand0: 'npm install',
+                tailCommand0: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 

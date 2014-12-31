@@ -43,12 +43,12 @@ describe('job', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
-                headCommand1: 'date',
+                headCommand0: 'date',
                 scm_type: 'git',
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
-                bodyCommand1: 'npm install',
-                bodyCommand2: 'npm test'
+                bodyCommand0: 'npm install',
+                bodyCommand1: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -82,9 +82,9 @@ describe('job', function () {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             var updatePayload = {
-                headCommand1: 'date',
+                headCommand0: 'date',
                 description: "description2",
-                tailCommand1: "bin/tail.sh"
+                tailCommand0: "bin/tail.sh"
             }; 
             server.inject({ method: 'POST', url: '/gills/job/'+jobId, payload: updatePayload}, function (response) {
 
