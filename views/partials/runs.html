@@ -43,7 +43,7 @@
     {{#each finishedRuns}}
     <tr class="{{classColor}}">
       <td><a href="/gills/job/{{jobId}}/run/{{runId}}">{{shortId}}</td>
-      <td>{{finishTime}}</td>
+      <td>{{#if finishTime}}{{finishTime}}{{/if}}</td>
       <td>{{elapsedTime}} {{#if elapsedTime}}s{{/if}}</td>
       <td><a href="/gills/job/{{jobId}}/run/{{runId}}/delete"><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>

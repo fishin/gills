@@ -10,24 +10,30 @@
       <input type="text" class="form-control" id="inputRunId" placeholder="{{runId}}" disabled>
     </div>
   </div>
+  {{#if startTime}}
   <div class="form-group">
     <label for="inputRunId" class="control-label col-md-2">Start Time</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{startTime}}" disabled>
     </div>
   </div>
+  {{/if}}
+  {{#if finishTime}}
   <div class="form-group">
     <label for="inputRunId" class="control-label col-md-2">Finish Time</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{finishTime}}" disabled>
     </div>
   </div>
+  {{/if}}
+  {{#if elapsedTime}}
   <div class="form-group">
     <label for="inputRunId" class="control-label col-md-2">Elapsed Time</label>
     <div class="col-md-2">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{elapsedTime}}" disabled>
     </div>
   </div>
+  {{/if}}
   <div class="form-group">
     <label for="inputRunId" class="control-label col-md-2">Status</label>
     <div class="col-md-2">
@@ -37,24 +43,30 @@
 <h2 class="sub-header">Commands</h2>
 {{#each commands}}
 <h3 class="sub-header">{{command}}</h3>
+  {{#if startTime}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Start Time</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{startTime}}" disabled>
     </div>
   </div>
+  {{/if}}
+  {{#if finishTime}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Finish Time</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{finishTime}}" disabled>
     </div>
   </div>
+  {{/if}}
+  {{#if elapsedTime}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Elapsed Time</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{elapsedTime}} ms" disabled>
     </div>
   </div>
+  {{/if}}
   {{#if code}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Return Code</label>
