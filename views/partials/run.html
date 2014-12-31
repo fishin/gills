@@ -1,5 +1,6 @@
 <h1 class="page-header">Run - {{name}}
   <a href="/gills/job/{{id}}/run/{{runId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+  <a href="/gills/job/{{id}}"><button type="submit" class="btn btn-info">Job</button></a>
 </h1>
 <h2 class="sub-header">Basic</h2>
 <form class="form-horizontal">
@@ -54,12 +55,14 @@
       <input type="text" class="form-control" id="inputRunId" placeholder="{{elapsedTime}} ms" disabled>
     </div>
   </div>
+  {{#if code}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Return Code</label>
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{code}}" disabled>
     </div>
   </div>
+  {{/if}}
   {{#if stdout}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">stdout</label>
