@@ -60,7 +60,7 @@ describe('runs', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
 
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 
@@ -107,7 +107,7 @@ describe('runs', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
 
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 
@@ -155,7 +155,7 @@ describe('runs', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
 
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 
@@ -221,7 +221,7 @@ describe('runs', function () {
             expect(jobId).to.exist();
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
 
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
 

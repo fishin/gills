@@ -60,7 +60,7 @@ describe('run', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
                     
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 //expect(response.statusCode).to.equal(302);
                 var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
                 expect(runId).to.exist(); 
@@ -115,7 +115,7 @@ describe('run', function () {
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
                 bodyCommand1: 'npm install',
-                tailCommand1: 'npm test'
+                bodyCommand2: 'npm test'
             };
             server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
 
@@ -132,7 +132,7 @@ describe('run', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
                     
-                console.log('starting job: ' + jobId);
+                //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
                 done();
             });
@@ -154,8 +154,10 @@ describe('run', function () {
                     var run = server.plugins.tacklebox.getRun(jobId, runId);
                     if (run.finishTime) {
                         clearInterval(intervalObj);
+                        //console.log(run);
                         expect(run.finishTime).to.exist();
                         expect(run.status).to.equal('cancelled');
+                        expect(run.commands).to.be.length(3);
                         done();
                     }
                 }, 1000);
