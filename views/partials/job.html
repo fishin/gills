@@ -64,27 +64,23 @@
             </div>
           </div>
           <h2 class="sub-header">Source Control</h2>
-<!--
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-2">
-              <div class="input-group">
+            <div class="col-xs-10">
+              <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scm_type" value="none">
                 </span>
-                <button type="button" class="btn btn-default" disabled>None</button>
+                <button type="button" class="btn btn-default" disabled>none</button>
               </div>
-            </div>
-            <div class="col-xs-2">
-              <div class="input-group">
+              <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="scm_type" value="git" checked>
                 </span>
-                <button type="button" class="btn btn-default" disabled>Git</button>
+                <button type="button" class="btn btn-default" disabled>git</button>
               </div>
             </div>
           </div>
--->
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
             <div class="col-xs-5">
@@ -166,22 +162,20 @@
           <h2 class="sub-header">Notify</h2>
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-2">
-              <div class="input-group">
+            <div class="col-xs-10">
+              <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notify_type" value="none" checked>
                 </span>
-                <button type="button" class="btn btn-default">None</button>
+                <button type="button" class="btn btn-default" disabled>none</button>
               </div>
-            </div>
-            <div class="col-xs-2">
-              <div class="input-group">
+              <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notify_type" value="email">
                 </span>
-                <button type="button" class="btn btn-default" disabled>Email</button>
+                <button type="button" class="btn btn-default" disabled>email</button>
               </div>
-           </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>
@@ -210,55 +204,67 @@
           </div>
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-2">
-              <div class="input-group">
+            <div class="col-xs-10">
+              <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="archive_type" value="none" checked>
                 </span>
-                <button type="button" class="btn btn-default">None</button>
+                <button type="button" class="btn btn-default" disabled>none</button>
+              </div>
+              <div class="btn-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="archive_type" value="maxnum" checked>
+                </span>
+                <button type="button" class="btn btn-default" disabled>maxnum</button>
+              </div>
+              <div class="btn-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="archive_type" value="maxdays" checked>
+                </span>
+                <button type="button" class="btn btn-default" disabled>maxdays</button>
               </div>
             </div>
+          </div>
+          <div class="form-group">
+            <label for="inputMaxDays" class="control-label col-xs-2">Max Days</label>
             <div class="col-xs-2">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="archive_type" value="maxnum">
-                </span>
-                <button type="button" class="btn btn-default" disabled>Max Num</button>
-              </div>
+                <input type="text" class="form-control" name="archiveMaxDays" id="inputMaxDays" placeholder="7" value="{{archiveMaxDays}}">
             </div>
+            <div class="offset-col-xs-2">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max days to keep archives">?</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputMaxNum" class="control-label col-xs-2">Max Num</label>
             <div class="col-xs-2">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="archive_type" value="maxdays">
-                </span>
-                <button type="button" class="btn btn-default" disabled>Max Days</button>
-              </div>
+                <input type="text" class="form-control" name="archiveMaxNum" id="inputMaxNum" placeholder="20" value="{{archiveMaxNum}}">
+            </div>
+            <div class="offset-col-xs-2">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max number to keep">?</button>
             </div>
           </div>
           <h2 class="sub-header">Scheduler</h2>
           <div class="form-group">
             <label for="inputScheduler" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-2">
-              <div class="input-group">
+            <div class="col-xs-10">
+              <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="schedule_type" value="none" checked>
+                  <input type="radio" name="schedule_type" value="none">
                 </span>
-                <button type="button" class="btn btn-default">None</button>
+                <button type="button" class="btn btn-default" disabled>none</button>
               </div>
-            </div>
-            <div class="col-xs-2">
-              <div class="input-group">
+              <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="schedule_type" value="cron">
+                  <input type="radio" name="schedule_type" value="cron" checked>
                 </span>
-                <button type="button" class="btn btn-default" disabled>Cron</button>
+                <button type="button" class="btn btn-default" disabled>cron</button>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="inputArchive" class="control-label col-xs-2">Pattern</label>
+            <label for="inputSchedule" class="control-label col-xs-2">Pattern</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="cronPattern" id="inputArchive" placeholder="*/5 * * * *" value="{{cronPattern}}">
+                <input type="text" class="form-control" name="cronPattern" id="inputSchedule" placeholder="*/5 * * * *" value="{{cronPattern}}">
             </div>
             <div class="offset-col-xs-5">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="cron format: min hour date month weekday">?</button>
