@@ -55,7 +55,7 @@
                   <input type="radio" name="scm_type" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
-             </div><!-- /input-group -->
+              </div>
            </div>
             <div class="col-xs-2">
               <div class="input-group">
@@ -63,7 +63,7 @@
                   <input type="radio" name="scm_type" value="git" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>Git</button>
-             </div><!-- /input-group -->
+              </div>
            </div>
           </div>
           <div class="form-group">
@@ -105,7 +105,7 @@
                   <input type="radio" name="notify_type" value="none" checked>
                 </span>
                 <button type="button" class="btn btn-default">None</button>
-             </div><!-- /input-group -->
+              </div>
            </div>
             <div class="col-xs-2">
               <div class="input-group">
@@ -113,7 +113,7 @@
                   <input type="radio" name="notify_type" value="email">
                 </span>
                 <button type="button" class="btn btn-default" disabled>Email</button>
-             </div><!-- /input-group -->
+              </div>
            </div>
           </div>
           <div class="form-group">
@@ -134,7 +134,7 @@
                 <textarea class="form-control" name="notify_message" id="inputMessage" rows=10>{{notify_message}}</textarea>
             </div>
           </div>
-          <h2 class="sub-header">Archive</h2>
+          <h2 class="sub-header">Archival</h2>
           <div class="form-group">
             <label for="inputArchive" class="control-label col-xs-2">Pattern</label>
             <div class="col-xs-10">
@@ -149,7 +149,7 @@
                   <input type="radio" name="archive_type" value="none" checked>
                 </span>
                 <button type="button" class="btn btn-default">None</button>
-             </div><!-- /input-group -->
+              </div>
             </div>
             <div class="col-xs-2">
               <div class="input-group">
@@ -157,7 +157,7 @@
                   <input type="radio" name="archive_type" value="maxnum">
                 </span>
                 <button type="button" class="btn btn-default" disabled>Max Num</button>
-             </div><!-- /input-group -->
+              </div>
             </div>
             <div class="col-xs-2">
               <div class="input-group">
@@ -165,7 +165,33 @@
                   <input type="radio" name="archive_type" value="maxdays">
                 </span>
                 <button type="button" class="btn btn-default" disabled>Max Days</button>
-             </div><!-- /input-group -->
+              </div>
+            </div>
+          </div>
+          <h2 class="sub-header">Scheduler</h2>
+          <div class="form-group">
+            <label for="inputScheduler" class="control-label col-xs-2">Type</label>
+            <div class="col-xs-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="schedule_type" value="none" checked>
+                </span>
+                <button type="button" class="btn btn-default">None</button>
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="radio" name="schedule_type" value="cron">
+                </span>
+                <button type="button" class="btn btn-default" disabled>Cron</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputArchive" class="control-label col-xs-2">Pattern</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="cronPattern" id="inputArchive" placeholder="*/5 * * * *" value="{{cronPattern}}">
             </div>
           </div>
           <div class="form-group">
