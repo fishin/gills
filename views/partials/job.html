@@ -1,10 +1,10 @@
           <h1 class="page-header">Job
-                {{#if id}}
-                <a href="/gills/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-                <a href="/gills/job/{{id}}/start"><button type="submit" class="btn btn-info">Start</button></a>
-                <a href="/gills/queue/{{id}}/add"><button type="submit" class="btn btn-info">Add</button></a>
-                <a href="/gills/job/{{id}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
-                {{/if}}
+            {{#if id}}
+            <a href="/gills/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+            <a href="/gills/job/{{id}}/start"><button type="submit" class="btn btn-info">Start</button></a>
+            <a href="/gills/queue/{{id}}/add"><button type="submit" class="btn btn-info">Add</button></a>
+            <a href="/gills/job/{{id}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
+            {{/if}}
           </h1>
           <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -35,18 +35,26 @@
           </div>
           <div class="form-group">
             <label for="inputDescription" class="control-label col-xs-2">Description</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
             </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="short description">?</button>
+            </div>
           </div>
-          <h2 class="sub-header">Head <a href="#"><button type="submit" class="btn btn-info">Add</button></a></h2>
+          <h2 class="sub-header">Head</h2>
           <div class="form-group">
             <label for="inputHead0" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="headCommand0" id="inputHead0" placeholder="" value="{{headCommand0}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="add item">+</button>
             </div>
           </div>
           <h2 class="sub-header">Source Control</h2>
+<!--
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
             <div class="col-xs-2">
@@ -56,7 +64,7 @@
                 </span>
                 <button type="button" class="btn btn-default" disabled>None</button>
               </div>
-           </div>
+            </div>
             <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
@@ -64,36 +72,55 @@
                 </span>
                 <button type="button" class="btn btn-default" disabled>Git</button>
               </div>
-           </div>
+            </div>
           </div>
+-->
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="scm_url" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scm_url}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository url">?</button>
             </div>
           </div>
           <div class="form-group">
             <label for="inputBranch" class="control-label col-xs-2">Branch</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="scm_branch" id="inputBranch" placeholder="master" value="{{scm_branch}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository branch">?</button>
             </div>
           </div>
           <h2 class="sub-header">Body</h2>
           <div class="form-group">
             <label for="inputBody0" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="bodyCommand0" id="inputBody0" placeholder="npm install" value="{{bodyCommand0}}">
             </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="add item">+</button>
+            </div>
             <label for="inputBody1" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="bodyCommand1" id="inputBody1" placeholder="npm test" value="{{bodyCommand1}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="add item">+</button>
             </div>
           </div>
           <h2 class="sub-header">Tail</h2>
           <div class="form-group">
             <label for="inputTail0" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-10">
+            <div class="col-xs-5">
                 <input type="text" class="form-control" name="tailCommand0" id="inputTail0" placeholder="bin/tail.sh" value="{{tailCommand0}}">
+            </div>
+            <div class="offset-col-xs-5">
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="add item">+</button>
             </div>
           </div>
           <h2 class="sub-header">Notify</h2>
@@ -106,7 +133,7 @@
                 </span>
                 <button type="button" class="btn btn-default">None</button>
               </div>
-           </div>
+            </div>
             <div class="col-xs-2">
               <div class="input-group">
                 <span class="input-group-addon">
