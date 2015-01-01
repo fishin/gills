@@ -6,6 +6,11 @@
                 <a href="/gills/job/{{id}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
                 {{/if}}
           </h1>
+          <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Some Error Message
+          </div>
           <h2 class="sub-header">Basic</h2>
           <form class="form-horizontal" method="post" action="{{post_url}}">
           {{#if id}}
