@@ -1,0 +1,48 @@
+<table class="table table-striped gills-table">
+  <thead>
+    <tr>
+      <th colspan=3>Last Test Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>coverage</td>
+      <td>duration</td>
+      <td>leaks</td>
+    </tr>
+    <tr>
+      <td>
+        <div class="progress">
+          <div class="progress-bar {{#if testResults.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResults.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{testResults.coveragePercent}}%">
+            {{testResults.coveragePercent}}%
+          </div>
+        </div>
+      </td>
+      <td>{{testResults.totalDuration}} ms</td>
+      <td>{{testResults.totalLeaks}} </td>
+    </tr>
+    <tr>
+      <th colspan=3>Tests <span class="badge">{{testResults.totalTests}}</span> <a class="btn btn-primary" data-toggle="collapse" href="#collapseTests" aria-expanded="false" aria-controls="collapseTests"> +</a></th>
+    </tr>
+    <tr class="collapse.in" id="collapseTests">
+    <td colspan=3>
+    <table class="table table-striped gills-table">
+    {{#each testResults.tests}}
+    <tr>
+      <td>num</td>
+      <td>test name in <b>{{@key}}</b></td>
+      <td>duration</td>
+    </tr>
+    {{#each this}}
+    <tr class="{{#if err}}danger{{else}}success{{/if}}">
+      <td>{{@index}}</td>
+      <td>{{title}}</td>
+      <td>{{duration}} ms</td>
+    </tr>
+    {{/each}}
+    {{/each}}
+    </table>
+    </td>
+    </tr>
+  </tbody>
+</table>
