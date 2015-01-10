@@ -23,6 +23,7 @@
     "hapi": "8.x.x",
     "hoek": "2.x.x",
     "joi": "5.x.x",
+    "node-crontab": "0.0.x",
     "tacklebox": "git+https://github.com/fishin/tacklebox.git",
     "wreck": "5.x.x"
   },
