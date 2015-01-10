@@ -1,0 +1,54 @@
+<table class="table table-striped gills-table">
+  <thead>
+    <tr>
+      <th colspan=3>Coverage Results: Run <a href="/gills/job/{{jobId}}/run/{{runId}}">{{runId}}</a> for <a href="/gills/job/{{jobId}}">{{jobName}}</a>
+        <div class="progress">
+          <div class="progress-bar {{#if testResults.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResults.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            {{testResults.coveragePercent}}%
+          </div>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan=2>filename</td>
+      <td>percent</td>
+    </tr>
+    {{#each testResults.coverage.files}}
+      {{#if this.misses}}
+    <tr class="danger">
+      <td colspan=2>{{this.filename}}</td>
+      <td>{{this.percent}}</td>
+    </tr>
+    <tr>
+      <td>line</td>
+      <td>contents</td>
+      <td>hits</td>
+    </tr>
+        {{#each this.source}}
+          {{#if this.miss}}
+    <tr class="danger">
+      <td>{{@key}}</td>
+      <td>{{this.source}}</td>
+      <td>{{this.hits}}</td>
+    </tr>
+            {{#each this.chunks}}
+              {{#if this.miss}}
+    <tr class="danger">
+      <td>{{this.miss}}</td>
+      <td colspan=2>{{this.source}}</td>
+    </tr>
+              {{/if}}
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      {{else}}
+    <tr class="success">
+      <td colspan=2>{{this.filename}}</td>
+      <td>{{this.percent}}</td>
+    </tr>
+      {{/if}}
+    {{/each}}
+  </tbody>
+</table>
