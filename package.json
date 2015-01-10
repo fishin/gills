@@ -4,7 +4,7 @@
   "description": "gills ======",
   "main": "index.js",
   "scripts": {
-    "test": "lab -a code -t 95 -v -m 30000",
+    "test": "lab -a code -t 90 -v -m 30000",
     "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
   },
   "repository": {
