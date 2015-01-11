@@ -157,7 +157,7 @@ describe('run', function () {
                         //console.log(run);
                         expect(run.finishTime).to.exist();
                         expect(run.status).to.equal('cancelled');
-                        expect(run.commands).to.be.length(3);
+                        expect(run.commands.length).to.be.above(3);
                         done();
                     }
                 }, 1000);
