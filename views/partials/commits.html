@@ -12,8 +12,8 @@
     </tr>
     {{#each gitLog}}
     <tr>
-      <td>{{this.commit}}</td>
-      <td>{{this.author}}</td>
+      <td><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.commit}}</a></td>
+      <td><a href="{{this.authorUrl}}">{{this.authorName}}</a> ({{this.authorEmail}})</td>
       <td>{{this.message}}</td>
     </tr>
     {{/each}}
