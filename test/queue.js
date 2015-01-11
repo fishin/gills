@@ -11,13 +11,13 @@ var internals = {
     defaults: {
         apiPath: '/gills',
         job: {
-            dirpath: '/tmp/testgills/job'
+            dirPath: '/tmp/testgills/job'
         },
         reel: {
-            dirpath: '/tmp/testgills/reel'
+            dirPath: '/tmp/testgills/reel'
         },
         user: {
-            dirpath: '/tmp/testgills/user'
+            dirPath: '/tmp/testgills/user'
         }
     }
 };
