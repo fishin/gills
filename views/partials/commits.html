@@ -1,19 +1,23 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Commit Log for <a href="/gills/job/{{jobId}}">{{jobName}}</a> <span class="badge">{{gitLog.length}}</span></th>
+      <th colspan=5>Commit Log for <a href="/gills/job/{{jobId}}">{{jobName}}</a> <span class="badge">{{gitLog.length}}</span></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>commit</td>
-      <td>author</td>
+      <td>name</td>
+      <td>email</td>
+      <td>date</td>
       <td>message</td>
     </tr>
     {{#each gitLog}}
     <tr>
-      <td><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.commit}}</a></td>
-      <td>{{this.authorName}} {{this.authorEmail}}</td>
+      <td><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td>{{this.authorName}}</td>
+      <td>{{this.authorEmail}}</td>
+      <td>{{this.authorDate}}</td>
       <td>{{this.message}}</td>
     </tr>
     {{/each}}
