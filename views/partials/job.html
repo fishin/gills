@@ -67,6 +67,17 @@
             </div>
           </div>
           <h2 class="sub-header">Source Control</h2>
+          {{#if lastCommit}}
+          <div class="form-group">
+            <label for="inputId" class="control-label col-xs-2">Last Commit</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="id" id="id" value="{{lastCommit}}" disabled>
+            </div>
+            <div class="offset-col-xs-5">
+                 <a class="btn btn-info" href="/gills/job/{{id}}/commits">All Commits</a>
+            </div>
+          </div>
+          {{/if}}
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
             <div class="col-xs-10">
