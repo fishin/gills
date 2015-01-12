@@ -8,15 +8,13 @@
     <tr>
       <td>commit</td>
       <td>name</td>
-      <td>email</td>
       <td>date</td>
       <td>message</td>
     </tr>
     {{#each gitLog}}
     <tr>
       <td><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
-      <td>{{this.authorName}}</td>
-      <td>{{this.authorEmail}}</td>
+      <td>{{this.authorName}} {{this.authorEmail}}</td>
       <td>{{this.authorDate}}</td>
       <td>{{this.message}}</td>
     </tr>
