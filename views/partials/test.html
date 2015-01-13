@@ -1,12 +1,12 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Test Results: Run <a href="/gills/job/{{jobId}}/run/{{runId}}">{{runId}}</a> for <a href="/gills/job/{{jobId}}">{{jobName}}</a></th>
+      <th colspan=4>Test Results: Run <a href="/gills/job/{{jobId}}/run/{{runId}}">{{runId}}</a> for <a href="/gills/job/{{jobId}}">{{jobName}}</a></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th colspan=3>Tests <span class="badge">{{testResults.totalTests}}</span></th>
+      <th colspan=4>Tests <span class="badge">{{testResults.totalTests}}</span></th>
     </tr>
     <tr>
     {{#each testResults.tests}}
@@ -14,12 +14,14 @@
       <td>num</td>
       <td>test name in <b>{{@key}}</b></td>
       <td>duration</td>
+      <td>err</td>
     </tr>
     {{#each this}}
     <tr class="{{#if err}}danger{{else}}success{{/if}}">
       <td>{{testNum}}</td>
       <td>{{title}}</td>
       <td>{{duration}} ms</td>
+      <td>{{err}}</td>
     </tr>
     {{/each}}
     {{/each}}
