@@ -66,7 +66,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId1 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId1 = server.plugins.tacklebox.getRuns(jobId)[0];
                 expect(runId1).to.exist(); 
                 var intervalObj = setInterval(function() {
 
@@ -113,7 +113,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId2 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId2 = server.plugins.tacklebox.getRuns(jobId)[0];
                 expect(runId2).to.exist(); 
                 var intervalObj = setInterval(function() {
 
@@ -161,7 +161,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId3 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId3 = server.plugins.tacklebox.getRuns(jobId)[0];
                 expect(runId3).to.exist(); 
                 var intervalObj = setInterval(function() {
 
@@ -227,7 +227,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId)[0];
                 expect(runId).to.exist(); 
                 var intervalObj = setInterval(function() {
 

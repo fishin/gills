@@ -109,7 +109,7 @@ describe('job', function () {
 
                 //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
-                var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId)[0];
                 //console.log('runId: ' + runId);
                 expect(runId).to.exist(); 
                 server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
@@ -143,7 +143,7 @@ describe('job', function () {
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+            var runId = server.plugins.tacklebox.getRuns(jobId)[0];
             server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/run/' + runId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
