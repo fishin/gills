@@ -2,8 +2,20 @@
   <a href="/gills/job/{{id}}/run/{{runId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
   <a href="/gills/job/{{id}}"><button type="submit" class="btn btn-info">Job</button></a>
 </h1>
-<h2 class="sub-header">Basic</h2>
 <form class="form-horizontal">
+{{#if archiveFiles}}
+<h2 class="sub-header">Archive</h2>
+{{#each archiveFiles}}
+  <div class="form-group">
+    <label for="inputFile" class="control-label col-md-2">File</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputFile" placeholder="{{file}}" disabled>
+    </div>
+    <a class="btn btn-info" href="/gills/job/{{jobId}}/run/{{runId}}/archive/{{file}}">View</a>
+  </div>
+{{/each}}
+{{/if}}
+<h2 class="sub-header">Basic</h2>
   <div class="form-group">
     <label for="inputRunId" class="control-label col-md-2">Id</label>
     <div class="col-md-4">
