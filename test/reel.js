@@ -9,7 +9,7 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        apiPath: '/gills',
+        viewPath: '/view',
         job: {
             dirPath: '/tmp/testgills/job'
         },
@@ -36,7 +36,7 @@ internals.prepareServer = function (callback) {
 
 describe('reel', function () {    
 
-    it('POST /gills/reel', function (done) {
+    it('POST /view/reel', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -46,7 +46,7 @@ describe('reel', function () {
                 host: 'localhost',
                 size: 2
             };
-            server.inject({ method: 'POST', url: '/gills/reel', payload: payload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/reel', payload: payload}, function (response) {
 
                 //console.log(response);
                 expect(response.statusCode).to.equal(302);
@@ -55,12 +55,12 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/reel/{reelId}', function (done) {
+    it('GET /view/reel/{reelId}', function (done) {
 
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
-            server.inject({ method: 'GET', url: '/gills/reel/'+reelId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/reel/'+reelId}, function (response) {
        
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -68,13 +68,13 @@ describe('reel', function () {
         });
     });
 
-    it('POST /gills/reel/{reelId}', function (done) {
+    it('POST /view/reel/{reelId}', function (done) {
 
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
             var updatePayload = { description: "description2" }; 
-            server.inject({ method: 'POST', url: '/gills/reel/'+reelId, payload: updatePayload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/reel/'+reelId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -82,11 +82,11 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/jobs', function (done) {
+    it('GET /view/jobs', function (done) {
 
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/jobs'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/jobs'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 expect(response.result).to.exist();
@@ -95,7 +95,7 @@ describe('reel', function () {
         });
     });
 
-    it('POST /gills/jobs', function (done) {
+    it('POST /view/jobs', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -104,7 +104,7 @@ describe('reel', function () {
                 description: 'description',
                 bodyCommand0: 'date'
             };
-            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/job', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -112,12 +112,12 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/job/{jobId}', function (done) {
+    it('GET /view/job/{jobId}', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
        
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -125,11 +125,11 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/job', function (done) {
+    it('GET /view/job', function (done) {
 
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/job'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job'}, function (response) {
 
                 //console.log(response);
                 expect(response.statusCode).to.equal(200);
@@ -138,11 +138,11 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/reel', function (done) {
+    it('GET /view/reel', function (done) {
 
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/gills/reel'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/reel'}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -150,12 +150,12 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/job/{jobId}/delete', function (done) {
+    it('GET /view/job/{jobId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -163,12 +163,12 @@ describe('reel', function () {
         });
     });
 
-    it('GET /gills/reel/{reelId}/delete', function (done) {
+    it('GET /view/reel/{reelId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
-            server.inject({ method: 'GET', url: '/gills/reel/'+reelId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/reel/'+reelId+ '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

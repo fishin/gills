@@ -1,5 +1,5 @@
           <h1 class="page-header">Jobs
-          <a href="/gills/job"><button type="submit" class="btn btn-info">Create</button></a>
+          <a href="/view/job"><button type="submit" class="btn btn-info">Create</button></a>
           </h1>
           <ul class="nav nav-tabs" role="tablist">
           <li class="active"><a href="#home" role="tab" data-toggle="tab">All <span class="badge">{{jobs.length}}</span></a></li>
@@ -20,9 +20,9 @@
               <tbody>
                 {{#each jobs}}
                 <tr class="{{classColor}}">
-                  <td><a href="/gills/job/{{jobId}}">{{name}}</a></td>
+                  <td><a href="/view/job/{{jobId}}">{{name}}</a></td>
                   <td>{{description}}</td>
-                  <td><a href="/gills/job/{{jobId}}/run/{{runId}}">{{runId}}</a></td>
+                  <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{runId}}</a></td>
                 </tr>
                 {{/each}}
               </tbody>

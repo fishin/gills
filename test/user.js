@@ -9,7 +9,7 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        apiPath: '/gills',
+        viewPath: '/view',
         job: {
             dirPath: '/tmp/testgills/job'
         },
@@ -39,7 +39,7 @@ internals.prepareServer = function (callback) {
 
 describe('user', function () {    
 
-    it('POST /gills/user', function (done) {
+    it('POST /view/user', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -48,7 +48,7 @@ describe('user', function () {
                 name: 'Lloyd Benson1',
                 email: 'lloyd.benson@gmail.com'
             };
-            server.inject({ method: 'POST', url: '/gills/user', payload: payload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/user', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -56,12 +56,12 @@ describe('user', function () {
         });
     });
 
-    it('GET /gills/user/{userId}', function (done) {
+    it('GET /view/user/{userId}', function (done) {
 
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/gills/user/'+userId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/user/'+userId}, function (response) {
        
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -69,16 +69,16 @@ describe('user', function () {
         });
     });
 
-    it('POST /gills/user/{userId}', function (done) {
+    it('POST /view/user/{userId}', function (done) {
 
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
             var updatePayload = { name: "Lloyd Benson" }; 
-            server.inject({ method: 'POST', url: '/gills/user/'+userId, payload: updatePayload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/user/'+userId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                server.inject({ method: 'GET', url: '/gills/user'}, function (response) {
+                server.inject({ method: 'GET', url: '/view/user'}, function (response) {
 
                     expect(response.statusCode).to.equal(200);
                     done();
@@ -87,12 +87,12 @@ describe('user', function () {
         });
     });
 
-    it('GET /gills/user/{userId}/delete', function (done) {
+    it('GET /view/user/{userId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/gills/user/'+userId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/user/'+userId+ '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

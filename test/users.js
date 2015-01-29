@@ -9,7 +9,7 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        apiPath: '/gills',
+        viewPath: '/view',
         job: {
             dirPath: '/tmp/testgills/job'
         },
@@ -39,7 +39,7 @@ internals.prepareServer = function (callback) {
 
 describe('users', function () {    
 
-    it('GET /gills/users', function (done) {
+    it('GET /view/users', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -48,7 +48,7 @@ describe('users', function () {
                 name: 'Lloyd Benson',
                 email: 'lloyd.benson@gmail.com'
             };
-            server.inject({ method: 'POST', url: '/gills/user', payload: payload1}, function (response) {
+            server.inject({ method: 'POST', url: '/view/user', payload: payload1}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 var userId1 = server.plugins.tacklebox.getUsers()[0].id;
@@ -58,17 +58,17 @@ describe('users', function () {
                     name: 'Ben Acker',
                     email: 'ben.acker@gmail.com'
                 };
-                server.inject({ method: 'POST', url: '/gills/user', payload: payload2}, function (response) {
+                server.inject({ method: 'POST', url: '/view/user', payload: payload2}, function (response) {
                     expect(response.statusCode).to.equal(302);
                     var userId2 = server.plugins.tacklebox.getUsers()[1].id;
                     expect(userId2).to.exist();
-                    server.inject({ method: 'GET', url: '/gills/users'}, function (response) {
+                    server.inject({ method: 'GET', url: '/view/users'}, function (response) {
 
                         expect(response.statusCode).to.equal(200);
-                        server.inject({ method: 'GET', url: '/gills/user/'+userId1+ '/delete'}, function (response) {
+                        server.inject({ method: 'GET', url: '/view/user/'+userId1+ '/delete'}, function (response) {
 
                             expect(response.statusCode).to.equal(302);
-                            server.inject({ method: 'GET', url: '/gills/user/'+userId2+ '/delete'}, function (response) {
+                            server.inject({ method: 'GET', url: '/view/user/'+userId2+ '/delete'}, function (response) {
                                 expect(response.statusCode).to.equal(302);
                                 done();
                             });

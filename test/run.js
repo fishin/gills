@@ -9,7 +9,7 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        apiPath: '/gills',
+        viewPath: '/view',
         job: {
             dirPath: '/tmp/testgills/job'
         },
@@ -36,7 +36,7 @@ internals.prepareServer = function (callback) {
 
 describe('run', function () {    
 
-    it('POST /gills/job failed', function (done) {
+    it('POST /view/job failed', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -45,7 +45,7 @@ describe('run', function () {
                 description: 'description',
                 bodyCommand0: 'invalid'
             };
-            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/job', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -53,12 +53,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId}/start failed', function (done) {
+    it('GET /view/job/{jobId}/start failed', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/start'}, function (response) {
                     
                 //console.log('starting job: ' + jobId);
                 //expect(response.statusCode).to.equal(302);
@@ -78,12 +78,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId} failed', function (done) {
+    it('GET /view/job/{jobId} failed', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
                       
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -91,12 +91,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId}/delete failed', function (done) {
+    it('GET /view/job/{jobId}/delete failed', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -104,7 +104,7 @@ describe('run', function () {
         });
     });
 
-    it('POST /gills/job cancelled', function (done) {
+    it('POST /view/job cancelled', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -117,7 +117,7 @@ describe('run', function () {
                 bodyCommand0: 'npm install',
                 bodyCommand1: 'npm test'
             };
-            server.inject({ method: 'POST', url: '/gills/job', payload: payload}, function (response) {
+            server.inject({ method: 'POST', url: '/view/job', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -125,12 +125,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId)/start cancelled', function (done) {
+    it('GET /view/job/{jobId)/start cancelled', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/start'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/start'}, function (response) {
                     
                 //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
@@ -139,14 +139,14 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId)/run/{runId}/cancel cancelled', function (done) {
+    it('GET /view/job/{jobId)/run/{runId}/cancel cancelled', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
             expect(runId).to.exist(); 
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/run/' + runId + '/cancel'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/run/' + runId + '/cancel'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 var intervalObj = setInterval(function() {
@@ -165,12 +165,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId} cancelled', function (done) {
+    it('GET /view/job/{jobId} cancelled', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
                         
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -178,12 +178,12 @@ describe('run', function () {
         });
     });
 
-    it('GET /gills/job/{jobId}/delete cancelled', function (done) {
+    it('GET /view/job/{jobId}/delete cancelled', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/gills/job/'+jobId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
