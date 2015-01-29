@@ -25,7 +25,6 @@
     "hoek": "2.x.x",
     "joi": "5.x.x",
     "tacklebox": "git+https://github.com/fishin/tacklebox.git",
-    "hatchery": "git+https://github.com/fishin/hatchery.git",
     "wreck": "5.x.x"
   },
   "devDependencies": {
