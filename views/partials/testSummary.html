@@ -1,7 +1,7 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Last Test Results <span class="badge">{{testResults.totalTests}}</span> <a href="/view/job/{{id}}/run/{{runId}}/test">Details</a></th>
+      <th colspan=3>Last Test Results <span class="badge">{{testResult.totalTests}}</span> <a href="/view/job/{{id}}/run/{{runId}}/test">Details</a></th>
     </tr>
   </thead>
   <tbody>
@@ -13,13 +13,13 @@
     <tr>
       <td>
         <div class="progress">
-          <div class="progress-bar {{#if testResults.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResults.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{testResults.coveragePercent}}%">
-            {{testResults.coveragePercent}}%
+          <div class="progress-bar {{#if testResult.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResult.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{testResult.coveragePercent}}%">
+            {{testResult.coveragePercent}}%
           </div>
         </div>
       </td>
-      <td>{{testResults.totalDuration}} ms</td>
-      <td>{{testResults.totalLeaks}} </td>
+      <td>{{testResult.totalDuration}} ms</td>
+      <td>{{testResult.totalLeaks}} </td>
     </tr>
   </tbody>
 </table>
