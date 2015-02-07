@@ -77,6 +77,17 @@
                  <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             </div>
           </div>
+          {{#each compareCommits}}
+          <div class="form-group">
+            <label for="inputSCM" class="control-label col-xs-2">Commit</label>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" name="compareCommit" id="input" value="{{shortCommit}}" disabled>
+            </div>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" name="compareCommit" id="input" value="{{message}}" disabled>
+            </div>
+          </div>
+          {{/each}}
           {{/if}}
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Type</label>
