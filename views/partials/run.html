@@ -55,6 +55,14 @@
       <input type="text" class="form-control" id="inputRunId" placeholder="{{status}}" disabled>
     </div>
   </div>
+  {{#if commit}}
+  <div class="form-group">
+    <label for="inputId" class="control-label col-xs-2">Commit</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="id" id="id" value="{{commit}}" disabled>
+    </div>
+  </div>
+  {{/if}}
 <h2 class="sub-header">Commands</h2>
 {{#each commands}}
 <h3 class="sub-header">{{command}}</h3>
