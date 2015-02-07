@@ -1,6 +1,6 @@
 <h1 class="page-header">Run - {{name}}
-  <a href="/view/job/{{id}}/run/{{runId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-  <a href="/view/job/{{id}}"><button type="submit" class="btn btn-info">Job</button></a>
+  <a href="/view/job/{{jobId}}/run/{{runId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+  <a href="/view/job/{{jobId}}"><button type="submit" class="btn btn-info">Job</button></a>
 </h1>
 {{#if testResult}}
 {{>testSummary }}
@@ -14,7 +14,7 @@
     <div class="col-md-3">
       <input type="text" class="form-control" id="inputFile" placeholder="{{file}}" disabled>
     </div>
-    <a class="btn btn-info" href="/view/job/{{id}}/run/{{runId}}/archive/{{file}}">View</a>
+    <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}/archive/{{file}}">View</a>
   </div>
 {{/each}}
 {{/if}}
