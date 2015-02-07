@@ -1,9 +1,9 @@
           <h1 class="page-header">Job
-            {{#if id}}
-            <a href="/view/job/{{id}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-            <a href="/view/job/{{id}}/start"><button type="submit" class="btn btn-info">Start</button></a>
-            <a href="/view/queue/{{id}}/add"><button type="submit" class="btn btn-info">Add</button></a>
-            <a href="/view/job/{{id}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
+            {{#if jobId}}
+            <a href="/view/job/{{jobId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+            <a href="/view/job/{{jobId}}/start"><button type="submit" class="btn btn-info">Start</button></a>
+            <a href="/view/queue/{{jobId}}/add"><button type="submit" class="btn btn-info">Add</button></a>
+            <a href="/view/job/{{jobId}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
             {{/if}}
           </h1>
           <div class="alert alert-danger" role="alert">
@@ -16,11 +16,11 @@
           {{/if}}
           <h2 class="sub-header">Basic</h2>
           <form class="form-horizontal" method="post" action="{{post_url}}">
-          {{#if id}}
+          {{#if jobId}}
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Id</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="id" id="id" value="{{id}}" disabled>
+                <input type="text" class="form-control" name="jobId" id="jobId" value="{{jobId}}" disabled>
             </div>
             <div class="offset-col-xs-5">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is used so it is easy to rename your job.">?</button>
@@ -71,10 +71,10 @@
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Last Commit</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="id" id="id" value="{{lastCommit}}" disabled>
+                <input type="text" class="form-control" name="lastCommit" id="id" value="{{lastCommit}}" disabled>
             </div>
             <div class="offset-col-xs-5">
-                 <a class="btn btn-info" href="/view/job/{{id}}/commits">All Commits</a>
+                 <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             </div>
           </div>
           {{/if}}
@@ -286,7 +286,7 @@
           </div>
           <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-                {{#if id}}
+                {{#if jobId}}
                 <button type="submit" class="btn btn-primary">Update</button>
                 {{else}}
                 <button type="submit" class="btn btn-primary">Create</button>
