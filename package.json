@@ -3,10 +3,6 @@
   "version": "0.0.4",
   "description": "gills ======",
   "main": "index.js",
-  "scripts": {
-    "test": "lab -a code -t 90 -v -m 30000",
-    "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/fishin/gills"
@@ -17,6 +13,13 @@
     "url": "https://github.com/fishin/gills/issues"
   },
   "homepage": "https://github.com/fishin/gills",
+  "engines": {
+    "node": ">=0.12.x"
+  },
+  "scripts": {
+    "test": "lab -a code -t 90 -v -m 30000",
+    "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
+  },
   "dependencies": {
     "boom": "2.x.x",
     "handlebars": "2.0.x",
