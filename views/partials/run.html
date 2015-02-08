@@ -63,6 +63,17 @@
     </div>
   </div>
   {{/if}}
+  {{#each compareCommits}}
+  <div class="form-group">
+    <label for="inputSCM" class="control-label col-xs-2">Commit</label>
+    <div class="col-xs-2">
+      <input type="text" class="form-control" name="compareCommit" id="input" value="{{shortCommit}}" disabled>
+    </div>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="compareCommit" id="input" value="{{message}}" disabled>
+    </div>
+  </div>
+  {{/each}}
 <h2 class="sub-header">Commands</h2>
 {{#each commands}}
 <h3 class="sub-header">{{command}}</h3>
