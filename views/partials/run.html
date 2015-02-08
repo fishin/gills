@@ -50,11 +50,12 @@
   </div>
   {{/if}}
   <div class="form-group">
-    <label for="inputRunId" class="control-label col-md-2">Status</label>
+    <label for="inputRunId" class="control-label col-md-2">Run Status</label>
     <div class="col-md-2">
       <input type="text" class="form-control" id="inputRunId" placeholder="{{status}}" disabled>
     </div>
   </div>
+<h2 class="sub-header">Source Control</h2>
   {{#if commit}}
   <div class="form-group">
     <label for="inputId" class="control-label col-xs-2">Commit</label>
@@ -74,84 +75,19 @@
     </div>
   </div>
   {{/each}}
+  {{#if checkout}}
+  <div class="form-group">
+    <label for="inputRunId" class="control-label col-md-2">Checkout Status</label>
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{checkout.status}}" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#each checkout.commands}}
+  {{>command}}
+  {{/each}}
 <h2 class="sub-header">Commands</h2>
 {{#each commands}}
-<h3 class="sub-header">{{command}}</h3>
-  {{#if startTime}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">Start Time</label>
-    <div class="col-md-3">
-      <input type="text" class="form-control" id="inputRunId" placeholder="{{startTime}}" disabled>
-    </div>
-  </div>
-  {{/if}}
-  {{#if finishTime}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">Finish Time</label>
-    <div class="col-md-3">
-      <input type="text" class="form-control" id="inputRunId" placeholder="{{finishTime}}" disabled>
-    </div>
-  </div>
-  {{/if}}
-  {{#if elapsedTime}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">Elapsed Time</label>
-    <div class="col-md-3">
-      <input type="text" class="form-control" id="inputRunId" placeholder="{{elapsedTime}} ms" disabled>
-    </div>
-  </div>
-  {{/if}}
-  {{#if code}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">Return Code</label>
-    <div class="col-md-3">
-      <input type="text" class="form-control" id="inputRunId" placeholder="{{code}}" disabled>
-    </div>
-  </div>
-  {{/if}}
-  {{#if signal}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">Signal</label>
-    <div class="col-md-3">
-      <input type="text" class="form-control" id="inputRunId" placeholder="{{signal}}" disabled>
-    </div>
-  </div>
-  {{/if}}
-  {{#if stdout}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">stdout</label>
-    <div class="col-md-10">
-      {{#if stdout}}
-      <textarea class="form-control" name="stdout" id="inputMessage" rows=10 disabled>{{stdout}}</textarea>
-      {{else}}
-      <textarea class="form-control" name="stdout" id="inputMessage" disabled></textarea>
-      {{/if}}
-    </div>
-  </div>
-  {{/if}}
-  {{#if stderr}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">stderr</label>
-    <div class="col-md-10">
-      {{#if stderr}}
-      <textarea class="form-control" name="stderr" id="inputMessage" rows=10 disabled>{{stderr}}</textarea>
-      {{else}}
-      <textarea class="form-control" name="stderr" id="inputMessage" disabled></textarea>
-      {{/if}}
-    </div>
-  </div>
-  {{/if}}
-  {{#if error}}
-  <div class="form-group">
-    <label for="inputHead" class="control-label col-md-2">error</label>
-    <div class="col-md-10">
-      {{#if error}}
-      <textarea class="form-control" name="error" id="inputMessage" rows=10 disabled>{{error}}</textarea>
-      {{else}}
-      <textarea class="form-control" name="error" id="inputMessage" disabled></textarea>
-      {{/if}}
-    </div>
-  </div>
-  {{/if}}
+  {{>command}}
 {{/each}}
 </form>

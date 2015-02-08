@@ -1,0 +1,65 @@
+<h3 class="sub-header">{{this.command}}</h3>
+  {{#if this.startTime}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Start Time</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{this.startTime}}" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.finishTime}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Finish Time</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{this.finishTime}}" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.elapsedTime}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Elapsed Time</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{this.elapsedTime}} ms" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.code}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Return Code</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{this.code}}" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.signal}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Signal</label>
+    <div class="col-md-3">
+      <input type="text" class="form-control" id="inputRunId" placeholder="{{this.signal}}" disabled>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.stdout}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">stdout</label>
+    <div class="col-md-10">
+      <textarea class="form-control" name="stdout" id="inputMessage" rows=10 disabled>{{this.stdout}}</textarea>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.stderr}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">stderr</label>
+    <div class="col-md-10">
+      <textarea class="form-control" name="stderr" id="inputMessage" rows=10 disabled>{{this.stderr}}</textarea>
+    </div>
+  </div>
+  {{/if}}
+  {{#if this.error}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">error</label>
+    <div class="col-md-10">
+      <textarea class="form-control" name="error" id="inputMessage" rows=10 disabled>{{this.error}}</textarea>
+    </div>
+  </div>
+  {{/if}}
