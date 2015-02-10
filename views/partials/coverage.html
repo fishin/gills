@@ -34,12 +34,15 @@
       <td>{{this.hits}}</td>
     </tr>
             {{#each this.chunks}}
+<!--
               {{#if this.miss}}
     <tr class="danger">
       <td>{{this.miss}}</td>
       <td colspan=2>{{this.source}}</td>
     </tr>
               {{/if}}
+-->
+              {{compareString this}}
             {{/each}}
           {{/if}}
         {{/each}}
