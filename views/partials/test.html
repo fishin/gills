@@ -1,28 +1,31 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=4>Test Results: Run <a href="/view/job/{{jobId}}/run/{{runId}}">{{runId}}</a> for <a href="/view/job/{{jobId}}">{{jobName}}</a></th>
+      <th colspan=3>Test Results: Run <a href="/view/job/{{jobId}}/run/{{runId}}">{{runId}}</a> for <a href="/view/job/{{jobId}}">{{jobName}}</a></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th colspan=4>Tests <span class="badge">{{testResult.totalTests}}</span></th>
+      <th colspan=3>Tests <span class="badge">{{testResult.totalTests}}</span></th>
     </tr>
     <tr>
     {{#each testResult.tests}}
     <tr>
-      <td>num</td>
+      <td>#</td>
       <td>test name in <b>{{@key}}</b></td>
       <td>duration</td>
-      <td>err</td>
     </tr>
     {{#each this}}
     <tr class="{{#if err}}danger{{else}}success{{/if}}">
       <td>{{testNum}}</td>
       <td>{{title}}</td>
       <td>{{duration}} ms</td>
-      <td>{{err}}</td>
     </tr>
+    {{#if err}}
+    <tr class="danger">
+      <td colspan=3>{{err}}</td>
+    </tr>
+    {{/if}}
     {{/each}}
     {{/each}}
   </tbody>
