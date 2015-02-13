@@ -22,8 +22,9 @@
   },
   "dependencies": {
     "boom": "2.x.x",
-    "handlebars": "2.0.x",
     "cron": "1.0.x",
+    "dateformat": "1.0.x",
+    "handlebars": "2.0.x",
     "hapi": "8.x.x",
     "hoek": "2.x.x",
     "joi": "5.x.x",
