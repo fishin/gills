@@ -47,6 +47,7 @@ describe('job', function () {
                 scm_type: 'git',
                 scm_url: 'https://github.com/fishin/pail',
                 scm_branch: 'master',
+                scm_prs: true,
                 bodyCommand0: 'npm install',
                 bodyCommand1: 'npm test'
             };
