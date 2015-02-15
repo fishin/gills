@@ -44,8 +44,8 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var payload = {
-                username: 'lloyd',
-                name: 'Lloyd Benson1',
+                name: 'lloyd',
+                displayName: 'Lloyd Benson1',
                 email: 'lloyd.benson@gmail.com'
             };
             server.inject({ method: 'POST', url: '/view/user', payload: payload}, function (response) {
@@ -74,7 +74,7 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            var updatePayload = { name: "Lloyd Benson" }; 
+            var updatePayload = { displayName: "Lloyd Benson" }; 
             server.inject({ method: 'POST', url: '/view/user/'+userId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);

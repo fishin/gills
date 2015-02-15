@@ -44,8 +44,8 @@ describe('users', function () {
         internals.prepareServer(function (server) {
 
             var payload1 = {
-                username: 'lloyd',
-                name: 'Lloyd Benson',
+                name: 'lloyd',
+                displayName: 'Lloyd Benson',
                 email: 'lloyd.benson@gmail.com'
             };
             server.inject({ method: 'POST', url: '/view/user', payload: payload1}, function (response) {
@@ -54,8 +54,8 @@ describe('users', function () {
                 var userId1 = server.plugins.tacklebox.getUsers()[0].id;
                 expect(userId1).to.exist();
                 var payload2 = {
-                    username: 'backer',
-                    name: 'Ben Acker',
+                    name: 'backer',
+                    displayName: 'Ben Acker',
                     email: 'ben.acker@gmail.com'
                 };
                 server.inject({ method: 'POST', url: '/view/user', payload: payload2}, function (response) {
