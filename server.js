@@ -4,7 +4,12 @@ var Lout = require('lout');
 var Gills = require('./index');
 
 var server = new Hapi.Server();
-server.connection({ port: 8080 });
+server.connection({
+    port: 8080,
+    routes: {
+        auth: 'session'
+    }
+});
 var options = {};
 
 server.register({ register: Gills, options: options }, function(err) {
