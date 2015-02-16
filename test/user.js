@@ -39,6 +39,18 @@ internals.prepareServer = function (callback) {
 
 describe('user', function () {    
 
+    it('GET /view/login', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/view/login' }, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
     it('POST /view/user', function (done) {
 
         internals.prepareServer(function (server) {
@@ -87,6 +99,36 @@ describe('user', function () {
         });
     });
 
+    it('POST /view/login', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'lloyd',
+                type: 'local',
+                password: 'password'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /view/logout/{userId}', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var userId = server.plugins.tacklebox.getUsers()[0].id;
+            server.inject({ method: 'GET', url: '/view/logout/' + userId }, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
     it('GET /view/user/{userId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
@@ -99,5 +141,4 @@ describe('user', function () {
             });
         });
     });
-
 });
