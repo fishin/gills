@@ -3,7 +3,7 @@
 <form class="form-inline navbar-form navbar-right" role="form" method="GET" action="/view/logout/{{credentials.userId}}">
   <button type="submit" class="btn btn-default">logout</button>
 </form>
-<a class="navbar-brand navbar-right" href="#">{{credentials.displayName}} ({{credentials.name}})</a>
+<a class="navbar-brand navbar-right" href="/view/user/{{credentials.userId}}">{{credentials.displayName}} ({{credentials.name}})</a>
   {{else}}
 <form class="form-inline navbar-form navbar-right" role="form" action="/view/login" method="post">
   <div class="form-group">
