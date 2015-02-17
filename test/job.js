@@ -151,6 +151,19 @@ describe('job', function () {
         });
     });
 
+    it('GET /view/job/{jobId}/commits', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+'/commits'}, function (response) {
+       
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
     it('GET /view/job/{job_id}/run/{runId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
