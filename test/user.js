@@ -231,14 +231,37 @@ describe('user', function () {
 
             var payload = {
                 name: 'admin',
-                type: 'admin',
+                type: 'local',
                 password: 'admin'
             };
             server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
 
                 var artifacts = response.request.auth.artifacts;
                 expect(artifacts.name).to.equal('admin');
-                expect(artifacts.type).to.equal('admin');
+                expect(artifacts.type).to.equal('local');
+                expect(response.statusCode).to.equal(302);
+                var user = server.plugins.tacklebox.getUsers()[0];
+                expect(user.name).to.equal('admin');
+                expect(user.password.length).to.equal(60);
+                done();
+            });
+        });
+    });
+
+    it('POST /view/login valid admin password', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'admin',
+                type: 'local',
+                password: 'admin'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                var artifacts = response.request.auth.artifacts;
+                expect(artifacts.name).to.equal('admin');
+                expect(artifacts.type).to.equal('local');
                 expect(response.statusCode).to.equal(302);
                 done();
             });
@@ -251,12 +274,25 @@ describe('user', function () {
 
             var payload = {
                 name: 'admin',
-                type: 'admin',
+                type: 'local',
                 password: 'password'
             };
             server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
 
                 expect(response.request.auth.artifacts).to.not.exist();
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /view/user/{userId}/delete', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var userId = server.plugins.tacklebox.getUsers()[0].id;
+            server.inject({ method: 'GET', url: '/view/user/'+userId+ '/delete'}, function (response) {
+
                 expect(response.statusCode).to.equal(302);
                 done();
             });
