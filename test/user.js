@@ -51,6 +51,18 @@ describe('user', function () {
         });
     });
 
+    it('GET /view/logout nologin', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
     it('POST /view/user', function (done) {
 
         internals.prepareServer(function (server) {
@@ -58,11 +70,17 @@ describe('user', function () {
             var payload = {
                 name: 'lloyd',
                 displayName: 'Lloyd Benson1',
-                email: 'lloyd.benson@gmail.com'
+                email: 'lloyd.benson@gmail.com',
+                password: 'password'
             };
             server.inject({ method: 'POST', url: '/view/user', payload: payload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
+                var user = server.plugins.tacklebox.getUsers()[0];
+                expect(user.name).to.equal('lloyd');
+                expect(user.displayName).to.equal('Lloyd Benson1');
+                expect(user.email).to.equal('lloyd.benson@gmail.com');
+                expect(user.password).to.equal('password');
                 done();
             });
         });
@@ -74,7 +92,7 @@ describe('user', function () {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
             server.inject({ method: 'GET', url: '/view/user/'+userId}, function (response) {
-       
+
                 expect(response.statusCode).to.equal(200);
                 done();
             });
@@ -86,13 +104,17 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            var updatePayload = { displayName: "Lloyd Benson" }; 
+            var updatePayload = {
+                displayName: "Lloyd Benson"
+            }; 
             server.inject({ method: 'POST', url: '/view/user/'+userId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/view/user'}, function (response) {
 
                     expect(response.statusCode).to.equal(200);
+                    var user = server.plugins.tacklebox.getUsers()[0];
+                    expect(user.displayName).to.equal('Lloyd Benson');
                     done();
                 });
             });
@@ -111,17 +133,78 @@ describe('user', function () {
             server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
+                var artifacts = response.request.auth.artifacts;
+                expect(artifacts.userId.length).to.equal(36);
+                expect(artifacts.name).to.equal('lloyd');
+                expect(artifacts.displayName).to.equal('Lloyd Benson');
+                expect(artifacts.type).to.equal('local');
+                server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
+
+                    expect(response.statusCode).to.equal(302);
+                    expect(response.request.auth.artifacts).to.not.exist();
+                    done();
+                });
+            });
+        });
+    });
+
+    it('POST /view/login invalid user', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'lloyd1',
+                type: 'local',
+                password: 'password'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.request.auth.artifacts).to.not.exist();
+                expect(response.statusCode).to.equal(302);
                 done();
             });
         });
     });
 
-    it('GET /view/logout/{userId}', function (done) {
+    it('POST /view/login invalid password', function (done) {
 
         internals.prepareServer(function (server) {
 
-            var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/view/logout/' + userId }, function (response) {
+            var payload = {
+                name: 'lloyd',
+                type: 'local',
+                password: 'password1'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.request.auth.artifacts).to.not.exist();
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('POST /view/login no user', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                type: 'local'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.request.auth.artifacts).to.not.exist();
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('GET /view/logout', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -141,4 +224,43 @@ describe('user', function () {
             });
         });
     });
+
+    it('POST /view/login', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'admin',
+                type: 'admin',
+                password: 'admin'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                var artifacts = response.request.auth.artifacts;
+                expect(artifacts.name).to.equal('admin');
+                expect(artifacts.type).to.equal('admin');
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
+    it('POST /view/login invalid admin password', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var payload = {
+                name: 'admin',
+                type: 'admin',
+                password: 'password'
+            };
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.request.auth.artifacts).to.not.exist();
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+
 });
