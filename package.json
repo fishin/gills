@@ -21,6 +21,7 @@
     "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
   },
   "dependencies": {
+    "bell": "2.x.x",
     "boom": "2.x.x",
     "cron": "1.0.x",
     "dateformat": "1.0.x",
