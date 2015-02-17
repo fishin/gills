@@ -1,11 +1,12 @@
 <a class="navbar-brand" href="/view/jobs">Fast Intelligent Continuous Integration On Node</a>
-<form class="form-inline navbar-form navbar-right" role="form">
-  {{#if angler}}
+  {{#if credentials}}
+<form class="form-inline navbar-form navbar-right" role="form" method="GET" action="/view/logout/{{credentials.userId}}">
   <button type="submit" class="btn btn-default">logout</button>
   {{else}}
+<form class="form-inline navbar-form navbar-right" role="form" action="/view/login">
   <div class="form-group">
     <label class="sr-only" for="username">username</label>
-    <input type="email" class="form-control" id="username" placeholder="username">
+    <input type="email" class="form-control" id="name" placeholder="username">
   </div>
   <div class="form-group">
     <label class="sr-only" for="password">password</label>
@@ -14,4 +15,4 @@
   <button type="submit" class="btn btn-default">login</button>
   {{/if}}
 </form>
-<a class="navbar-brand navbar-right" href="#">{{angler}}</a>
+<a class="navbar-brand navbar-right" href="#">{{credentials.displayName}} ({{credentials.name}})</a>
