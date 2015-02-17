@@ -46,7 +46,8 @@ describe('users', function () {
             var payload1 = {
                 name: 'lloyd',
                 displayName: 'Lloyd Benson',
-                email: 'lloyd.benson@gmail.com'
+                email: 'lloyd.benson@gmail.com',
+                password: 'password'
             };
             server.inject({ method: 'POST', url: '/view/user', payload: payload1}, function (response) {
 
@@ -56,7 +57,8 @@ describe('users', function () {
                 var payload2 = {
                     name: 'backer',
                     displayName: 'Ben Acker',
-                    email: 'ben.acker@gmail.com'
+                    email: 'ben.acker@gmail.com',
+                    password: 'password'
                 };
                 server.inject({ method: 'POST', url: '/view/user', payload: payload2}, function (response) {
                     expect(response.statusCode).to.equal(302);

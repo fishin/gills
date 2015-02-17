@@ -80,7 +80,7 @@ describe('user', function () {
                 expect(user.name).to.equal('lloyd');
                 expect(user.displayName).to.equal('Lloyd Benson1');
                 expect(user.email).to.equal('lloyd.benson@gmail.com');
-                expect(user.password).to.equal('password');
+                expect(user.password.length).to.equal(60);
                 done();
             });
         });
