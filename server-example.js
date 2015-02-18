@@ -10,6 +10,7 @@ server.connection({
         auth: 'session'
     }
 });
+
 var options = {};
 
 server.register({ register: Gills, options: options }, function(err) {
@@ -18,7 +19,7 @@ server.register({ register: Gills, options: options }, function(err) {
    }
 });
 
-server.register({ register: Lout, options: options }, function(err) {
+server.register({ register: Lout, options: {} }, function(err) {
    if (err) {
        console.log('lout did not load');
    }
