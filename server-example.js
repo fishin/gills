@@ -11,7 +11,21 @@ server.connection({
     }
 });
 
-var options = {};
+var options = {
+    session: {
+        cookie: {
+            name: 'ficion',
+            password: 'secret'
+        },
+        bell: {
+            github: {
+                password: 'secret',
+                clientId: 'clientId',
+                clientSecret: 'clientSecret'
+            }
+        }
+    }
+};
 
 server.register({ register: Gills, options: options }, function(err) {
    if (err) {
