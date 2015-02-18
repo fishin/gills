@@ -4,7 +4,7 @@
   <button type="submit" class="btn btn-default">logout</button>
 </form>
 {{#if credentials.userId}}
-<a class="navbar-brand navbar-right" href="/view/user/{{credentials.userId}}">{{credentials.displayName}} ({{credentials.name}})</a>
+<a class="navbar-brand navbar-right" href="{{credentials.url}}">{{credentials.displayName}} ({{credentials.name}})</a>
 {{else}}
 <span class="navbar-brand navbar-right">{{credentials.name}}</a>
 {{/if}}
