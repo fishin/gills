@@ -111,6 +111,7 @@ describe('user', function () {
             }; 
             server.inject({ method: 'POST', url: '/view/user/'+userId, payload: updatePayload}, function (response) {
 
+                console.log(response.result);
                 expect(response.statusCode).to.equal(302);
                 server.inject({ method: 'GET', url: '/view/user'}, function (response) {
 
