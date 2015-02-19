@@ -45,6 +45,7 @@ describe('users', function () {
 
             var payload1 = {
                 name: 'lloyd',
+                type: 'local',
                 displayName: 'Lloyd Benson',
                 email: 'lloyd.benson@gmail.com',
                 password: 'password'
@@ -56,6 +57,7 @@ describe('users', function () {
                 expect(userId1).to.exist();
                 var payload2 = {
                     name: 'backer',
+                    type: 'local',
                     displayName: 'Ben Acker',
                     email: 'ben.acker@gmail.com',
                     password: 'password'
@@ -80,5 +82,4 @@ describe('users', function () {
             });
         });
     });
-
 });

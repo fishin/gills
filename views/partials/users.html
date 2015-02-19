@@ -6,6 +6,7 @@
               <thead>
                 <tr>
                   <th>username</th>
+                  <th>type</th>
                   <th>name</th>
                   <th>email</th>
                 </tr>
@@ -14,6 +15,7 @@
                 {{#each users}}
                 <tr class="{{classColor}}">
                   <td><a href="/view/user/{{id}}">{{name}}</a></td>
+                  <td>{{type}}</td>
                   <td>{{displayName}}</td>
                   <td>{{email}}</td>
                 </tr>

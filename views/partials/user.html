@@ -23,6 +23,26 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="inputType" class="control-label col-xs-2">Type</label>
+    <div class="col-xs-10">
+<!--
+      <div class="btn-group">
+        <span class="input-group-addon">
+          <input type="radio" name="type" value="local">
+        </span>
+        <button type="button" class="btn btn-default">local</button>
+      </div>
+      <div class="btn-group">
+        <span class="input-group-addon">
+          <input type="radio" name="type" value="github">
+        </span>
+        <button type="button" class="btn btn-default">github</button>
+      </div>
+-->
+    {{userTypeRadio type}}
+    </div>
+  </div>
+  <div class="form-group">
     <label for="inputDescription" class="control-label col-xs-2">Name</label>
     <div class="col-xs-8">
       <input type="text" class="form-control" name="displayName" id="inputName" placeholder="Name" value="{{displayName}}">

@@ -69,6 +69,7 @@ describe('user', function () {
 
             var payload = {
                 name: 'lloyd',
+                type: 'local',
                 displayName: 'Lloyd Benson1',
                 email: 'lloyd.benson@gmail.com',
                 password: 'password'
@@ -78,6 +79,7 @@ describe('user', function () {
                 expect(response.statusCode).to.equal(302);
                 var user = server.plugins.tacklebox.getUsers()[0];
                 expect(user.name).to.equal('lloyd');
+                expect(user.type).to.equal('local');
                 expect(user.displayName).to.equal('Lloyd Benson1');
                 expect(user.email).to.equal('lloyd.benson@gmail.com');
                 expect(user.password.length).to.equal(60);
