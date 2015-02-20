@@ -70,6 +70,7 @@ describe('job', function () {
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
        
+                //console.log(response.result);
                 expect(response.statusCode).to.equal(200);
                 done();
             });

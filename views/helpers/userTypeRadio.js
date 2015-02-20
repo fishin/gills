@@ -1,6 +1,6 @@
 var Handlebars = require('handlebars');
 
-module.exports = function(type) {
+module.exports = function (type) {
 
     var output = '';
     var types = [ 'local', 'github' ];
