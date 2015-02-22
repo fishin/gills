@@ -6,15 +6,16 @@
     </tr>
   </thead>
   <tbody>
+  {{#if totalNew}}
     <tr>
-      <td colspan=4>New Pull Requests <span class="badge">{{prs.length}}</span></td>
+      <td colspan=4>New Pull Requests <span class="badge">{{totalNew}}</span></td>
     </tr>
     <tr>
       <td>#</td>
       <td colspan=3>commit</td>
     </tr>
     {{#each prs}}
-    <tr class="{{classColor}}">
+    <tr>
       <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
       <td colspan=3><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
     </tr>
@@ -22,6 +23,7 @@
       <td colspan=4>{{this.title}}</td>
     </tr>
     {{/each}}
+  {{/if}}
     <tr>
       <td colspan=4>Active Pull Requests <span class="badge">{{activeRuns.length}}</span></td>
     </tr>
@@ -46,17 +48,19 @@
     </tr>
     {{/each}}
     {{/each}}
+  {{#if totalChecked}}
     <tr>
-      <td colspan=4>Checked Pull Requests <span class="badge">{{prs.length}}</span></td>
+    <tr>
+      <td colspan=4>Checked Pull Requests <span class="badge">{{totalChecked}}</span></td>
     </tr>
+    {{#each prs}}
     <tr>
       <td>#</td>
       <td colspan=3>commit</td>
     </tr>
-    {{#each prs}}
-    <tr class="{{classColor}}">
+    <tr class="{{this.checked.classColor}}">
       <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
-      <td><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td><a href="{{this.repoUrl}}/commit/{{this.checked.commit}}">{{this.shortCommit}}</a></td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
       <td><a class="btn btn-info" href="#">Retry</a></td>
     </tr>
@@ -64,6 +68,7 @@
       <td colspan=4>{{this.title}}</td>
     </tr>
     {{/each}}
+  {{/if}}
   </tbody>
 </table>
 {{/if}}
