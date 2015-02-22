@@ -66,11 +66,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId1 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId1 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
                 expect(runId1).to.exist(); 
                 var intervalObj = setInterval(function() {
 
-                    var run1 = server.plugins.tacklebox.getRun(jobId, runId1);
+                    var run1 = server.plugins.tacklebox.getRun(jobId, null, runId1);
                     if (run1.finishTime) {
 
                         clearInterval(intervalObj);   
@@ -113,11 +113,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId2 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId2 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
                 expect(runId2).to.exist(); 
                 var intervalObj = setInterval(function() {
 
-                    var run2 = server.plugins.tacklebox.getRun(jobId, runId2);
+                    var run2 = server.plugins.tacklebox.getRun(jobId, null, runId2);
                     if (run2.finishTime) {
 
                         clearInterval(intervalObj);   
@@ -161,11 +161,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId3 = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId3 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
                 expect(runId3).to.exist(); 
                 var intervalObj = setInterval(function() {
 
-                    var run3 = server.plugins.tacklebox.getRun(jobId, runId3);
+                    var run3 = server.plugins.tacklebox.getRun(jobId, null, runId3);
                     if (run3.finishTime) {
 
                         clearInterval(intervalObj);   
@@ -227,7 +227,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
                 expect(runId).to.exist(); 
                 var intervalObj = setInterval(function() {
 
@@ -235,7 +235,7 @@ describe('runs', function () {
 
                         expect(response.statusCode).to.equal(200);
                     });
-                    var run = server.plugins.tacklebox.getRun(jobId, runId);
+                    var run = server.plugins.tacklebox.getRun(jobId, null, runId);
                     if (run.finishTime) {
 
                         clearInterval(intervalObj);   

@@ -110,7 +110,7 @@ describe('job', function () {
 
                 //console.log('starting job: ' + jobId);
                 expect(response.statusCode).to.equal(302);
-                var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
                 //console.log('runId: ' + runId);
                 expect(runId).to.exist(); 
                 server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
@@ -119,7 +119,7 @@ describe('job', function () {
                 });
                 var intervalObj = setInterval(function() {
 
-                    var run = server.plugins.tacklebox.getRun(jobId, runId);
+                    var run = server.plugins.tacklebox.getRun(jobId, null, runId);
                     if (run.finishTime) {
                         clearInterval(intervalObj);   
                         expect(run.finishTime).to.exist();
@@ -170,7 +170,7 @@ describe('job', function () {
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            var runId = server.plugins.tacklebox.getRuns(jobId)[0].id;
+            var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
             server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/run/' + runId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);

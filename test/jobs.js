@@ -66,11 +66,11 @@ describe('jobs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId = server.plugins.tacklebox.getRuns(jobId1)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId1, null)[0].id;
                 expect(runId).to.exist(); 
                 var intervalObj1 = setInterval(function() {
 
-                    var run = server.plugins.tacklebox.getRun(jobId1, runId);
+                    var run = server.plugins.tacklebox.getRun(jobId1, null, runId);
                     if (run.finishTime) {
 
                         clearInterval(intervalObj1);   
@@ -115,11 +115,11 @@ describe('jobs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId = server.plugins.tacklebox.getRuns(jobId2)[0].id;
+                var runId = server.plugins.tacklebox.getRuns(jobId2, null)[0].id;
                 expect(runId).to.exist(); 
                 var intervalObj2 = setInterval(function() {
 
-                    var run = server.plugins.tacklebox.getRun(jobId2, runId);
+                    var run = server.plugins.tacklebox.getRun(jobId2, null, runId);
                     if (run.finishTime) {
 
                         clearInterval(intervalObj2);   
