@@ -24,27 +24,29 @@
     </tr>
     {{/each}}
   {{/if}}
+  {{#if activePullRequests}}
     <tr>
-      <td colspan=4>Active Pull Requests <span class="badge">{{activeRuns.length}}</span></td>
+      <td colspan=4>Active Pull Requests <span class="badge">{{activePullRequests.length}}</span></td>
     </tr>
-    {{#each activeRuns}}
-    <tr class="{{classColor}}">
+  {{/if}}
+    {{#each activePullRequests}}
+    <tr>
       <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{shortId}}</td>
       <td>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent}}%">
-            <span>{{percent}}%</span>
+          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{this.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{this.percent}}%">
+            <span>{{this.percent}}%</span>
           </div>
         </div>
       </td>
-      <td>{{elapsedTime}} s</td>
+      <td>{{this.elapsedTime}} s</td>
       <td><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
    {{#each processes}}
-    <tr class="{{classColor}}">
+    <tr>
       <td colspan=2>{{this.command}}</td>
       <td colspan=1>{{this.pid}}</td>
-      <td><a href="/view/job/{{this.jobId}}/run/{{this.runId}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
     </tr>
     {{/each}}
     {{/each}}
@@ -61,7 +63,7 @@
     <tr class="{{this.checked.classColor}}">
       <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
       <td><a href="{{this.repoUrl}}/commit/{{this.checked.commit}}">{{this.shortCommit}}</a></td>
-      <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
+      <td><a class="btn {{this.checked.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/retry">Retry</a></td>
     </tr>
     <tr>

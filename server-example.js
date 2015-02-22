@@ -12,6 +12,9 @@ server.connection({
 });
 
 var options = {
+    prs: {
+        autoStart: true
+    },
     session: {
         cookie: {
             name: 'ficion',
