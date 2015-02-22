@@ -228,7 +228,7 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/login', function (done) {
+    it('POST /view/login admin', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -246,6 +246,20 @@ describe('user', function () {
                 var user = server.plugins.tacklebox.getUsers()[0];
                 expect(user.name).to.equal('admin');
                 expect(user.password.length).to.equal(60);
+                done();
+            });
+        });
+    });
+
+    it('GET /view/user/{userId} admin', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var user = server.plugins.tacklebox.getUserByName('admin');
+            var userId = user.id;
+            server.inject({ method: 'GET', url: '/view/user/' + userId }, function (response) {
+
+                expect(response.statusCode).to.equal(200);
                 done();
             });
         });
@@ -289,7 +303,7 @@ describe('user', function () {
         });
     });
 
-    it('GET /view/user/{userId}/delete', function (done) {
+    it('GET /view/user/{userId}/delete admin', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -301,5 +315,4 @@ describe('user', function () {
             });
         });
     });
-
 });
