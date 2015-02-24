@@ -114,13 +114,41 @@ describe('tests', function () {
         });
     });
 
+    it('GET /view/job/{jobId}/run/{runId}/test', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/run/' + runId + '/test' }, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/run/{runId}/archive/{file}', function (done) {
+
+        internals.prepareServer(function (server) {
+
+            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+            var file = 'lab.json';
+            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/run/' + runId + '/archive/' + file }, function (response) {
+
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        });
+    });
+
     it('GET /view/job/{jobId}/run/{runId}/coverage', function (done) {
 
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
             var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
-            console.log(runId);
             server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/run/' + runId + '/coverage' }, function (response) {
 
                 expect(response.statusCode).to.equal(200);
