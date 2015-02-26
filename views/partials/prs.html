@@ -2,37 +2,43 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=4>Open Pull Requests <span class="badge">{{prs.length}}</span></th>
+      <th colspan=5>Open Pull Requests <span class="badge">{{prs}}</span></th>
     </tr>
   </thead>
   <tbody>
-  {{#if totalNew}}
+  {{#if newPullRequests}}
     <tr>
-      <td colspan=4>New Pull Requests <span class="badge">{{totalNew}}</span></td>
+      <td colspan=5>New Pull Requests <span class="badge">{{newPullRequests.length}}</span></td>
     </tr>
     <tr>
       <td>#</td>
-      <td colspan=3>commit</td>
+      <td colspan=4>Commit</td>
     </tr>
-    {{#each prs}}
+    {{#each newPullRequests}}
     <tr>
-      <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
-      <td colspan=3><a href="{{this.repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td colspan=4><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
     </tr>
     <tr>
-      <td colspan=4>{{this.title}}</td>
+      <td colspan=5>{{this.title}}</td>
     </tr>
     {{/each}}
   {{/if}}
   {{#if activePullRequests}}
     <tr>
-      <td colspan=4>Active Pull Requests <span class="badge">{{activePullRequests.length}}</span></td>
+      <td colspan=5>Active Pull Requests <span class="badge">{{activePullRequests.length}}</span></td>
     </tr>
-  {{/if}}
+    <tr>
+      <td>#</td>
+      <td>RunId</td>
+      <td colspan=2>Progress</td>
+      <td>Elapsed</td>
+    </tr>
     {{#each activePullRequests}}
     <tr>
-      <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{shortId}}</td>
-      <td>
+      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}">{{this.shortId}}</td>
+      <td colspan=2>
         <div class="progress">
           <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{this.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{this.percent}}%">
             <span>{{this.percent}}%</span>
@@ -40,34 +46,45 @@
         </div>
       </td>
       <td>{{this.elapsedTime}} s</td>
-      <td><span class="glyphicon glyphicon-remove"></span></a></td>
     </tr>
    {{#each processes}}
     <tr>
-      <td colspan=2>{{this.command}}</td>
-      <td colspan=1>{{this.pid}}</td>
+      <td colspan=3>{{this.command}}</td>
+      <td>{{this.pid}}</td>
       <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
     </tr>
     {{/each}}
     {{/each}}
-  {{#if totalChecked}}
+  {{/if}}
+  {{#if checkedPullRequests}}
     <tr>
     <tr>
-      <td colspan=4>Checked Pull Requests <span class="badge">{{totalChecked}}</span></td>
+      <td colspan=5>Checked Pull Requests <span class="badge">{{checkedPullRequests.length}}</span></td>
     </tr>
-    {{#each prs}}
     <tr>
       <td>#</td>
-      <td colspan=3>commit</td>
+      <td>RunId</td>
+      <td>Commit</td>
+      <td>Merge</td>
+      <td>Retry</td>
     </tr>
-    <tr class="{{this.checked.classColor}}">
-      <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
-      <td><a href="{{this.repoUrl}}/commit/{{this.checked.commit}}">{{this.shortCommit}}</a></td>
-      <td><a class="btn {{this.checked.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
+    <tr>
+      <td colspan=2>Title</td>
+      <td colspan=2>Finished</td>
+      <td>Elapsed</td>
+    </tr>
+    {{#each checkedPullRequests}}
+    <tr class="{{this.classColor}}">
+      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}">{{this.shortId}}</td>
+      <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td><a class="btn {{this.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/retry">Retry</a></td>
     </tr>
     <tr>
-      <td colspan=4>{{this.title}}</td>
+      <td colspan=2>{{this.title}}</td>
+      <td colspan=2>{{this.finishTime}}</td>
+      <td>{{this.elapsedTime}} s</td>
     </tr>
     {{/each}}
   {{/if}}
