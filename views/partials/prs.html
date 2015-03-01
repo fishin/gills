@@ -12,12 +12,16 @@
     </tr>
     <tr>
       <td>#</td>
-      <td colspan=4>Commit</td>
+      <td colspan>Commit</td>
+      <td colspan=2>Author</td>
+      <td colspan>Branch</td>
     </tr>
     {{#each newPullRequests}}
     <tr>
       <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
-      <td colspan=4><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
+      <td colspan=2>{{this.remoteUser}}</td>
+      <td>{{this.remoteBranch}}</td>
     </tr>
     <tr>
       <td colspan=5>{{this.title}}</td>
@@ -30,7 +34,7 @@
     </tr>
     <tr>
       <td>#</td>
-      <td>RunId</td>
+      <td>Run Id</td>
       <td colspan=2>Progress</td>
       <td>Elapsed</td>
     </tr>
@@ -51,7 +55,7 @@
     <tr>
       <td colspan=3>{{this.command}}</td>
       <td>{{this.pid}}</td>
-      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
     </tr>
     {{/each}}
     {{/each}}
@@ -63,7 +67,7 @@
     </tr>
     <tr>
       <td>#</td>
-      <td>RunId</td>
+      <td>Run Id</td>
       <td>Commit</td>
       <td>Merge</td>
       <td>Retry</td>
