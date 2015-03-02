@@ -12,16 +12,18 @@
     </tr>
     <tr>
       <td>#</td>
-      <td colspan>Commit</td>
-      <td colspan=2>Author</td>
-      <td colspan>Branch</td>
+      <td>Commit</td>
+      <td>Author</td>
+      <td>Branch</td>
+      <td>Start</td>
     </tr>
     {{#each newPullRequests}}
     <tr>
       <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
       <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
-      <td colspan=2>{{this.remoteUser}}</td>
+      <td>{{this.remoteUser}}</td>
       <td>{{this.remoteBranch}}</td>
+      <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/start">Start</a></td>
     </tr>
     <tr>
       <td colspan=5>{{this.title}}</td>
