@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "lab -a code -t 90 -v -m 30000",
-    "json": "lab -a code -r json -t 100 -o lab.json -m 30000"
+    "json": "lab -a code -r json -t 100 -o lab.json -m 30000",
+    "start": "./start.sh"
   },
   "dependencies": {
     "bell": "2.x.x",
