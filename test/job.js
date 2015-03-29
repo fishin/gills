@@ -98,7 +98,6 @@ describe('job', function () {
                 });
             });
         });
-
     });
 
     it('GET /view/job/{jobId}/start', function (done) {
