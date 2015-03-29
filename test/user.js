@@ -37,7 +37,7 @@ internals.prepareServer = function (callback) {
    });
 };
 
-describe('user', function () {    
+describe('user', function () {
 
     it('GET /view/login', function (done) {
 
@@ -93,7 +93,7 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/view/user/'+userId}, function (response) {
+            server.inject({ method: 'GET', url: '/view/user/' + userId}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -107,9 +107,9 @@ describe('user', function () {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
             var updatePayload = {
-                displayName: "Lloyd Benson"
-            }; 
-            server.inject({ method: 'POST', url: '/view/user/'+userId, payload: updatePayload}, function (response) {
+                displayName: 'Lloyd Benson'
+            };
+            server.inject({ method: 'POST', url: '/view/user/' + userId, payload: updatePayload}, function (response) {
 
                 console.log(response.result);
                 expect(response.statusCode).to.equal(302);
@@ -220,7 +220,7 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/view/user/'+userId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/user/' + userId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -308,7 +308,7 @@ describe('user', function () {
         internals.prepareServer(function (server) {
 
             var userId = server.plugins.tacklebox.getUsers()[0].id;
-            server.inject({ method: 'GET', url: '/view/user/'+userId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/user/' + userId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

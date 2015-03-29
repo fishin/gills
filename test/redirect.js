@@ -34,7 +34,7 @@ internals.prepareServer = function (callback) {
    });
 };
 
-describe('redirect', function () {    
+describe('redirect', function () {
 
     it('GET /', function (done) {
 

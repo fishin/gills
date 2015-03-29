@@ -34,7 +34,7 @@ internals.prepareServer = function (callback) {
    });
 };
 
-describe('reel', function () {    
+describe('reel', function () {
 
     it('POST /view/reel', function (done) {
 
@@ -60,8 +60,8 @@ describe('reel', function () {
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
-            server.inject({ method: 'GET', url: '/view/reel/'+reelId}, function (response) {
-       
+            server.inject({ method: 'GET', url: '/view/reel/' + reelId}, function (response) {
+
                 expect(response.statusCode).to.equal(200);
                 done();
             });
@@ -73,8 +73,8 @@ describe('reel', function () {
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
-            var updatePayload = { description: "description2" }; 
-            server.inject({ method: 'POST', url: '/view/reel/'+reelId, payload: updatePayload}, function (response) {
+            var updatePayload = { description: 'description2' };
+            server.inject({ method: 'POST', url: '/view/reel/' + reelId, payload: updatePayload}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -117,8 +117,8 @@ describe('reel', function () {
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/view/job/'+jobId}, function (response) {
-       
+            server.inject({ method: 'GET', url: '/view/job/' + jobId}, function (response) {
+
                 expect(response.statusCode).to.equal(200);
                 done();
             });
@@ -155,7 +155,7 @@ describe('reel', function () {
         internals.prepareServer(function (server) {
 
             var jobId = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/view/job/'+jobId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/' + jobId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -168,7 +168,7 @@ describe('reel', function () {
         internals.prepareServer(function (server) {
 
             var reelId = server.plugins.tacklebox.getReels()[0].id;
-            server.inject({ method: 'GET', url: '/view/reel/'+reelId+ '/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/reel/' + reelId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

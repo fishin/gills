@@ -65,7 +65,7 @@ describe('queue', function () {
                 description: 'description',
                 bodyCommand0: 'date'
             };
-            server.inject({ method: 'POST', url: '/view/job', payload: payload2}, function (response) {
+            server.inject({ method: 'POST', url: '/view/job', payload: payload2 }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -79,7 +79,7 @@ describe('queue', function () {
 
             var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
             expect(jobId1).to.exist();
-            server.inject({ method: 'GET', url: '/view/queue/'+jobId1+'/add'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/queue/' + jobId1 + '/add' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -93,7 +93,7 @@ describe('queue', function () {
 
             var jobId2 = server.plugins.tacklebox.getJobs()[1].id;
             expect(jobId2).to.exist();
-            server.inject({ method: 'GET', url: '/view/queue/'+jobId2+'/add'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/queue/' + jobId2 + '/add' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -118,7 +118,7 @@ describe('queue', function () {
         internals.prepareServer(function (server) {
 
             var jobId2 = server.plugins.tacklebox.getJobs()[1].id;
-            server.inject({ method: 'GET', url: '/view/queue/'+jobId2+'/remove'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/queue/' + jobId2 + '/remove' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -131,7 +131,7 @@ describe('queue', function () {
         internals.prepareServer(function (server) {
 
             var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/view/queue/'+jobId1+'/remove'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/queue/' + jobId1 + '/remove' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -144,7 +144,7 @@ describe('queue', function () {
         internals.prepareServer(function (server) {
 
             var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/view/job/'+jobId1+'/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/' + jobId1 + '/delete' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -157,7 +157,7 @@ describe('queue', function () {
         internals.prepareServer(function (server) {
 
             var jobId2 = server.plugins.tacklebox.getJobs()[0].id;
-            server.inject({ method: 'GET', url: '/view/job/'+jobId2+'/delete'}, function (response) {
+            server.inject({ method: 'GET', url: '/view/job/' + jobId2 + '/delete' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

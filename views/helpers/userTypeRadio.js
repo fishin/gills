@@ -12,7 +12,7 @@ module.exports = function (context) {
         if (types[i] === context.type ) {
             output += ' checked';
         }
-        output +='> </span> <button type="button" class="btn btn-default">' + types[i] + '</button></div>';
+        output += '> </span> <button type="button" class="btn btn-default">' + types[i] + '</button></div>';
     }
     return new Handlebars.SafeString(output);
 };

@@ -37,7 +37,7 @@ internals.prepareServer = function (callback) {
    });
 };
 
-describe('users', function () {    
+describe('users', function () {
 
     it('GET /view/users', function (done) {
 
@@ -69,10 +69,10 @@ describe('users', function () {
                     server.inject({ method: 'GET', url: '/view/users'}, function (response) {
 
                         expect(response.statusCode).to.equal(200);
-                        server.inject({ method: 'GET', url: '/view/user/'+userId1+ '/delete'}, function (response) {
+                        server.inject({ method: 'GET', url: '/view/user/' + userId1 + '/delete'}, function (response) {
 
                             expect(response.statusCode).to.equal(302);
-                            server.inject({ method: 'GET', url: '/view/user/'+userId2+ '/delete'}, function (response) {
+                            server.inject({ method: 'GET', url: '/view/user/' + userId2 + '/delete'}, function (response) {
                                 expect(response.statusCode).to.equal(302);
                                 done();
                             });
