@@ -1,7 +1,7 @@
 {
   "name": "gills",
-  "version": "0.0.4",
-  "description": "gills ======",
+  "version": "0.0.5",
+  "description": "ui for ficion",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -19,7 +19,8 @@
   "scripts": {
     "test": "lab -a code -t 90 -v -m 30000",
     "json": "lab -a code -r json -t 100 -o lab.json -m 30000",
-    "start": "./start.sh"
+    "start": "./start.sh",
+    "stop": "./stop.sh"
   },
   "dependencies": {
     "bell": "2.x.x",
