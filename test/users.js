@@ -1,3 +1,5 @@
+var Angler = require('angler');
+var Bait = require('bait');
 var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
@@ -21,6 +23,10 @@ var internals = {
         }
     }
 };
+
+var angler = new Angler(internals.defaults.user);
+var bait = new Bait(internals.defaults.job);
+
 
 internals.prepareServer = function (callback) {
 
@@ -53,7 +59,7 @@ describe('users', function () {
             server.inject({ method: 'POST', url: '/view/user', payload: payload1}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
-                var userId1 = server.plugins.tacklebox.getUsers()[0].id;
+                var userId1 = angler.getUsers()[0].id;
                 expect(userId1).to.exist();
                 var payload2 = {
                     name: 'backer',
@@ -64,7 +70,7 @@ describe('users', function () {
                 };
                 server.inject({ method: 'POST', url: '/view/user', payload: payload2}, function (response) {
                     expect(response.statusCode).to.equal(302);
-                    var userId2 = server.plugins.tacklebox.getUsers()[1].id;
+                    var userId2 = angler.getUsers()[1].id;
                     expect(userId2).to.exist();
                     server.inject({ method: 'GET', url: '/view/users'}, function (response) {
 

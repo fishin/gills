@@ -1,3 +1,4 @@
+var Bait = require('bait');
 var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
@@ -21,6 +22,8 @@ var internals = {
         }
     }
 };
+
+var bait = new Bait(internals.defaults.job);
 
 internals.prepareServer = function (callback) {
 
@@ -77,7 +80,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId1 = bait.getJobs()[0].id;
             expect(jobId1).to.exist();
             server.inject({ method: 'GET', url: '/view/queue/' + jobId1 + '/add' }, function (response) {
 
@@ -91,7 +94,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId2 = server.plugins.tacklebox.getJobs()[1].id;
+            var jobId2 = bait.getJobs()[1].id;
             expect(jobId2).to.exist();
             server.inject({ method: 'GET', url: '/view/queue/' + jobId2 + '/add' }, function (response) {
 
@@ -117,7 +120,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId2 = server.plugins.tacklebox.getJobs()[1].id;
+            var jobId2 = bait.getJobs()[1].id;
             server.inject({ method: 'GET', url: '/view/queue/' + jobId2 + '/remove' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -130,7 +133,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId1 = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/queue/' + jobId1 + '/remove' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -143,7 +146,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId1 = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId1 = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId1 + '/delete' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -156,7 +159,7 @@ describe('queue', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId2 = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId2 = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId2 + '/delete' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);

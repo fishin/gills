@@ -1,7 +1,13 @@
 #!/bin/bash
-if [ -e server.js ];
-then
-   node server.js
-else 
-   echo "missing server.js.  Please copy from the -example file"
-fi
+
+for PLUGIN in gills tacklebox
+do
+   if [ -e ${PLUGIN}.js ];
+   then
+      #node ${PLUGIN}.js > ${PLUGIN}.log &
+      echo "Starting ${PLUGIN}"
+      node ${PLUGIN}.js &
+   else 
+      echo "missing ${PLUGIN}.js.  Please copy from the -example file"
+   fi
+done

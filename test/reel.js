@@ -1,6 +1,8 @@
+var Bait = require('bait');
 var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
+var Reel = require('reel');
 
 var lab = exports.lab = Lab.script();
 var expect = Code.expect;
@@ -18,6 +20,10 @@ var internals = {
         }
     }
 };
+
+var bait = new Bait(internals.defaults.job);
+var reel = new Reel(internals.defaults.reel);
+
 
 internals.prepareServer = function (callback) {
 
@@ -44,6 +50,7 @@ describe('reel', function () {
                 name: 'name',
                 description: 'description',
                 host: 'localhost',
+                port: 8081,
                 size: 2
             };
             server.inject({ method: 'POST', url: '/view/reel', payload: payload}, function (response) {
@@ -59,7 +66,7 @@ describe('reel', function () {
 
         internals.prepareServer(function (server) {
 
-            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            var reelId = reel.getReels()[0].id;
             server.inject({ method: 'GET', url: '/view/reel/' + reelId}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
@@ -72,7 +79,7 @@ describe('reel', function () {
 
         internals.prepareServer(function (server) {
 
-            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            var reelId = reel.getReels()[0].id;
             var updatePayload = { description: 'description2' };
             server.inject({ method: 'POST', url: '/view/reel/' + reelId, payload: updatePayload}, function (response) {
 
@@ -116,7 +123,7 @@ describe('reel', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId}, function (response) {
 
                 expect(response.statusCode).to.equal(200);
@@ -154,7 +161,7 @@ describe('reel', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -167,7 +174,7 @@ describe('reel', function () {
 
         internals.prepareServer(function (server) {
 
-            var reelId = server.plugins.tacklebox.getReels()[0].id;
+            var reelId = reel.getReels()[0].id;
             server.inject({ method: 'GET', url: '/view/reel/' + reelId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);

@@ -1,3 +1,4 @@
+var Bait = require('bait');
 var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
@@ -18,6 +19,9 @@ var internals = {
         }
     }
 };
+
+var bait = new Bait(internals.defaults.job);
+
 
 internals.prepareServer = function (callback) {
 
@@ -57,7 +61,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start'}, function (response) {
 
                 //console.log('starting job: ' + jobId);
@@ -66,11 +70,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId1 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+                var runId1 = bait.getRuns(jobId, null)[0].id;
                 expect(runId1).to.exist();
                 var intervalObj = setInterval(function() {
 
-                    var run1 = server.plugins.tacklebox.getRun(jobId, null, runId1);
+                    var run1 = bait.getRun(jobId, null, runId1);
                     if (run1.finishTime) {
 
                         clearInterval(intervalObj);
@@ -88,7 +92,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             var updatePayload = {
                 bodyCommand0: 'invalid'
             };
@@ -104,7 +108,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start'}, function (response) {
 
                 //console.log('starting job: ' + jobId);
@@ -113,11 +117,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId2 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+                var runId2 = bait.getRuns(jobId, null)[0].id;
                 expect(runId2).to.exist();
                 var intervalObj = setInterval(function() {
 
-                    var run2 = server.plugins.tacklebox.getRun(jobId, null, runId2);
+                    var run2 = bait.getRun(jobId, null, runId2);
                     if (run2.finishTime) {
 
                         clearInterval(intervalObj);
@@ -135,7 +139,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             var updatePayload = {
                 bodyCommand0: 'date'
             };
@@ -152,7 +156,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start'}, function (response) {
 
                 //console.log('starting job: ' + jobId);
@@ -161,11 +165,11 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId3 = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+                var runId3 = bait.getRuns(jobId, null)[0].id;
                 expect(runId3).to.exist();
                 var intervalObj = setInterval(function() {
 
-                    var run3 = server.plugins.tacklebox.getRun(jobId, null, runId3);
+                    var run3 = bait.getRun(jobId, null, runId3);
                     if (run3.finishTime) {
 
                         clearInterval(intervalObj);
@@ -183,7 +187,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -191,7 +195,7 @@ describe('runs', function () {
             });
         });
     });
-
+/*
     it('POST /view/job refresh', function (done) {
 
         internals.prepareServer(function (server) {
@@ -217,7 +221,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             expect(jobId).to.exist();
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start'}, function (response) {
 
@@ -227,7 +231,7 @@ describe('runs', function () {
 
                     expect(response.statusCode).to.equal(200);
                 });
-                var runId = server.plugins.tacklebox.getRuns(jobId, null)[0].id;
+                var runId = bait.getRuns(jobId, null)[0].id;
                 expect(runId).to.exist();
                 var intervalObj = setInterval(function() {
 
@@ -235,7 +239,7 @@ describe('runs', function () {
 
                         expect(response.statusCode).to.equal(200);
                     });
-                    var run = server.plugins.tacklebox.getRun(jobId, null, runId);
+                    var run = bait.getRun(jobId, null, runId);
                     if (run.finishTime) {
 
                         clearInterval(intervalObj);
@@ -253,7 +257,7 @@ describe('runs', function () {
 
         internals.prepareServer(function (server) {
 
-            var jobId = server.plugins.tacklebox.getJobs()[0].id;
+            var jobId = bait.getJobs()[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/delete'}, function (response) {
 
                 expect(response.statusCode).to.equal(302);
@@ -261,4 +265,6 @@ describe('runs', function () {
             });
         });
     });
+
+*/
 });

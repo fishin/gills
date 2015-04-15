@@ -1,3 +1,7 @@
 node_modules
 lab.json
 server.js
+*.log
+gills.js
+tacklebox.js
+tmp
