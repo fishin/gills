@@ -32,7 +32,8 @@
     "hoek": "2.x.x",
     "joi": "5.x.x",
     "wreck": "5.x.x",
-    "bait": "git+https://github.com/fishin/bait.git"
+    "bait": "git+https://github.com/fishin/bait.git",
+    "fishhook": "0.x.x"
   },
   "devDependencies": {
     "code": "1.x.x",
