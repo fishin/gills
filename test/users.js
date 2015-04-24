@@ -69,6 +69,7 @@ describe('users', function () {
                     password: 'password'
                 };
                 server.inject({ method: 'POST', url: '/view/user', payload: payload2}, function (response) {
+
                     expect(response.statusCode).to.equal(302);
                     var userId2 = angler.getUsers()[1].id;
                     expect(userId2).to.exist();
@@ -79,6 +80,7 @@ describe('users', function () {
 
                             expect(response.statusCode).to.equal(302);
                             server.inject({ method: 'GET', url: '/view/user/' + userId2 + '/delete'}, function (response) {
+
                                 expect(response.statusCode).to.equal(302);
                                 done();
                             });

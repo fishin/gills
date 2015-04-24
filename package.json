@@ -30,7 +30,7 @@
     "hapi": "8.x.x",
     "hapi-auth-cookie": "2.x.x",
     "hoek": "2.x.x",
-    "joi": "5.x.x",
+    "joi": "6.x.x",
     "wreck": "5.x.x",
     "bait": "git+https://github.com/fishin/bait.git",
     "fishhook": "0.x.x"
