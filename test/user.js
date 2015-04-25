@@ -40,7 +40,7 @@ internals.prepareServer = function (callback) {
 
         expect(err).to.not.exist();
         callback(server);
-   });
+    });
 };
 
 describe('user', function () {

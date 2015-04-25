@@ -35,7 +35,7 @@ internals.prepareServer = function (callback) {
 
         expect(err).to.not.exist();
         callback(server);
-   });
+    });
 };
 
 describe('jobs', function () {
@@ -72,7 +72,7 @@ describe('jobs', function () {
                 });
                 var runId = bait.getRuns(jobId1, null)[0].id;
                 expect(runId).to.exist();
-                var intervalObj1 = setInterval(function() {
+                var intervalObj1 = setInterval(function () {
 
                     var run = bait.getRun(jobId1, null, runId);
                     if (run.finishTime) {
@@ -121,7 +121,7 @@ describe('jobs', function () {
                 });
                 var runId = bait.getRuns(jobId2, null)[0].id;
                 expect(runId).to.exist();
-                var intervalObj2 = setInterval(function() {
+                var intervalObj2 = setInterval(function () {
 
                     var run = bait.getRun(jobId2, null, runId);
                     if (run.finishTime) {

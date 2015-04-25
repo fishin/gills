@@ -35,7 +35,7 @@ internals.prepareServer = function (callback) {
 
         expect(err).to.not.exist();
         callback(server);
-   });
+    });
 };
 
 describe('runs', function () {
@@ -72,7 +72,7 @@ describe('runs', function () {
                 });
                 var runId1 = bait.getRuns(jobId, null)[0].id;
                 expect(runId1).to.exist();
-                var intervalObj = setInterval(function() {
+                var intervalObj = setInterval(function () {
 
                     var run1 = bait.getRun(jobId, null, runId1);
                     if (run1.finishTime) {
@@ -119,7 +119,7 @@ describe('runs', function () {
                 });
                 var runId2 = bait.getRuns(jobId, null)[0].id;
                 expect(runId2).to.exist();
-                var intervalObj = setInterval(function() {
+                var intervalObj = setInterval(function () {
 
                     var run2 = bait.getRun(jobId, null, runId2);
                     if (run2.finishTime) {
@@ -167,7 +167,7 @@ describe('runs', function () {
                 });
                 var runId3 = bait.getRuns(jobId, null)[0].id;
                 expect(runId3).to.exist();
-                var intervalObj = setInterval(function() {
+                var intervalObj = setInterval(function () {
 
                     var run3 = bait.getRun(jobId, null, runId3);
                     if (run3.finishTime) {
@@ -233,7 +233,7 @@ describe('runs', function () {
                 });
                 var runId = bait.getRuns(jobId, null)[0].id;
                 expect(runId).to.exist();
-                var intervalObj = setInterval(function() {
+                var intervalObj = setInterval(function () {
 
                     server.inject({ method: 'GET', url: '/view/job/' + jobId}, function (response) {
 

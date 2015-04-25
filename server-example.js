@@ -30,16 +30,18 @@ var options = {
     }
 };
 
-server.register({ register: Gills, options: options }, function(err) {
-   if (err) {
-       console.log('gills did not load');
-   }
+server.register({ register: Gills, options: options }, function (err) {
+
+    if (err) {
+        console.log('gills did not load');
+    }
 });
 
-server.register({ register: Lout, options: {} }, function(err) {
-   if (err) {
-       console.log('lout did not load');
-   }
+server.register({ register: Lout, options: {} }, function (err) {
+
+    if (err) {
+        console.log('lout did not load');
+    }
 });
 
 server.on('log', function (event) {

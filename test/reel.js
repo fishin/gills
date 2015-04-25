@@ -24,7 +24,6 @@ var internals = {
 var bait = new Bait(internals.defaults.job);
 var reel = new Reel(internals.defaults.reel);
 
-
 internals.prepareServer = function (callback) {
 
     var server = new Hapi.Server();
@@ -37,7 +36,7 @@ internals.prepareServer = function (callback) {
 
         expect(err).to.not.exist();
         callback(server);
-   });
+    });
 };
 
 describe('reel', function () {

@@ -47,6 +47,7 @@ internals.prepareServer = function (callback) {
     callback(server);
 };
 
+
 describe('job', function () {
 
     server2.start();
@@ -128,9 +129,9 @@ describe('job', function () {
                 expect(runId).to.exist();
                 server.inject({ method: 'GET', url: '/view/job/' + jobId }, function (response) {
 
-                   expect(response.statusCode).to.equal(200);
+                    expect(response.statusCode).to.equal(200);
                 });
-                var intervalObj = setInterval(function() {
+                var intervalObj = setInterval(function () {
 
                     var run = bait.getRun(jobId, null, runId);
                     if (run.finishTime) {
