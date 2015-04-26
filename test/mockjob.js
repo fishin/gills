@@ -1,4 +1,3 @@
-var Bait = require('bait');
 var Code = require('code');
 var Hapi = require('hapi');
 var Lab = require('lab');
@@ -11,17 +10,8 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        viewPath: '/view',
-        job: {
-            dirPath: '/tmp/testgills/job'
-        },
-        reel: {
-            dirPath: '/tmp/testgills/reel'
-        }
     }
 };
-
-var bait = new Bait(internals.defaults.job);
 
 internals.prepareServer = function (callback) {
 
@@ -40,6 +30,35 @@ internals.prepareServer = function (callback) {
 
 
 describe('mock job', function () {
+
+    it('GET /view/job', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job',
+                file: 'empty.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'GET', url: '/view/job' }, function (response) {
+
+                        expect(response.statusCode).to.equal(200);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 
     it('POST /view/job', function (done) {
 
@@ -106,6 +125,36 @@ describe('mock job', function () {
                         //console.log(response.result);
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/jobs', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/jobs',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'GET', url: '/view/jobs' }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
                         done();
                     });
                 });
@@ -215,34 +264,6 @@ describe('mock job', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/delete', function (done) {
-
-        var type = 'tacklebox';
-        var routes = [
-            {
-                method: 'delete',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/delete',
-                file: 'empty.txt'
-            }
-        ];
-        Mock.prepareServer(type, routes, function (mockServer) {
-
-            mockServer.start(function () {
-
-                internals.prepareServer(function (server) {
-
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/delete' }, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
-                        done();
-                    });
-                });
-            });
-        });
-    });
-
     it('GET /view/job/{jobId}/workspace/delete', function (done) {
 
         var type = 'tacklebox';
@@ -257,6 +278,9 @@ describe('mock job', function () {
 
             mockServer.start(function () {
 
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
                 internals.prepareServer(function (server) {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
@@ -284,6 +308,9 @@ describe('mock job', function () {
 
             mockServer.start(function () {
 
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
                 internals.prepareServer(function (server) {
 
                     server.inject({ method: 'GET', url: '/view/job/12345678-1234-1234-1234-123456789012/delete' }, function (response) {
