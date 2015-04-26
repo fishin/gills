@@ -1,0 +1,298 @@
+var Bait = require('bait');
+var Code = require('code');
+var Hapi = require('hapi');
+var Lab = require('lab');
+var Mock = require('mock');
+
+var lab = exports.lab = Lab.script();
+var expect = Code.expect;
+var describe = lab.describe;
+var it = lab.it;
+
+var internals = {
+    defaults: {
+        viewPath: '/view',
+        job: {
+            dirPath: '/tmp/testgills/job'
+        },
+        reel: {
+            dirPath: '/tmp/testgills/reel'
+        }
+    }
+};
+
+var bait = new Bait(internals.defaults.job);
+
+internals.prepareServer = function (callback) {
+
+    var server = new Hapi.Server();
+    server.connection();
+
+    server.register({
+        register: require('..'),
+        options: internals.defaults
+    }, function (err) {
+
+        expect(err).to.not.exist();
+    });
+    callback(server);
+};
+
+
+describe('mock job', function () {
+
+    it('POST /view/job', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/job',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'name',
+                    description: 'description',
+                    headCommand0: 'date',
+                    scmType: 'git',
+                    scmUrl: 'https://github.com/fishin/pail',
+                    scmBranch: 'master',
+                    scmPrs: true,
+                    bodyCommand0: 'npm install',
+                    bodyCommand1: 'npm test'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/job', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(jobId);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('POST /view/job/{jobId}', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    description: 'description2'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'POST', url: '/view/job/' + jobId, payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/start', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/start',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/commits', function (done) {
+
+        var type = 'tacklebox';
+        // need jobId to add repoUrl maybe add this right in bobber
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/commits',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/commits' }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain('lloyd');
+                        expect(response.result).to.contain('github.com');
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/run/{runId}/delete', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/delete',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    var runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/delete' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/workspace/delete', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/workspace/delete',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/workspace/delete' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/delete', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'GET', url: '/view/job/12345678-1234-1234-1234-123456789012/delete' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+});
