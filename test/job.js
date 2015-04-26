@@ -59,10 +59,10 @@ describe('job', function () {
                 name: 'name',
                 description: 'description',
                 headCommand0: 'date',
-                scm_type: 'git',
-                scm_url: 'https://github.com/fishin/pail',
-                scm_branch: 'master',
-                scm_prs: true,
+                scmType: 'git',
+                scmUrl: 'https://github.com/fishin/pail',
+                scmBranch: 'master',
+                scmPrs: true,
                 bodyCommand0: 'npm install',
                 bodyCommand1: 'npm test'
             };
@@ -179,7 +179,7 @@ describe('job', function () {
         });
     });
 
-    it('GET /view/job/{job_id}/run/{runId}/delete', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/delete', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -193,7 +193,7 @@ describe('job', function () {
         });
     });
 
-    it('GET /view/job/{job_id}/workspace/delete', function (done) {
+    it('GET /view/job/{jobId}/workspace/delete', function (done) {
 
         internals.prepareServer(function (server) {
 

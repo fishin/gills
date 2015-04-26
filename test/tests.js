@@ -47,9 +47,9 @@ describe('tests', function () {
             var payload = {
                 name: 'name',
                 description: 'description',
-                scm_type: 'git',
-                scm_url: 'https://github.com/fishin/pail',
-                scm_branch: 'master',
+                scmType: 'git',
+                scmUrl: 'https://github.com/fishin/pail',
+                scmBranch: 'master',
                 bodyCommand0: 'npm install',
                 bodyCommand1: 'npm run-script json',
                 archivePattern: 'lab.json'

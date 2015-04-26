@@ -15,7 +15,7 @@
           {{>testSummary }}
           {{/if}}
           <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal" method="post" action="{{post_url}}">
+          <form class="form-horizontal" method="post" action="{{postUrl}}">
           {{#if jobId}}
           <div class="form-group">
             <label for="inputId" class="control-label col-xs-2">Id</label>
@@ -93,7 +93,7 @@
             <label for="inputSCM" class="control-label col-xs-2">Enable PRs</label>
             <div class="col-xs-10">
               <div class="btn-group">
-                <input type="checkbox" name="scm_prs" {{#if scm_prs}}checked{{/if}}>
+                <input type="checkbox" name="scmPrs" {{#if scmPrs}}checked{{/if}}>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@
             <label for="inputSCM" class="control-label col-xs-2">Run On Commit</label>
             <div class="col-xs-5">
               <div class="btn-group"">
-                <input type="checkbox" name="scm_runOnCommit" {{#if scm_runOnCommit}}checked{{/if}}>
+                <input type="checkbox" name="scmRunOnCommit" {{#if scmRunOnCommit}}checked{{/if}}>
               </div>
             </div>
             <div class="offset-col-xs-5">
@@ -115,13 +115,13 @@
             <div class="col-xs-10">
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scm_type" value="none">
+                  <input type="radio" name="scmType" value="none">
                 </span>
                 <button type="button" class="btn btn-default" disabled>none</button>
               </div>
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="scm_type" value="git" checked>
+                  <input type="radio" name="scmType" value="git" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>git</button>
               </div>
@@ -130,7 +130,7 @@
           <div class="form-group">
             <label for="inputUrl" class="control-label col-xs-2">Url</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="scm_url" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scm_url}}">
+                <input type="text" class="form-control" name="scmUrl" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scmUrl}}">
             </div>
             <div class="offset-col-xs-5">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository url">?</button>
@@ -139,7 +139,7 @@
           <div class="form-group">
             <label for="inputBranch" class="control-label col-xs-2">Branch</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="scm_branch" id="inputBranch" placeholder="master" value="{{scm_branch}}">
+                <input type="text" class="form-control" name="scmBranch" id="inputBranch" placeholder="master" value="{{scmBranch}}">
             </div>
             <div class="offset-col-xs-5">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository branch">?</button>
@@ -211,13 +211,13 @@
             <div class="col-xs-10">
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notify_type" value="none" checked>
+                  <input type="radio" name="notifyType" value="none" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>none</button>
               </div>
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="notify_type" value="email">
+                  <input type="radio" name="notifyType" value="email">
                 </span>
                 <button type="button" class="btn btn-default" disabled>email</button>
               </div>
@@ -226,19 +226,19 @@
           <div class="form-group">
             <label for="inputTo" class="control-label col-xs-2">To</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="notify_to" id="inputTo" placeholder="lloyd.benson@gmail.com" value="{{notify_to}}">
+                <input type="text" class="form-control" name="notifyTo" id="inputTo" placeholder="lloyd.benson@gmail.com" value="{{notifyTo}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="notify_subject" id="inputSubject" placeholder="[ficion] {status} for {name}" value="{{notify_subject}}">
+                <input type="text" class="form-control" name="notifySubject" id="inputSubject" placeholder="[ficion] {status} for {name}" value="{{notifySubject}}">
             </div>
           </div>
           <div class="form-group">
             <label for="inputMessage" class="control-label col-xs-2">Message</label>
             <div class="col-xs-10">
-                <textarea class="form-control" name="notify_message" id="inputMessage" rows=10>{{notify_message}}</textarea>
+                <textarea class="form-control" name="notifyMessage" id="inputMessage" rows=10>{{notifyMessage}}</textarea>
             </div>
           </div>
           <h2 class="sub-header">Archive</h2>
@@ -253,19 +253,19 @@
             <div class="col-xs-10">
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="archive_type" value="none" checked>
+                  <input type="radio" name="archiveType" value="none" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>none</button>
               </div>
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="archive_type" value="maxnum" checked>
+                  <input type="radio" name="archiveType" value="maxnum" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>maxnum</button>
               </div>
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="archive_type" value="maxdays" checked>
+                  <input type="radio" name="archiveType" value="maxdays" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>maxdays</button>
               </div>
@@ -297,13 +297,13 @@
 <!--
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="schedule_type" value="none" checked>
+                  <input type="radio" name="scheduleType" value="none" checked>
                 </span>
                 <button type="button" class="btn btn-default" disabled>none</button>
               </div>
               <div class="btn-group">
                 <span class="input-group-addon">
-                  <input type="radio" name="schedule_type" value="cron">
+                  <input type="radio" name="scheduleType" value="cron">
                 </span>
                 <button type="button" class="btn btn-default" disabled>cron</button>
               </div>
