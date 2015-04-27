@@ -162,7 +162,7 @@ describe('mock login', function () {
         });
     });
 
-    it('POST /view/login badpass', function (done) {
+    it('POST /view/login lloyd badpass', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -179,6 +179,51 @@ describe('mock login', function () {
             {
                 method: 'post',
                 path: '/api/user/12345678-1234-1234-1234-123456789012/validate',
+                file: 'false'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'lloyd',
+                    type: 'local',
+                    password: 'password'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        expect(response.request.auth.artifacts).to.not.exist();
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('POST /view/login admin badpass', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/user/byname/admin',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/user/12345678-1234-1234-1234-123456789013',
+                file: 'index.json'
+            },
+            {
+                method: 'post',
+                path: '/api/user/12345678-1234-1234-1234-123456789013/validate',
                 file: 'false'
             }
         ];
