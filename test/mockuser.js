@@ -96,7 +96,7 @@ describe('mock user', function () {
         });
     });
 
-    it('GET /view/user/{userId}', function (done) {
+    it('GET /view/user/{userId} lloyd', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -127,6 +127,39 @@ describe('mock user', function () {
             });
         });
     });
+
+    it('GET /view/user/{userId} admin', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/user/12345678-1234-1234-1234-123456789013',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var userId = '12345678-1234-1234-1234-123456789013';
+                    server.inject({ method: 'GET', url: '/view/user/' + userId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(userId);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
 
     it('GET /view/users', function (done) {
 

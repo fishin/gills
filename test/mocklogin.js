@@ -244,7 +244,7 @@ describe('mock login', function () {
                 var payload = {
                     name: 'lloyd',
                     type: 'local',
-                    password: 'password'
+                    password: 'password1'
                 };
                 internals.prepareServer(function (server) {
 
