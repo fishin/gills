@@ -54,6 +54,39 @@ describe('mock login', function () {
         });
     });
 
+    it('POST /view/login no user', function (done) {
+
+        var payload = {
+            type: 'local'
+        };
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                expect(response.request.auth.artifacts).to.not.exist();
+                done();
+            });
+        });
+    });
+
+    it('POST /view/login invalid user', function (done) {
+
+        var payload = {
+            name: 'invalid',
+            type: 'local'
+        };
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                expect(response.statusCode).to.equal(302);
+                expect(response.request.auth.artifacts).to.not.exist();
+                done();
+            });
+        });
+    });
+
     it('POST /view/login lloyd', function (done) {
 
         var type = 'tacklebox';
@@ -161,7 +194,26 @@ describe('mock login', function () {
             });
         });
     });
+/*
+    it('POST /view/login no admin', function (done) {
 
+        var type = 'tacklebox';
+        var payload = {
+            name: 'admin',
+            type: 'local',
+            password: 'password'
+        };
+        internals.prepareServer(function (server) {
+
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                console.log(response);
+                expect(response.statusCode).to.equal(302);
+                done();
+            });
+        });
+    });
+*/
     it('POST /view/login lloyd badpass', function (done) {
 
         var type = 'tacklebox';
