@@ -29,7 +29,7 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('mock user', function () {
+describe('user', function () {
 
     it('GET /view/user', function (done) {
 

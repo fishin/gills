@@ -38,7 +38,7 @@ internals.prepareServer = function (callback) {
     });
 };
 
-describe('mock queue', function () {
+describe('queue', function () {
 
     it('GET /view/queue/{jobId}/add 1', function (done) {
 

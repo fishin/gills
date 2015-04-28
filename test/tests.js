@@ -29,7 +29,7 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('mock test', function () {
+describe('tests', function () {
 
     it('GET /view/job/{jobId}/run/{runId}/archive/lab.json', function (done) {
 

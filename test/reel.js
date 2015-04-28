@@ -29,7 +29,7 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('mock reel', function () {
+describe('reel', function () {
 
     it('GET /view/reel', function (done) {
 

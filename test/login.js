@@ -28,7 +28,7 @@ internals.prepareServer = function (callback) {
     callback(server);
 };
 
-describe('mock login', function () {
+describe('login', function () {
 
     it('GET /view/login', function (done) {
 
