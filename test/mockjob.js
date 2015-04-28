@@ -227,8 +227,9 @@ describe('mock job', function () {
                     url: mockServer.info.uri + '/api'
                 };
                 var payload = {
-                    headCommand0: 'date',
                     description: 'description2',
+                    headCommand0: 'date',
+                    bodyCommand0: 'npm install',
                     tailCommand0: 'bin/tail.sh'
                 };
                 internals.prepareServer(function (server) {
