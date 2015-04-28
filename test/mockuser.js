@@ -60,7 +60,7 @@ describe('mock user', function () {
         });
     });
 
-    it('POST /view/user', function (done) {
+    it('POST /view/user lloyd', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -82,6 +82,42 @@ describe('mock user', function () {
                     type: 'local',
                     displayName: 'Lloyd Benson',
                     email: 'lloyd.benson@gmail.com',
+                    password: 'password'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/user', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('POST /view/user admin', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/user',
+                file: 'admin.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'admin',
+                    type: 'local',
+                    displayName: 'Admin',
+                    email: 'admin@localhost',
                     password: 'password'
                 };
                 internals.prepareServer(function (server) {

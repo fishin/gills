@@ -194,26 +194,49 @@ describe('mock login', function () {
             });
         });
     });
-/*
-    it('POST /view/login no admin', function (done) {
+
+    it('POST /view/login admin new', function (done) {
 
         var type = 'tacklebox';
-        var payload = {
-            name: 'admin',
-            type: 'local',
-            password: 'password'
-        };
-        internals.prepareServer(function (server) {
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/user/byname/admin',
+                file: 'null'
+            },
+            {
+                method: 'post',
+                path: '/api/user',
+                file: 'admin.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
 
-            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+            mockServer.start(function () {
 
-                console.log(response);
-                expect(response.statusCode).to.equal(302);
-                done();
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'admin',
+                    type: 'local',
+                    password: 'password'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        var artifacts = response.request.auth.artifacts;
+                        expect(artifacts.name).to.equal('admin');
+                        expect(artifacts.type).to.equal('local');
+                        done();
+                    });
+                });
             });
         });
     });
-*/
+
     it('POST /view/login lloyd badpass', function (done) {
 
         var type = 'tacklebox';
