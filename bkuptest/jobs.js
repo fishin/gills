@@ -143,6 +143,8 @@ describe('jobs', function () {
 
             server.inject({ method: 'GET', url: '/view/jobs'}, function (response) {
 
+                var jobs = bait.getJobs();
+                console.log(jobs);
                 expect(response.statusCode).to.equal(200);
                 done();
             });
