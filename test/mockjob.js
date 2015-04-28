@@ -59,8 +59,8 @@ describe('mock job', function () {
             });
         });
     });
-/*
-    it('POST /view/job scm no commands', function (done) {
+
+    it('POST /view/job no scm', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -80,9 +80,7 @@ describe('mock job', function () {
                 var payload = {
                     name: 'name',
                     description: 'description',
-                    scmType: 'git',
-                    scmUrl: 'https://github.com/fishin/pail',
-                    scmBranch: 'master'
+                    bodyCommand0: 'date'
                 };
                 internals.prepareServer(function (server) {
 
@@ -95,7 +93,7 @@ describe('mock job', function () {
             });
         });
     });
-*/
+
     it('POST /view/job scm empty commands', function (done) {
 
         var type = 'tacklebox';

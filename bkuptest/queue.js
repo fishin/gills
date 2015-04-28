@@ -142,7 +142,7 @@ describe('queue', function () {
         });
     });
 
-    it('GET /view/queue/{jobId}/delete 1', function (done) {
+    it('GET /view/job/{jobId}/delete 1', function (done) {
 
         internals.prepareServer(function (server) {
 
@@ -155,7 +155,7 @@ describe('queue', function () {
         });
     });
 
-    it('GET /view/queue/{jobId}/delete 2', function (done) {
+    it('GET /view/job/{jobId}/delete 2', function (done) {
 
         internals.prepareServer(function (server) {
 
