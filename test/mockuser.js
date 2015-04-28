@@ -227,7 +227,7 @@ describe('mock user', function () {
         });
     });
 
-    it('POST /view/user/{userId}', function (done) {
+    it('POST /view/user/{userId} lloyd', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -245,7 +245,44 @@ describe('mock user', function () {
                     url: mockServer.info.uri + '/api'
                 };
                 var payload = {
-                    displayName: 'Lloyd Benson'
+                    displayName: 'Lloyd Benson1',
+                    type: 'local',
+                    password: '$2a$10$6VgpayiqXWo8DB0FA6XZ5uH26WsryzRib3YJJvHzVCQC9eHRl4xea'
+                };
+                internals.prepareServer(function (server) {
+
+                    var userId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('POST /view/user/{userId} newpass', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/user/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    displayName: 'Lloyd Benson',
+                    type: 'local',
+                    password: 'password1'
                 };
                 internals.prepareServer(function (server) {
 
