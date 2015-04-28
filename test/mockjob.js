@@ -59,6 +59,81 @@ describe('mock job', function () {
             });
         });
     });
+/*
+    it('POST /view/job scm no commands', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/job',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'name',
+                    description: 'description',
+                    scmType: 'git',
+                    scmUrl: 'https://github.com/fishin/pail',
+                    scmBranch: 'master'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/job', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+*/
+    it('POST /view/job scm empty commands', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'post',
+                path: '/api/job',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                var payload = {
+                    name: 'name',
+                    description: 'description',
+                    headCommand0: '',
+                    bodyCommand0: '',
+                    tailCommand0: '',
+                    scmType: 'git',
+                    scmUrl: 'https://github.com/fishin/pail',
+                    scmBranch: 'master'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'POST', url: '/view/job', payload: payload }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 
     it('POST /view/job', function (done) {
 
@@ -86,13 +161,51 @@ describe('mock job', function () {
                     scmBranch: 'master',
                     scmPrs: true,
                     bodyCommand0: 'npm install',
-                    bodyCommand1: 'npm test'
+                    bodyCommand1: 'npm test',
+                    tailCommand0: 'uptime'
                 };
                 internals.prepareServer(function (server) {
 
                     server.inject({ method: 'POST', url: '/view/job', payload: payload }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId} noruns', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/runs',
+                file: 'noruns.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(jobId);
                         done();
                     });
                 });

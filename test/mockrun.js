@@ -49,6 +49,11 @@ describe('mock run', function () {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive',
+                file: 'index.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
@@ -75,7 +80,7 @@ describe('mock run', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}', function (done) {
+    it('GET /view/job/{jobId}/run/{runId} single', function (done) {
 
         var type = 'tacklebox';
         var routes = [
