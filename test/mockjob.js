@@ -132,6 +132,38 @@ describe('mock job', function () {
         });
     });
 
+    it('GET /view/job/{jobId} full', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789013',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789013';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(jobId);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
     it('GET /view/jobs', function (done) {
 
         var type = 'tacklebox';
@@ -190,7 +222,9 @@ describe('mock job', function () {
                     url: mockServer.info.uri + '/api'
                 };
                 var payload = {
-                    description: 'description2'
+                    headCommand0: 'date',
+                    description: 'description2',
+                    tailCommand0: 'bin/tail.sh'
                 };
                 internals.prepareServer(function (server) {
 
