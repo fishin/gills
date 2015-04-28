@@ -29,9 +29,9 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('mock run', function () {
+describe('mock test', function () {
 
-    it('GET /view/job/{jobId}/run/{runId}', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/archive/lab.json', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -42,12 +42,12 @@ describe('mock run', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/runs',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/lab.json',
                 file: 'index.json'
             }
         ];
@@ -62,12 +62,11 @@ describe('mock run', function () {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
                     var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/lab.json' }, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
                         expect(response.result).to.contain(runId);
-                        expect(response.result).to.contain('<input type="text" class="form-control" id="inputRunId" placeholder="succeeded" disabled>');
                         done();
                     });
                 });
@@ -75,7 +74,7 @@ describe('mock run', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/test', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -86,12 +85,12 @@ describe('mock run', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/runs',
-                file: 'single.json'
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/lab.json',
                 file: 'index.json'
             }
         ];
@@ -106,12 +105,11 @@ describe('mock run', function () {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
                     var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/test' }, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
                         expect(response.result).to.contain(runId);
-                        expect(response.result).to.contain('<input type="text" class="form-control" id="inputRunId" placeholder="succeeded" disabled>');
                         done();
                     });
                 });
@@ -119,55 +117,42 @@ describe('mock run', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/cancel', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/coverage', function (done) {
 
         var type = 'tacklebox';
         var routes = [
             {
-                method: 'delete',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/cancel',
-                file: 'empty.txt'
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/lab.json',
+                file: 'index.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
 
             mockServer.start(function () {
 
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
                 internals.prepareServer(function (server) {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
                     var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/cancel' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/coverage' }, function (response) {
 
-                        expect(response.statusCode).to.equal(302);
-                        done();
-                    });
-                });
-            });
-        });
-    });
-
-    it('GET /view/job/{jobId}/run/{runId}/delete', function (done) {
-
-        var type = 'tacklebox';
-        var routes = [
-            {
-                method: 'delete',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/delete',
-                file: 'empty.txt'
-            }
-        ];
-        Mock.prepareServer(type, routes, function (mockServer) {
-
-            mockServer.start(function () {
-
-                internals.prepareServer(function (server) {
-
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/delete' }, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(jobId);
+                        expect(response.result).to.contain(runId);
                         done();
                     });
                 });

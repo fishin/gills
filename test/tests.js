@@ -63,9 +63,8 @@ describe('tests', function () {
                 done();
             });
         });
-
     });
-
+/*
     it('GET /view/job/{jobId}', function (done) {
 
         internals.prepareServer(function (server) {
@@ -79,6 +78,7 @@ describe('tests', function () {
             });
         });
     });
+*/
 
     it('GET /view/job/{jobId}/start', function (done) {
 
@@ -118,6 +118,7 @@ describe('tests', function () {
         });
     });
 
+/*
     it('GET /view/job/{jobId}/run/{runId}/test', function (done) {
 
         internals.prepareServer(function (server) {
@@ -126,6 +127,7 @@ describe('tests', function () {
             var runId = bait.getRuns(jobId, null)[0].id;
             server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/test' }, function (response) {
 
+                //console.log(response.result);
                 expect(response.statusCode).to.equal(200);
                 done();
             });
@@ -160,6 +162,7 @@ describe('tests', function () {
             });
         });
     });
+*/
 
     it('GET /view/job/{jobId}/delete', function (done) {
 
