@@ -51,7 +51,6 @@ internals.prepareServer = function (callback) {
 describe('job', function () {
 
     server2.start();
-/*
     it('POST /view/job', function (done) {
 
         internals.prepareServer(function (server) {
@@ -219,7 +218,6 @@ describe('job', function () {
             });
         });
     });
-*/
 
     //server2.stop();
 });
