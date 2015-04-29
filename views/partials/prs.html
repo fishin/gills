@@ -84,7 +84,8 @@
       <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
       <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}">{{this.shortId}}</td>
       <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
-      <td><a class="btn {{this.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>
+<!--      <td><a class="btn {{this.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>-->
+      <td>{{showMerge this}}</td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/retry">Retry</a></td>
     </tr>
     <tr>
