@@ -17,7 +17,7 @@
     "node": ">=0.12.x"
   },
   "scripts": {
-    "test": "lab -a code -t 90 -v -m 10000 -L",
+    "test": "lab -a code -t 94 -v -m 10000 -L",
     "json": "lab -a code -r json -t 100 -o lab.json -m 10000 -L",
     "start": "./start.sh",
     "stop": "./stop.sh"
