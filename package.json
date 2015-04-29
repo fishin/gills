@@ -37,6 +37,7 @@
     "code": "1.x.x",
     "lab": "5.x.x",
     "lout": "6.x.x",
-    "mock": "git+https://github.com/fishin/mock.git"
+    "mock": "git+https://github.com/fishin/mock.git",
+    "tacklebox": "git+https://github.com/fishin/tacklebox.git"
   }
 }
