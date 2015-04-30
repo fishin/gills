@@ -31,12 +31,14 @@
         {{>sidebar }}
         </div>
         <div class="col-md-9 col-md-offset-3 main">
-          <div class="navbar navbar-inverse col-md-9" role="navigation">
+          <div class="navbar navbar-inverse role="navigation">
             <div class="container-fluid">
               {{> header }}
             </div>
           </div>
+        {{#if credentials}}
         {{>menu}}
+        {{/if}}
         {{#if viewJobs}}
         {{>jobs }}
         {{/if}}
