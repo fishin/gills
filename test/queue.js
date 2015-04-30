@@ -10,16 +10,6 @@ var it = lab.it;
 
 var internals = {
     defaults: {
-        viewPath: '/view',
-        job: {
-            dirPath: '/tmp/testgills/job'
-        },
-        reel: {
-            dirPath: '/tmp/testgills/reel'
-        },
-        user: {
-            dirPath: '/tmp/testgills/user'
-        }
     }
 };
 
@@ -34,91 +24,27 @@ internals.prepareServer = function (callback) {
     }, function (err) {
 
         expect(err).to.not.exist();
-        callback(server);
     });
+    callback(server);
 };
+
 
 describe('queue', function () {
 
-    it('GET /view/queue/{jobId}/add 1', function (done) {
+    it('GET /view/queue/{jobId}/add', function (done) {
 
-        internals.prepareServer(function (server) {
-
-            var jobId = '12345678-1234-1234-1234-123456789012';
-            server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, function (response) {
-
-                expect(response.statusCode).to.equal(302);
-                done();
-            });
-        });
-    });
-
-    it('GET /view/queue/{jobId}/add 2', function (done) {
-
-        internals.prepareServer(function (server) {
-
-            var jobId = '12345678-1234-1234-1234-123456789013';
-            server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, function (response) {
-
-                expect(response.statusCode).to.equal(302);
-                done();
-            });
-        });
-    });
-
-    it('GET /view/jobs', function (done) {
-
+        var jobId = '12345678-1234-1234-1234-123456789012';
         var type = 'tacklebox';
         var routes = [
             {
-                method: 'get',
-                path: '/api/jobs',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/byname/last',
-                file: 'index.json'
-            }
-        ];
-        Mock.prepareServer(type, routes, function (mockServer) {
-
-            mockServer.start(function () {
-
-                internals.defaults.api = {
-                    url: mockServer.info.uri + '/api'
-                };
-                internals.prepareServer(function (server) {
-
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
-                        server.inject({ method: 'GET', url: '/view/jobs' }, function (response) {
-
-                            //console.log(response.result);
-                            expect(response.statusCode).to.equal(200);
-                            done();
-                        });
-                    });
-                });
-            });
-        });
-    });
-
-    it('GET /view/jobs no last run', function (done) {
-
-        var type = 'tacklebox';
-        var routes = [
-            {
-                method: 'get',
-                path: '/api/jobs',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/byname/last',
+                method: 'post',
+                path: '/api/queue',
                 file: 'null'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
+                file: 'jobs.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
@@ -130,44 +56,47 @@ describe('queue', function () {
                 };
                 internals.prepareServer(function (server) {
 
-                    var jobId = '12345678-1234-1234-1234-123456789012';
                     server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
-                        server.inject({ method: 'GET', url: '/view/jobs' }, function (response) {
-
-                            //console.log(response.result);
-                            expect(response.statusCode).to.equal(200);
-                            done();
-                        });
+                        done();
                     });
                 });
             });
         });
     });
 
-    it('GET /view/queue/{jobId}/remove 2', function (done) {
+    it('GET /view/queue/{jobId}/remove', function (done) {
 
-        internals.prepareServer(function (server) {
+        var jobId = '12345678-1234-1234-1234-123456789012';
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/queue/' + jobId,
+                file: 'null'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
 
-            var jobId = '12345678-1234-1234-1234-123456789013';
-            server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/remove' }, function (response) {
+            mockServer.start(function () {
 
-                expect(response.statusCode).to.equal(302);
-                done();
-            });
-        });
-    });
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
 
-    it('GET /view/queue/{jobId}/remove 1', function (done) {
+                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/remove' }, function (response) {
 
-        internals.prepareServer(function (server) {
-
-            var jobId = '12345678-1234-1234-1234-123456789012';
-            server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/remove' }, function (response) {
-
-                expect(response.statusCode).to.equal(302);
-                done();
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
             });
         });
     });
