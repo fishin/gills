@@ -524,7 +524,7 @@ describe('job', function () {
         });
     });
 
-    it('PUT /view/job/{jobId}', function (done) {
+    it('POST /view/job/{jobId}', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -550,7 +550,7 @@ describe('job', function () {
                 internals.prepareServer(function (server) {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'PUT', url: '/view/job/' + jobId, payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/job/' + jobId, payload: payload }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
                         done();
