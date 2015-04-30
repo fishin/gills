@@ -133,12 +133,12 @@ describe('reel', function () {
         });
     });
 
-    it('POST /view/reel/{reelId}', function (done) {
+    it('PUT /view/reel/{reelId}', function (done) {
 
         var type = 'tacklebox';
         var routes = [
             {
-                method: 'post',
+                method: 'put',
                 path: '/api/reel/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
@@ -156,7 +156,7 @@ describe('reel', function () {
                 internals.prepareServer(function (server) {
 
                     var reelId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'POST', url: '/view/reel/' + reelId, payload: payload }, function (response) {
+                    server.inject({ method: 'PUT', url: '/view/reel/' + reelId, payload: payload }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
                         done();

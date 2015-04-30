@@ -227,12 +227,12 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user/{userId} lloyd', function (done) {
+    it('PUT /view/user/{userId} lloyd', function (done) {
 
         var type = 'tacklebox';
         var routes = [
             {
-                method: 'post',
+                method: 'put',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
@@ -252,7 +252,7 @@ describe('user', function () {
                 internals.prepareServer(function (server) {
 
                     var userId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, function (response) {
+                    server.inject({ method: 'PUT', url: '/view/user/' + userId, payload: payload }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -262,12 +262,12 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user/{userId} newpass', function (done) {
+    it('PUT /view/user/{userId} newpass', function (done) {
 
         var type = 'tacklebox';
         var routes = [
             {
-                method: 'post',
+                method: 'put',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
@@ -287,7 +287,7 @@ describe('user', function () {
                 internals.prepareServer(function (server) {
 
                     var userId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, function (response) {
+                    server.inject({ method: 'PUT', url: '/view/user/' + userId, payload: payload }, function (response) {
 
                         expect(response.statusCode).to.equal(302);
                         done();
