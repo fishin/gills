@@ -6,6 +6,37 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th colspan=4>Global (active)</th>
+    </tr>
+    <tr class="{{classColor}}">
+      <td>Job Id</td>
+      <td>Run Id</td>
+      <td>Progress</td>
+      <td>Elapsed</td>
+    </tr>
+    {{#each activeJobs}}
+    <tr class="{{classColor}}">
+      <td><a href="/view/job/{{@key}}">{{shortJobId}}</td>
+      <td><a href="/view/job/{{@key}}/run/{{runId}}">{{shortRunId}}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{percent}}" aria-valuemin=
+"0" aria-valuemax="100" style="width: {{percent}}%">
+            <span>{{percent}}%</span>
+          </div>
+        </div>
+      </td>
+      <td>{{elapsedTime}} s</td>
+    </tr>
+   {{#each processes}}
+    <tr class="{{classColor}}">
+      <td colspan=2>{{this.command}}</td>
+      <td colspan=1>{{pids}}</td>
+      <td><a href="/view/job/{{@key}}/run/{{runId}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+    </tr>
+    {{/each}}
+    {{/each}}
     {{#each reels}}
     <tr>
       <th colspan=3>Reel - <a href="/view/reel/{{id}}">{{name}}</a> (active)</th>
