@@ -301,6 +301,21 @@ describe('job', function () {
                 method: 'get',
                 path: '/api/jobs/active',
                 file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/prs/active',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/2/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {

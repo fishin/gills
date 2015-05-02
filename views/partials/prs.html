@@ -1,8 +1,8 @@
-{{#if prs}}
+{{#if openprs}}
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=5>Open Pull Requests <span class="badge">{{prs}}</span></th>
+      <th colspan=5>Open Pull Requests <span class="badge">{{openprs}}</span></th>
     </tr>
   </thead>
   <tbody>
@@ -28,38 +28,6 @@
     <tr>
       <td colspan=5>{{this.title}}</td>
     </tr>
-    {{/each}}
-  {{/if}}
-  {{#if activePullRequests}}
-    <tr>
-      <td colspan=5>Active Pull Requests <span class="badge">{{activePullRequests.length}}</span></td>
-    </tr>
-    <tr>
-      <td>#</td>
-      <td>Run Id</td>
-      <td colspan=2>Progress</td>
-      <td>Elapsed</td>
-    </tr>
-    {{#each activePullRequests}}
-    <tr>
-      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
-      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}">{{this.shortId}}</td>
-      <td colspan=2>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="{{this.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{this.percent}}%">
-            <span>{{this.percent}}%</span>
-          </div>
-        </div>
-      </td>
-      <td>{{this.elapsedTime}} s</td>
-    </tr>
-   {{#each processes}}
-    <tr>
-      <td colspan=3>{{this.command}}</td>
-      <td>{{this.pid}}</td>
-      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}/cancel"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
-    </tr>
-    {{/each}}
     {{/each}}
   {{/if}}
   {{#if checkedPullRequests}}
