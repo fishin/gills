@@ -286,6 +286,21 @@ describe('job', function () {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/runs',
                 file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/reels',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/jobs/active',
+                file: 'index.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
