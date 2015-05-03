@@ -229,6 +229,21 @@ describe('job', function () {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/pids',
                 file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/reels',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/jobs/active',
+                file: 'index.json'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
@@ -279,16 +294,6 @@ describe('job', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/prs',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/runs',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
                 path: '/api/reels',
                 file: 'index.json'
             },
@@ -300,21 +305,6 @@ describe('job', function () {
             {
                 method: 'get',
                 path: '/api/jobs/active',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/prs/active',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/run/12345678-1234-1234-1234-123456789012',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/2/run/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
         ];
