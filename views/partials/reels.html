@@ -14,17 +14,19 @@
       <td colspan=5>Active Jobs <span class="badge">{{activeJobsSize}}</span></td>
     </tr>
     <tr>
+      <td>#</td>
       <td>Job Id</td>
       <td>Run Id</td>
-      <td colspan=2>Progress</td>
+      <td>Progress</td>
       <td>Elapsed</td>
     </tr>
     {{/if}}
     {{#each activeJobs}}
     <tr class="{{classColor}}">
+      <td></td>
       <td><a href="/view/job/{{@key}}">{{shortJobId}}</td>
       <td><a href="/view/job/{{@key}}/run/{{runId}}">{{shortRunId}}</td>
-      <td colspan=2>
+      <td>
         <div class="progress">
           <div class="progress-bar progress-bar-striped progress-bar-{{percentColor}} active" role="progressbar" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent}}%">
             <span>{{percent}}%</span>
@@ -46,7 +48,7 @@
       <td colspan=5>Active Pull Requests <span class="badge">{{activeJobsPullRequests.length}}</span></td>
     </tr>
     <tr>
-      <td>Number</td>
+      <td>#</td>
       <td>Job Id</td>
       <td>Run Id</td>
       <td>Progress</td>
