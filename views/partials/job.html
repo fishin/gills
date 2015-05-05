@@ -209,6 +209,8 @@
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
             <div class="col-xs-10">
+              {{notifyTypeRadio this}}
+<!--
               <div class="btn-group">
                 <span class="input-group-addon">
                   <input type="radio" name="notifyType" value="none" checked>
@@ -221,6 +223,7 @@
                 </span>
                 <button type="button" class="btn btn-default" disabled>email</button>
               </div>
+-->
             </div>
           </div>
           <div class="form-group">
@@ -232,7 +235,7 @@
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="notifySubject" id="inputSubject" placeholder="[ficion] {status} for {name}" value="{{notifySubject}}">
+                <input type="text" class="form-control" name="notifySubject" id="inputSubject" placeholder="{status} for {name}" value="{{notifySubject}}">
             </div>
           </div>
           <div class="form-group">
@@ -294,20 +297,6 @@
             <label for="inputScheduler" class="control-label col-xs-2">Type</label>
             <div class="col-xs-10">
               {{scheduleTypeRadio this}}
-<!--
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="scheduleType" value="none" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>none</button>
-              </div>
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="scheduleType" value="cron">
-                </span>
-                <button type="button" class="btn btn-default" disabled>cron</button>
-              </div>
--->
             </div>
           </div>
           <div class="form-group">
