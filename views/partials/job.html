@@ -4,6 +4,7 @@
             <a href="/view/job/{{jobId}}/start"><button type="submit" class="btn btn-info">Start</button></a>
             <a href="/view/queue/{{jobId}}/add"><button type="submit" class="btn btn-info">Add</button></a>
             <a href="/view/job/{{jobId}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
+            <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             {{/if}}
           </h1>
           <div class="alert alert-danger" role="alert">
@@ -74,7 +75,9 @@
                 <input type="text" class="form-control" name="lastCommit" id="id" value="{{lastCommit}}" disabled>
             </div>
             <div class="offset-col-xs-5">
-                 <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
+              <div class="btn-group btn">
+              {{showStatus lastStatus}}
+              </div>
             </div>
           </div>
           {{#each compareCommits}}
@@ -100,12 +103,12 @@
           <div class="form-group">
             <label for="inputSCM" class="control-label col-xs-2">Run On Commit</label>
             <div class="col-xs-5">
-              <div class="btn-group"">
+              <div class="btn-group">
                 <input type="checkbox" name="scmRunOnCommit"{{#if scmRunOnCommit}} checked{{/if}}>
               </div>
             </div>
             <div class="offset-col-xs-5">
-              <div class="btn-group" class="offset-col-xs-5">
+              <div class="btn-group offset-col-xs-5">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Enabling this will only run the job if theres a new commit compared to previous run">?</button>
               </div>
             </div>
