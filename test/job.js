@@ -118,6 +118,7 @@ describe('job', function () {
                     bodyCommand0: '',
                     tailCommand0: '',
                     scmType: 'git',
+                    scmRunOnCommit: true,
                     scmUrl: 'https://github.com/fishin/pail',
                     scmBranch: 'master'
                 };
@@ -158,6 +159,14 @@ describe('job', function () {
                     scmUrl: 'https://github.com/fishin/pail',
                     scmBranch: 'master',
                     scmPrs: true,
+                    notifyType: 'email',
+                    notifyTo: 'lloyd.benson@gmail.com',
+                    notifySubject: '{jobName} {status}',
+                    notifyMessage: 'http://localhost:8080/view/job/{jobId}/run/{runId}',
+                    notifyStatusFailed: true,
+                    notifyStatusFixed: true,
+                    notifyStatusCancelled: true,
+                    notifyStatusSucceeded: true,
                     bodyCommand0: 'npm install',
                     bodyCommand1: 'npm test',
                     tailCommand0: 'uptime'
@@ -243,6 +252,53 @@ describe('job', function () {
             {
                 method: 'get',
                 path: '/api/jobs/active',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain(jobId);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId} failed', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/runs',
+                file: 'failed.json'
+            },
+            {
+                method: 'get',
+                path: '/api/reels',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
                 file: 'index.json'
             }
         ];

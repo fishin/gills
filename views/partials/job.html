@@ -213,20 +213,6 @@
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
             <div class="col-xs-10">
               {{notifyTypeRadio this}}
-<!--
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="notifyType" value="none" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>none</button>
-              </div>
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="notifyType" value="email">
-                </span>
-                <button type="button" class="btn btn-default" disabled>email</button>
-              </div>
--->
             </div>
           </div>
           <div class="form-group">
@@ -245,6 +231,27 @@
             <label for="inputMessage" class="control-label col-xs-2">Message</label>
             <div class="col-xs-10">
                 <textarea class="form-control" name="notifyMessage" id="inputMessage" rows=10>{{notifyMessage}}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputMessage" class="control-label col-xs-2">Statuses</label>
+            <div class="col-xs-10">
+              <label for="inputStatuses" class="control-label">Failed</label>
+              <div class="btn-group">
+                <input type="checkbox" name="notifyStatusFailed"{{#if notifyStatusFailed}} checked{{/if}}>
+              </div>
+              <label for="inputStatuses" class="control-label">Fixed</label>
+              <div class="btn-group">
+                <input type="checkbox" name="notifyStatusFixed"{{#if notifyStatusFixed}} checked{{/if}}>
+              </div>
+              <label for="inputStatuses" class="control-label">Cancelled</label>
+              <div class="btn-group">
+                <input type="checkbox" name="notifyStatusCancelled"{{#if notifyStatusCancelled}} checked{{/if}}>
+              </div>
+              <label for="inputStatuses" class="control-label">Succeeded</label>
+              <div class="btn-group">
+                <input type="checkbox" name="notifyStatusSucceeded"{{#if notifyStatusSucceeded}} checked{{/if}}>
+              </div>
             </div>
           </div>
           <h2 class="sub-header">Archive</h2>

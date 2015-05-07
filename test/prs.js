@@ -516,4 +516,130 @@ describe('prs', function () {
             });
         });
     });
+
+    it('GET /view/job/{jobId}/pr/{number}/start', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/start',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/pr/1/start' }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/pr/{number}/retry', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/retry',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/pr/1/retry' }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/pr/1/run/{runId}', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    var runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/pr/1/run/' + runId }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(200);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
+    it('GET /view/job/{jobId}/pr/1/cancel', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/pr/1/run/12345678-1234-1234-1234-123456789012/cancel',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    var runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/pr/1/run/' + runId + '/cancel' }, function (response) {
+
+                        //console.log(response.result);
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 });
