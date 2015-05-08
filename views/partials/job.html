@@ -7,11 +7,13 @@
             <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             {{/if}}
           </h1>
+<!--
           <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
             Some Error Message
           </div>
+-->
           {{#if testResult}}
           {{>testSummary }}
           {{/if}}
@@ -224,7 +226,7 @@
           <div class="form-group">
             <label for="inputSubject" class="control-label col-xs-2">Subject</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" name="notifySubject" id="inputSubject" placeholder="[{tag}] {name} job {status}" value="{{notifySubject}}">
+                <input type="text" class="form-control" name="notifySubject" id="inputSubject" value="{{notifySubject}}">
             </div>
           </div>
           <div class="form-group">
