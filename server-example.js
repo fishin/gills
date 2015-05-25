@@ -1,7 +1,7 @@
 var Hapi = require('hapi');
 var Tacklebox = require('tacklebox');
 var Lout = require('lout');
-var Gills = require('./index');
+var Gills = require('./lib');
 
 var server = new Hapi.Server();
 server.connection({
