@@ -2,7 +2,7 @@
   "name": "gills",
   "version": "0.0.6",
   "description": "ui for ficion",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/fishin/gills"
