@@ -129,10 +129,10 @@ describe('login', function () {
                         expect(artifacts.name).to.equal('lloyd');
                         expect(artifacts.displayName).to.equal('Lloyd Benson');
                         expect(artifacts.type).to.equal('local');
-                        server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
+                        server.inject({ method: 'GET', url: '/view/logout' }, function (response2) {
 
-                            expect(response.statusCode).to.equal(302);
-                            expect(response.request.auth.artifacts).to.not.exist();
+                            expect(response2.statusCode).to.equal(302);
+                            expect(response2.request.auth.artifacts).to.not.exist();
                             done();
                         });
                     });
@@ -183,10 +183,10 @@ describe('login', function () {
                         expect(artifacts.name).to.equal('admin');
                         expect(artifacts.displayName).to.equal('Admin');
                         expect(artifacts.type).to.equal('local');
-                        server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
+                        server.inject({ method: 'GET', url: '/view/logout' }, function (response2) {
 
-                            expect(response.statusCode).to.equal(302);
-                            expect(response.request.auth.artifacts).to.not.exist();
+                            expect(response2.statusCode).to.equal(302);
+                            expect(response2.request.auth.artifacts).to.not.exist();
                             done();
                         });
                     });

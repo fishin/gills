@@ -40,7 +40,7 @@ describe('redirect', function () {
 
         internals.prepareServer(function (server) {
 
-            server.inject({ method: 'GET', url: '/'}, function (response) {
+            server.inject({ method: 'GET', url: '/' }, function (response) {
 
                 expect(response.statusCode).to.equal(302);
                 done();

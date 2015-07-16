@@ -3,9 +3,9 @@ var Handlebars = require('handlebars');
 module.exports = function (context) {
 
     var output = '';
-    var types = [ 'local', 'github' ];
+    var types = ['local', 'github'];
     if (context.name === 'admin') {
-        types = [ 'local' ];
+        types = ['local'];
     }
     for (var i = 0; i < types.length; i++) {
         output += '<div class="btn-group"><span class="input-group-addon"><input type="radio" name="type" value="' + types[i] + '"';
