@@ -1,7 +1,10 @@
 node_modules
 lab.json
+lab.html
+console.log
 server.js
 *.log
 gills.js
 tacklebox.js
 tmp
+
