@@ -74,6 +74,48 @@ describe('tests', function () {
         });
     });
 
+    it('GET /view/job/{jobId}/run/{runId}/archive/lab.html', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012',
+                file: 'index.json'
+            },
+            {
+                method: 'get',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/lab.html',
+                file: 'lab.html'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    var runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/lab.html' }, function (response) {
+
+                        expect(response.statusCode).to.equal(200);
+                        expect(response.result).to.contain('<html>');
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
     it('GET /view/job/{jobId}/run/{runId}/test', function (done) {
 
         var type = 'tacklebox';

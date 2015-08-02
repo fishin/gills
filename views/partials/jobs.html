@@ -13,16 +13,18 @@
               <thead>
                 <tr>
                   <th>name</th>
-                  <th>description</th>
+                  <th>id</th>
                   <th>last run</th>
+                  <th width="100%">description</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each jobs}}
                 <tr class="{{classColor}}">
                   <td><a href="/view/job/{{jobId}}">{{name}}</a></td>
+                  <td><a href="/view/job/{{jobId}}">{{shortJobId}}</a></td>
+                  <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{shortRunId}}</a></td>
                   <td>{{description}}</td>
-                  <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{runId}}</a></td>
                 </tr>
                 {{/each}}
               </tbody>

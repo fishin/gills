@@ -23,6 +23,7 @@
     </div>
   </div>
   {{/if}}
+<!--
   {{#if this.code}}
   <div class="form-group">
     <label for="inputHead" class="control-label col-md-2">Return Code</label>
@@ -68,6 +69,15 @@
     <label for="inputHead" class="control-label col-md-2">output</label>
     <div class="col-md-10">
       <textarea class="form-control" name="error" id="inputMessage" rows=10 disabled>{{this.output}}</textarea>
+    </div>
+  </div>
+  {{/if}}
+-->
+  {{#if this.output}}
+  <div class="form-group">
+    <label for="inputHead" class="control-label col-md-2">Output</label>
+    <div class="col-md-10">
+      <pre style="white-space: pre-wrap;height: 500px">{{this.output}}</pre>
     </div>
   </div>
   {{/if}}
