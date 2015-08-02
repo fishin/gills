@@ -6,6 +6,7 @@
   </thead>
   <tbody>
     <tr>
+      <td>Priority</td>
       <td>Job Id</td>
       <td>
       Target
@@ -17,6 +18,7 @@
     </tr>
     {{#each queue}}
     <tr>
+      <td>{{@index}}</td>
       <td><a href="/view/job/{{jobId}}">{{shortId}}</td>
       <td>
       global
