@@ -30,14 +30,14 @@
     "hapi": "8.x.x",
     "hapi-auth-cookie": "2.x.x",
     "hoek": "2.x.x",
-    "joi": "6.x.x",
-    "wreck": "5.x.x"
+    "joi": "6.x.x"
   },
   "devDependencies": {
     "code": "1.x.x",
     "lab": "5.x.x",
     "lout": "6.x.x",
     "mock": "git+https://github.com/fishin/mock.git",
-    "tacklebox": "git+https://github.com/fishin/tacklebox.git"
+    "tacklebox": "git+https://github.com/fishin/tacklebox.git",
+    "wreck": "5.x.x"
   }
 }
