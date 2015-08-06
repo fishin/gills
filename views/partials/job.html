@@ -1,7 +1,7 @@
           <h1 class="page-header">Job
             {{#if jobId}}
             <a href="/view/job/{{jobId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-            <a href="/view/job/{{jobId}}/add"><button type="submit" class="btn btn-info">Start</button></a>
+            <a href="/view/queue/{{jobId}}/add"><button type="submit" class="btn btn-info">Start</button></a>
             <a href="/view/job/{{jobId}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
             <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             {{/if}}
