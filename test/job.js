@@ -635,7 +635,7 @@ describe('job', function () {
             });
         });
     });
-
+/*
     it('GET /view/job/{jobId}/start', function (done) {
 
         var type = 'tacklebox';
@@ -665,6 +665,7 @@ describe('job', function () {
             });
         });
     });
+*/
 
     it('GET /view/job/{jobId}/commits', function (done) {
 
