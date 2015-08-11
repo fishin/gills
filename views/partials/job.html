@@ -281,39 +281,13 @@
           <div class="form-group">
             <label for="inputNotify" class="control-label col-xs-2">Type</label>
             <div class="col-xs-10">
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="archiveType" value="none" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>none</button>
-              </div>
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="archiveType" value="maxnum" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>maxnum</button>
-              </div>
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="archiveType" value="maxdays" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>maxdays</button>
-              </div>
+              {{archiveTypeRadio this}}
             </div>
           </div>
           <div class="form-group">
-            <label for="inputMaxDays" class="control-label col-xs-2">Max Days</label>
+            <label for="inputMaxNum" class="control-label col-xs-2">Max Number</label>
             <div class="col-xs-2">
-                <input type="text" class="form-control" name="archiveMaxDays" id="inputMaxDays" placeholder="7" value="{{archiveMaxDays}}">
-            </div>
-            <div class="offset-col-xs-2">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max days to keep archives">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputMaxNum" class="control-label col-xs-2">Max Num</label>
-            <div class="col-xs-2">
-                <input type="text" class="form-control" name="archiveMaxNum" id="inputMaxNum" placeholder="20" value="{{archiveMaxNum}}">
+                <input type="text" class="form-control" name="archiveMaxNumber" id="inputMaxNum" placeholder="20" value="{{archiveMaxNumber}}">
             </div>
             <div class="offset-col-xs-2">
                 <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max number to keep">?</button>
