@@ -38,6 +38,6 @@
     "lout": "6.x.x",
     "mock": "git+https://github.com/fishin/mock.git",
     "tacklebox": "git+https://github.com/fishin/tacklebox.git",
-    "wreck": "5.x.x"
+    "wreck": "6.x.x"
   }
 }
