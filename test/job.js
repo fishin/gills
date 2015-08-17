@@ -80,7 +80,7 @@ describe('job', function () {
                 var payload = {
                     name: 'name',
                     description: 'description',
-                    bodyCommand0: 'date'
+                    installCommand: 'date'
                 };
                 internals.prepareServer(function (server) {
 
@@ -115,7 +115,7 @@ describe('job', function () {
                     name: 'name',
                     description: 'description',
                     headCommand0: '',
-                    bodyCommand0: '',
+                    installCommand: '',
                     tailCommand0: '',
                     scmType: 'git',
                     scmRunOnCommit: true,
@@ -167,8 +167,8 @@ describe('job', function () {
                     notifyStatusFixed: true,
                     notifyStatusCancelled: true,
                     notifyStatusSucceeded: true,
-                    bodyCommand0: 'npm install',
-                    bodyCommand1: 'npm test',
+                    installCommand: 'npm install',
+                    testCommand: 'npm test',
                     tailCommand0: 'uptime'
                 };
                 internals.prepareServer(function (server) {
@@ -620,7 +620,7 @@ describe('job', function () {
                 var payload = {
                     description: 'description2',
                     headCommand0: 'date',
-                    bodyCommand0: 'npm install',
+                    installCommand: 'npm install',
                     tailCommand0: 'bin/tail.sh'
                 };
                 internals.prepareServer(function (server) {
@@ -635,37 +635,6 @@ describe('job', function () {
             });
         });
     });
-/*
-    it('GET /view/job/{jobId}/start', function (done) {
-
-        var type = 'tacklebox';
-        var routes = [
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/start',
-                file: 'empty.txt'
-            }
-        ];
-        Mock.prepareServer(type, routes, function (mockServer) {
-
-            mockServer.start(function () {
-
-                internals.defaults.api = {
-                    url: mockServer.info.uri + '/api'
-                };
-                internals.prepareServer(function (server) {
-
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/start' }, function (response) {
-
-                        expect(response.statusCode).to.equal(302);
-                        done();
-                    });
-                });
-            });
-        });
-    });
-*/
 
     it('GET /view/job/{jobId}/commits', function (done) {
 

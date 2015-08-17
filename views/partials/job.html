@@ -164,41 +164,21 @@
           </div>
           <h2 class="sub-header">Body</h2>
           <div class="form-group">
-            <label for="inputBody0" class="control-label col-xs-2">Command</label>
+            <label for="inputBody0" class="control-label col-xs-2">Clean</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="bodyCommand0" id="inputBody0" placeholder="npm install" value="{{bodyCommand0}}">
+                <input type="text" class="form-control" name="cleanCommand" id="inputBody0" placeholder="npm run clean" value="{{cleanCommand}}">
             </div>
-            <div class="offset-col-xs-5">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  + <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">command</a></li>
-                    <li><a href="#">bash</a></li>
-                  </ul>
-                </div>
-            </div>
-            <label for="inputBody1" class="control-label col-xs-2">Command</label>
+          </div>
+          <div class="form-group">
+            <label for="inputBody1" class="control-label col-xs-2">Install</label>
             <div class="col-xs-5">
-                <input type="text" class="form-control" name="bodyCommand1" id="inputBody1" placeholder="npm test" value="{{bodyCommand1}}">
+                <input type="text" class="form-control" name="installCommand" id="inputBody1" placeholder="npm install" value="{{installCommand}}">
             </div>
-            <div class="offset-col-xs-5">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  + <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">command</a></li>
-                    <li><a href="#">bash</a></li>
-                  </ul>
-                </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBody2" class="control-label col-xs-2">Test</label>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="testCommand" id="inputBody2" placeholder="npm test" value="{{testCommand}}">
             </div>
           </div>
           <h2 class="sub-header">Tail</h2>
