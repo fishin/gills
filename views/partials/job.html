@@ -388,8 +388,20 @@ d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
 
   svg.selectAll("bar")
       .data(data)
-    .enter().append("rect")
-      .style("fill", "steelblue")
+      .enter()
+      .append("rect")
+      .style("fill", function(d) {
+          if (d.status === 'failed') {
+              // red
+              return "#d9534f";
+          } else {
+              // green
+              return "#5cb85c";
+          }
+      })
+      .on("click", function(d) {
+          window.location.href='/view/job/{{jobId}}/run/' + d.id;
+      })
       .attr("x", function(d) { return x(d.id.split('-')[0]); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.elapsedTime / 1000); })
