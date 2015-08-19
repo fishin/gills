@@ -308,7 +308,7 @@ d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
     var margin = { top: 0, right: 0, bottom: 0, left: 0 };
     var width = 0;
     var height = 0;
-    if (data) {
+    if (Object.keys(data).length !== 0) {
         margin = { top: 40, right: 20, bottom: 70, left: 50 };
         width = 400 - margin.right - margin.left;
         height = 300 - margin.top - margin.bottom;
