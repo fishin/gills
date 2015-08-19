@@ -303,15 +303,21 @@
           </div>
           </form>
 <script>
-var margin = {top: 40, right: 20, bottom: 70, left: 50},
-    width = 400 - margin.right - margin.left,
-    height = 300 - margin.top - margin.bottom;
+d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
+
+var margin = { top: 0, right: 0, bottom: 0, left: 0 };
+var width = 0;
+var height = 0;
+if (data) {
+margin = { top: 40, right: 20, bottom: 70, left: 50 };
+width = 400 - margin.right - margin.left;
+height = 300 - margin.top - margin.bottom;
+}
 
 // Parse the date / time
 var parseDate = d3.time.format("%Y-%m").parse;
 
 var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-
 var y = d3.scale.linear().range([height, 0]);
 
 var xAxis = d3.svg.axis()
@@ -331,8 +337,6 @@ var svg = d3.select("#elapsedRuns").append("svg")
   .append("g")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
-
-d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
 
   x.domain(data.map(function(d) { return d.id.split('-')[0]; }));
   y.domain([0, d3.max(data, function(d) { return d.elapsedTime / 1000; })]);
