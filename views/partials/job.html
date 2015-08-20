@@ -6,9 +6,6 @@
             <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
             {{/if}}
           </h1>
-<!--
-          <div id="elapsedRuns" style="border: 1px solid"></div>
--->
           <div id="elapsedRuns"></div>
 <!--
           <div class="alert alert-danger" role="alert">
@@ -303,12 +300,13 @@
           </div>
           </form>
 <script>
-d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
+d3.json("http://localhost:8081/api/job/{{jobId}}/runs/stats/limit/20", function(error, data) {
 
+    var runs = data.runs;
     var margin = { top: 0, right: 0, bottom: 0, left: 0 };
     var width = 0;
     var height = 0;
-    if (Object.keys(data).length !== 0) {
+    if (Object.keys(runs).length !== 0) {
         margin = { top: 40, right: 20, bottom: 70, left: 50 };
         width = 400 - margin.right - margin.left;
         height = 300 - margin.top - margin.bottom;
@@ -334,12 +332,13 @@ d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
      var svg = d3.select("#elapsedRuns").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+//    .style("border", '1px solid')
     .append("g")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
 
-  x.domain(data.map(function(d) { return d.id.split('-')[0]; }));
-  y.domain([0, d3.max(data, function(d) { return d.elapsedTime / 1000; })]);
+  x.domain(runs.map(function(d) { return d.id.split('-')[0]; }));
+  y.domain([0, d3.max(runs, function(d) { return d.elapsedTime / 1000; })]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -374,7 +373,7 @@ d3.json("http://localhost:8081/api/job/{{jobId}}/runs", function(error, data) {
         .text("Elapsed Time (s) / Run");
 
   svg.selectAll("bar")
-      .data(data)
+      .data(runs)
       .enter()
       .append("rect")
       .style("fill", function(d) {
