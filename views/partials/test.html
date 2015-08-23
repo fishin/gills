@@ -1,3 +1,8 @@
+<table>
+<tr>
+<td id="elapsedTimeTests"></td>
+</tr>
+</table>
 <table class="table table-striped gills-table">
   <thead>
     <tr>
@@ -30,3 +35,8 @@
     {{/each}}
   </tbody>
 </table>
+<script src="/view/js/elapsedTimeTestsGraph.js"></script>
+<script>
+  elapsedTimeTestsGraph("{{jobId}}", "{{runId}}", "#elapsedTimeTests");
+</script>
+

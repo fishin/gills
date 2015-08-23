@@ -9,7 +9,6 @@
 <table>
 <tr>
 <td id="elapsedTimeCommands"></td>
-<td id="elapsedTimeTests"></td>
 </tr>
 </table>
 {{#if testResult}}
@@ -99,9 +98,7 @@
 {{/each}}
 </form>
 <script src="/view/js/elapsedTimeCommandsGraph.js"></script>
-<script src="/view/js/elapsedTimeTestsGraph.js"></script>
 <script>
   elapsedTimeCommandsGraph("{{jobId}}", "{{runId}}", "#elapsedTimeCommands");
-  elapsedTimeTestsGraph("{{jobId}}", "{{runId}}", "#elapsedTimeTests");
 </script>
 
