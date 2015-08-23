@@ -1,12 +1,12 @@
-          <h1 class="page-header">Job
-            {{#if jobId}}
-            <a href="/view/job/{{jobId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
-            <a href="/view/queue/{{jobId}}/add"><button type="submit" class="btn btn-info">Start</button></a>
-            <a href="/view/job/{{jobId}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
-            <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
-            {{/if}}
-          </h1>
-          <div id="elapsedRuns"></div>
+<h1 class="page-header">Job
+  {{#if jobId}}
+  <a href="/view/job/{{jobId}}/delete"><button type="submit" class="btn btn-danger">Delete</button></a>
+  <a href="/view/queue/{{jobId}}/add"><button type="submit" class="btn btn-info">Start</button></a>
+  <a href="/view/job/{{jobId}}/workspace/delete"><button type="submit" class="btn btn-danger">Delete Workspace</button></a>
+  <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
+  {{/if}}
+</h1>
+<div id="elapsedTimeRuns"></div>
 <!--
           <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -14,384 +14,278 @@
             Some Error Message
           </div>
 -->
-          {{#if testResult}}
-          {{>testSummary }}
-          {{/if}}
-          <h2 class="sub-header">Basic</h2>
-          <form class="form-horizontal" method="{{method}}" action="{{url}}">
-          {{#if jobId}}
-          <div class="form-group">
-            <label for="inputId" class="control-label col-xs-2">Id</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="jobId" id="jobId" value="{{jobId}}" disabled>
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is used so it is easy to rename your job.">?</button>
-            </div>
-          </div>
-          {{/if}}
-          <div class="form-group">
-            <label for="inputName" class="control-label col-xs-2">Name</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="this name must be unique for link">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputDescription" class="control-label col-xs-2">Description</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="short description">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTargets" class="control-label col-xs-2">Targets</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="targets" id="inputTargets" placeholder="global" value="" disabled>
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="comma delimited list of target names">?</button>
-            </div>
-          </div>
-          <h2 class="sub-header">Head</h2>
-          <div class="form-group">
-            <label for="inputHead0" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="headCommand0" id="inputHead0" placeholder="" value="{{headCommand0}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  + <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">command</a></li>
-                    <li><a href="#">bash</a></li>
-                  </ul>
-                </div>
-            </div>
-          </div>
-          <h2 class="sub-header">Source Control</h2>
-          {{#if lastCommit}}
-          <div class="form-group">
-            <label for="inputId" class="control-label col-xs-2">Last Commit</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="lastCommit" id="id" value="{{lastCommit}}" disabled>
-            </div>
-            <div class="offset-col-xs-5">
-              <div class="btn-group btn">
-              {{showStatus lastStatus}}
-              </div>
-            </div>
-          </div>
-          {{#each compareCommits}}
-          <div class="form-group">
-            <label for="inputSCM" class="control-label col-xs-2">Commit</label>
-            <div class="col-xs-2">
-                <input type="text" class="form-control" name="compareCommit" id="input" value="{{shortCommit}}" disabled>
-            </div>
-            <div class="col-xs-8">
-                <input type="text" class="form-control" name="compareCommit" id="input" value="{{message}}" disabled>
-            </div>
-          </div>
-          {{/each}}
-          {{/if}}
-          <div class="form-group">
-            <label for="inputSCM" class="control-label col-xs-2">Enable PRs</label>
-            <div class="col-xs-10">
-              <div class="btn-group">
-                <input type="checkbox" name="scmPrs"{{#if scmPrs}} checked{{/if}}>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputSCM" class="control-label col-xs-2">Run On Commit</label>
-            <div class="col-xs-5">
-              <div class="btn-group">
-                <input type="checkbox" name="scmRunOnCommit"{{#if scmRunOnCommit}} checked{{/if}}>
-              </div>
-            </div>
-            <div class="offset-col-xs-5">
-              <div class="btn-group offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Enabling this will only run the job if theres a new commit compared to previous run">?</button>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputSCM" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-10">
-              {{scmTypeRadio this}}
-<!--
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="scmType" value="none">
-                </span>
-                <button type="button" class="btn btn-default" disabled>none</button>
-              </div>
-              <div class="btn-group">
-                <span class="input-group-addon">
-                  <input type="radio" name="scmType" value="git" checked>
-                </span>
-                <button type="button" class="btn btn-default" disabled>git</button>
-              </div>
--->
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputUrl" class="control-label col-xs-2">Url</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="scmUrl" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scmUrl}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository url">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputBranch" class="control-label col-xs-2">Branch</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="scmBranch" id="inputBranch" placeholder="master" value="{{scmBranch}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository branch">?</button>
-            </div>
-          </div>
-          <h2 class="sub-header">Body</h2>
-          <div class="form-group">
-            <label for="inputBody0" class="control-label col-xs-2">Clean</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="cleanCommand" id="inputBody0" placeholder="npm run clean" value="{{cleanCommand}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputBody1" class="control-label col-xs-2">Install</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="installCommand" id="inputBody1" placeholder="npm install" value="{{installCommand}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputBody2" class="control-label col-xs-2">Test</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="testCommand" id="inputBody2" placeholder="npm test" value="{{testCommand}}">
-            </div>
-          </div>
-          <h2 class="sub-header">Tail</h2>
-          <div class="form-group">
-            <label for="inputTail0" class="control-label col-xs-2">Command</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="tailCommand0" id="inputTail0" placeholder="bin/tail.sh" value="{{tailCommand0}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  + <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">command</a></li>
-                    <li><a href="#">bash</a></li>
-                  </ul>
-                </div>
-            </div>
-          </div>
-          <h2 class="sub-header">Notify</h2>
-          <div class="form-group">
-            <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-10">
-              {{notifyTypeRadio this}}
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTo" class="control-label col-xs-2">To</label>
-            <div class="col-xs-10">
-                <input type="text" class="form-control" name="notifyTo" id="inputTo" placeholder="lloyd.benson@gmail.com" value="{{notifyTo}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputSubject" class="control-label col-xs-2">Subject</label>
-            <div class="col-xs-10">
-                <input type="text" class="form-control" name="notifySubject" id="inputSubject" value="{{notifySubject}}">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputMessage" class="control-label col-xs-2">Message</label>
-            <div class="col-xs-10">
-                <textarea class="form-control" name="notifyMessage" id="inputMessage" rows=10>{{notifyMessage}}</textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputMessage" class="control-label col-xs-2">Statuses</label>
-            <div class="col-xs-10">
-              <label for="inputStatuses" class="control-label">Failed</label>
-              <div class="btn-group">
-                <input type="checkbox" name="notifyStatusFailed"{{#if notifyStatusFailed}} checked{{/if}}>
-              </div>
-              <label for="inputStatuses" class="control-label">Fixed</label>
-              <div class="btn-group">
-                <input type="checkbox" name="notifyStatusFixed"{{#if notifyStatusFixed}} checked{{/if}}>
-              </div>
-              <label for="inputStatuses" class="control-label">Cancelled</label>
-              <div class="btn-group">
-                <input type="checkbox" name="notifyStatusCancelled"{{#if notifyStatusCancelled}} checked{{/if}}>
-              </div>
-              <label for="inputStatuses" class="control-label">Succeeded</label>
-              <div class="btn-group">
-                <input type="checkbox" name="notifyStatusSucceeded"{{#if notifyStatusSucceeded}} checked{{/if}}>
-              </div>
-            </div>
-          </div>
-          <h2 class="sub-header">Archive</h2>
-          <div class="form-group">
-            <label for="inputArchive" class="control-label col-xs-2">Pattern</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="archivePattern" id="inputArchive" placeholder="lab.json" value="{{archivePattern}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This is a comma delimited list of files you want to archive">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputNotify" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-10">
-              {{archiveTypeRadio this}}
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputMaxNum" class="control-label col-xs-2">Max Number</label>
-            <div class="col-xs-2">
-                <input type="text" class="form-control" name="archiveMaxNumber" id="inputMaxNum" placeholder="20" value="{{archiveMaxNumber}}">
-            </div>
-            <div class="offset-col-xs-2">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max number to keep">?</button>
-            </div>
-          </div>
-          <h2 class="sub-header">Schedule</h2>
-          <div class="form-group">
-            <label for="inputScheduler" class="control-label col-xs-2">Type</label>
-            <div class="col-xs-10">
-              {{scheduleTypeRadio this}}
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputSchedule" class="control-label col-xs-2">Pattern</label>
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="cronPattern" id="inputSchedule" placeholder="*/5 * * * *" value="{{cronPattern}}">
-            </div>
-            <div class="offset-col-xs-5">
-                <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="cron format: min hour date month weekday">?</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-10">
-                {{#if jobId}}
-                <button type="submit" class="btn btn-primary">Update</button>
-                {{else}}
-                <button type="submit" class="btn btn-primary">Create</button>
-                {{/if}}
-            </div>
-          </div>
-          </form>
+{{#if testResult}}
+{{>testSummary }}
+{{/if}}
+<h2 class="sub-header">Basic</h2>
+<form class="form-horizontal" method="{{method}}" action="{{url}}">
+  {{#if jobId}}
+  <div class="form-group">
+    <label for="inputId" class="control-label col-xs-2">Id</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="jobId" id="jobId" value="{{jobId}}" disabled>
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This id is used so it is easy to rename your job.">?</button>
+    </div>
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label for="inputName" class="control-label col-xs-2">Name</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="{{name}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="this name must be unique for link">?</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDescription" class="control-label col-xs-2">Description</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="description" id="inputDescription" placeholder="Description" value="{{description}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="short description">?</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTargets" class="control-label col-xs-2">Targets</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="targets" id="inputTargets" placeholder="global" value="" disabled>
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="comma delimited list of target names">?</button>
+    </div>
+  </div>
+  <h2 class="sub-header">Head</h2>
+  <div class="form-group">
+    <label for="inputHead0" class="control-label col-xs-2">Command</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="headCommand0" id="inputHead0" placeholder="" value="{{headCommand0}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          + <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">command</a></li>
+          <li><a href="#">bash</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h2 class="sub-header">Source Control</h2>
+  {{#if lastCommit}}
+  <div class="form-group">
+    <label for="inputId" class="control-label col-xs-2">Last Commit</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="lastCommit" id="id" value="{{lastCommit}}" disabled>
+    </div>
+    <div class="offset-col-xs-5">
+      <div class="btn-group btn">
+        {{showStatus lastStatus}}
+      </div>
+    </div>
+  </div>
+  {{#each compareCommits}}
+  <div class="form-group">
+    <label for="inputSCM" class="control-label col-xs-2">Commit</label>
+    <div class="col-xs-2">
+      <input type="text" class="form-control" name="compareCommit" id="input" value="{{shortCommit}}" disabled>
+    </div>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" name="compareCommit" id="input" value="{{message}}" disabled>
+    </div>
+  </div>
+  {{/each}}
+  {{/if}}
+  <div class="form-group">
+    <label for="inputSCM" class="control-label col-xs-2">Enable PRs</label>
+    <div class="col-xs-10">
+      <div class="btn-group">
+        <input type="checkbox" name="scmPrs"{{#if scmPrs}} checked{{/if}}>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSCM" class="control-label col-xs-2">Run On Commit</label>
+    <div class="col-xs-5">
+      <div class="btn-group">
+        <input type="checkbox" name="scmRunOnCommit"{{#if scmRunOnCommit}} checked{{/if}}>
+      </div>
+    </div>
+    <div class="offset-col-xs-5">
+      <div class="btn-group offset-col-xs-5">
+        <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Enabling this will only run the job if theres a new commit compared to previous run">?</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSCM" class="control-label col-xs-2">Type</label>
+    <div class="col-xs-10">
+      {{scmTypeRadio this}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputUrl" class="control-label col-xs-2">Url</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="scmUrl" id="inputUrl" placeholder="http://github.com/fishin/gills" value="{{scmUrl}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository url">?</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputBranch" class="control-label col-xs-2">Branch</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="scmBranch" id="inputBranch" placeholder="master" value="{{scmBranch}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="repository branch">?</button>
+    </div>
+  </div>
+  <h2 class="sub-header">Body</h2>
+  <div class="form-group">
+    <label for="inputBody0" class="control-label col-xs-2">Clean</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="cleanCommand" id="inputBody0" placeholder="npm run clean" value="{{cleanCommand}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputBody1" class="control-label col-xs-2">Install</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="installCommand" id="inputBody1" placeholder="npm install" value="{{installCommand}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputBody2" class="control-label col-xs-2">Test</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="testCommand" id="inputBody2" placeholder="npm test" value="{{testCommand}}">
+    </div>
+  </div>
+  <h2 class="sub-header">Tail</h2>
+  <div class="form-group">
+    <label for="inputTail0" class="control-label col-xs-2">Command</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="tailCommand0" id="inputTail0" placeholder="bin/tail.sh" value="{{tailCommand0}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="remove item">x</button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          + <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">command</a></li>
+          <li><a href="#">bash</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h2 class="sub-header">Notify</h2>
+  <div class="form-group">
+    <label for="inputNotify" class="control-label col-xs-2">Type</label>
+    <div class="col-xs-10">
+      {{notifyTypeRadio this}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTo" class="control-label col-xs-2">To</label>
+    <div class="col-xs-10">
+      <input type="text" class="form-control" name="notifyTo" id="inputTo" placeholder="lloyd.benson@gmail.com" value="{{notifyTo}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSubject" class="control-label col-xs-2">Subject</label>
+    <div class="col-xs-10">
+      <input type="text" class="form-control" name="notifySubject" id="inputSubject" value="{{notifySubject}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputMessage" class="control-label col-xs-2">Message</label>
+    <div class="col-xs-10">
+      <textarea class="form-control" name="notifyMessage" id="inputMessage" rows=10>{{notifyMessage}}</textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputMessage" class="control-label col-xs-2">Statuses</label>
+    <div class="col-xs-10">
+      <label for="inputStatuses" class="control-label">Failed</label>
+      <div class="btn-group">
+        <input type="checkbox" name="notifyStatusFailed"{{#if notifyStatusFailed}} checked{{/if}}>
+      </div>
+      <label for="inputStatuses" class="control-label">Fixed</label>
+      <div class="btn-group">
+        <input type="checkbox" name="notifyStatusFixed"{{#if notifyStatusFixed}} checked{{/if}}>
+      </div>
+      <label for="inputStatuses" class="control-label">Cancelled</label>
+      <div class="btn-group">
+        <input type="checkbox" name="notifyStatusCancelled"{{#if notifyStatusCancelled}} checked{{/if}}>
+      </div>
+      <label for="inputStatuses" class="control-label">Succeeded</label>
+      <div class="btn-group">
+        <input type="checkbox" name="notifyStatusSucceeded"{{#if notifyStatusSucceeded}} checked{{/if}}>
+      </div>
+    </div>
+  </div>
+  <h2 class="sub-header">Archive</h2>
+  <div class="form-group">
+    <label for="inputArchive" class="control-label col-xs-2">Pattern</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="archivePattern" id="inputArchive" placeholder="lab.json" value="{{archivePattern}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="This is a comma delimited list of files you want to archive">?</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputNotify" class="control-label col-xs-2">Type</label>
+    <div class="col-xs-10">
+      {{archiveTypeRadio this}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputMaxNum" class="control-label col-xs-2">Max Number</label>
+    <div class="col-xs-2">
+      <input type="text" class="form-control" name="archiveMaxNumber" id="inputMaxNum" placeholder="20" value="{{archiveMaxNumber}}">
+    </div>
+    <div class="offset-col-xs-2">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="max number to keep">?</button>
+    </div>
+  </div>
+  <h2 class="sub-header">Schedule</h2>
+  <div class="form-group">
+    <label for="inputScheduler" class="control-label col-xs-2">Type</label>
+    <div class="col-xs-10">
+      {{scheduleTypeRadio this}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputSchedule" class="control-label col-xs-2">Pattern</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="cronPattern" id="inputSchedule" placeholder="*/5 * * * *" value="{{cronPattern}}">
+    </div>
+    <div class="offset-col-xs-5">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="cron format: min hour date month weekday">?</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      {{#if jobId}}
+      <button type="submit" class="btn btn-primary">Update</button>
+      {{else}}
+      <button type="submit" class="btn btn-primary">Create</button>
+      {{/if}}
+    </div>
+  </div>
+</form>
+<script src="/view/js/elapsedTimeRunsGraph.js"></script>
 <script>
-d3.json("http://localhost:8081/api/job/{{jobId}}/runs/stats/limit/20", function(error, data) {
-
-    var runs = data.runs;
-    var margin = { top: 0, right: 0, bottom: 0, left: 0 };
-    var width = 0;
-    var height = 0;
-    if (Object.keys(runs).length !== 0) {
-        margin = { top: 40, right: 20, bottom: 70, left: 50 };
-        width = 400 - margin.right - margin.left;
-        height = 300 - margin.top - margin.bottom;
-    }
-
-    // Parse the date / time
-    var parseDate = d3.time.format("%Y-%m").parse;
-
-    var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-    var y = d3.scale.linear().range([height, 0]);
-
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
-//    .tickFormat(d3.time.format("%Y-%m"));
-
-    var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-    //var svg = d3.select("body").append("svg")
-     var svg = d3.select("#elapsedRuns").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-//    .style("border", '1px solid')
-    .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-  x.domain(runs.map(function(d) { return d.id.split('-')[0]; }));
-  y.domain([0, d3.max(runs, function(d) { return d.elapsedTime / 1000; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-// x offset
-      .attr("dx", "-.55em")
-// y offset from right side
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-//      .attr("dy", ".71em")
-      .attr("dy", "-4em")
-      .style("text-anchor", "end")
-      .text("elapsedTime (s)");
-
-  svg.append("g")
-    .append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "8") 
-//        .style("text-decoration", "underline")  
-        .text("Elapsed Time (s) / Run");
-
-  svg.selectAll("bar")
-      .data(runs)
-      .enter()
-      .append("rect")
-      .style("fill", function(d) {
-          if (d.status === 'failed') {
-              // red
-              return "#d9534f";
-          } else {
-              // green
-              return "#5cb85c";
-          }
-      })
-      .on("click", function(d) {
-          window.location.href='/view/job/{{jobId}}/run/' + d.id;
-      })
-      .attr("x", function(d) { return x(d.id.split('-')[0]); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.elapsedTime / 1000); })
-      .attr("height", function(d) { return height - y(d.elapsedTime / 1000); });
-
-});
+  elapsedTimeRunsGraph("{{jobId}}", "#elapsedTimeRuns");
 </script>

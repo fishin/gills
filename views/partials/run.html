@@ -6,6 +6,7 @@
   {{/if}}
   <a href="/view/job/{{jobId}}"><button type="submit" class="btn btn-info">Job</button></a>
 </h1>
+<div id="elapsedTimeCommands"></div>
 {{#if testResult}}
 {{>testSummary }}
 {{/if}}
@@ -92,3 +93,8 @@
   {{>command}}
 {{/each}}
 </form>
+<script src="/view/js/elapsedTimeCommandsGraph.js"></script>
+<script>
+  elapsedTimeCommandsGraph("{{jobId}}", "{{runId}}", "#elapsedTimeCommands");
+</script>
+
