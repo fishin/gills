@@ -4,7 +4,6 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
 
         var tests = data.tests;
         var margin = { top: 0, right: 0, bottom: 0, left: 0 };
-        alert(tests[0].num);
         var width = 0;
         var height = 0;
         if (Object.keys(tests).length !== 0) {
