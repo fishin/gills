@@ -2,9 +2,9 @@
   <li><a href="#">Home</a></li>
   <li><a href="/view/jobs">Jobs</a></li>
   {{#if name}}
-  <li><a href="/view/job/{{id}}">{{name}}</a></li>
+  <li><a href="/view/job/{{jobId}}">{{name}}</a></li>
   {{#if runId}}
-  <li><a href="/view/job/{{id}}/run/{{runId}}">{{shortRunId}}</a></li>
+  <li><a href="/view/job/{{jobId}}/run/{{runId}}">{{shortRunId}}</a></li>
   {{/if}}
   {{/if}}
 </ol>

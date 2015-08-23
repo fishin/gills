@@ -6,7 +6,11 @@
   {{/if}}
   <a href="/view/job/{{jobId}}"><button type="submit" class="btn btn-info">Job</button></a>
 </h1>
-<div id="elapsedTimeCommands"></div>
+<table>
+<tr>
+<td id="elapsedTimeCommands"></td>
+</tr>
+</table>
 {{#if testResult}}
 {{>testSummary }}
 {{/if}}

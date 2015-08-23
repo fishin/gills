@@ -6,7 +6,12 @@
   <a class="btn btn-info" href="/view/job/{{jobId}}/commits">All Commits</a>
   {{/if}}
 </h1>
-<div id="elapsedTimeRuns"></div>
+<table>
+<tr>
+<td id="elapsedTimeRuns"></td>
+<td id="totalTestsRuns"></td>
+</tr>
+</table>
 <!--
           <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -286,6 +291,8 @@
   </div>
 </form>
 <script src="/view/js/elapsedTimeRunsGraph.js"></script>
+<script src="/view/js/totalTestsRunsGraph.js"></script>
 <script>
   elapsedTimeRunsGraph("{{jobId}}", "#elapsedTimeRuns");
+  totalTestsRunsGraph("{{jobId}}", "#totalTestsRuns");
 </script>
