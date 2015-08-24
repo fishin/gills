@@ -16,6 +16,8 @@
                   <th>Id</th>
                   <th>Last Run Id</th>
                   <th>Last Run Finish Time</th>
+                  <th>Tests (Succeeded)</th>
+                  <th>Tests (Failed)</th>
                 </tr>
               </thead>
               <tbody>
@@ -25,6 +27,8 @@
                   <td><a href="/view/job/{{jobId}}">{{shortJobId}}</a></td>
                   <td><a href="/view/job/{{jobId}}/run/{{runId}}">{{shortRunId}}</a></td>
                   <td>{{finishTime}}</td>
+                  <td>{{succeededTests}}</td>
+                  <td>{{failedTests}}</td>
                 </tr>
                 {{/each}}
               </tbody>
