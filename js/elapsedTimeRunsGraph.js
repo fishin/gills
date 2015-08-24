@@ -79,7 +79,7 @@ var elapsedTimeRunsGraph = function (jobId, element) {
            .append("rect")
            .style("fill", function(d) {
 
-               if (d.status === 'succeeded') {
+               if (d.status === 'succeeded' || d.status === 'fixed') {
                    // green
                    return "#5cb85c";
                } else {
