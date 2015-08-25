@@ -21,7 +21,7 @@
       <td>duration</td>
     </tr>
     {{#each this}}
-    <tr class="{{#if err}}danger{{else}}success{{/if}}">
+    <tr id="{{testNum}}" class="{{#if err}}danger{{else}}success{{/if}}">
       <td>{{testNum}}</td>
       <td>{{title}}</td>
       <td>{{duration}} ms</td>

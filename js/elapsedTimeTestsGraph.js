@@ -87,6 +87,12 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
                    return "#d9534f";
                }
            })
+           .on("click", function(d) {
+
+               if (d.num > 2) {
+                   window.location.href='#' + (d.num - 2);
+               }
+           })
            .attr("x", function(d) { return x(d.num); })
            .attr("width", x.rangeBand())
            .attr("y", function(d) { return y(d.duration / 1000); })
