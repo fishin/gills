@@ -7,7 +7,7 @@
   <tbody>
     <tr>
       <td>Priority</td>
-      <td>Job Id</td>
+      <td>Job Id / PR</td>
       <td>
       Target
       </td>
@@ -19,7 +19,7 @@
     {{#each queue}}
     <tr>
       <td>{{num}}</td>
-      <td><a href="/view/job/{{jobId}}" title="{{name}}">{{shortId}}</td>
+      <td><a href="/view/job/{{jobId}}" title="{{name}}">{{shortId}}</a>{{#if pr.number}} / <a href="{{pr.repoUrl}}/pull/{{pr.number}}">{{pr.number}}</a>{{/if}}</td>
       <td>
       global
       </td>

@@ -57,9 +57,9 @@
     {{/if}}
     {{#each activeJobsPullRequests}}
     <tr class="{{classColor}}">
-      <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}">{{this.number}}</td>
-      <td><a href="/view/job/{{this.jobId}}">{{this.shortJobId}}</td>
-      <td><a href="/view/job/{{jobId}}/pr/{{number}}/run/{{runId}}">{{this.shortRunId}}</td>
+      <td><a href="{{this.repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td><a href="/view/job/{{this.jobId}}">{{this.shortJobId}}</a></td>
+      <td><a href="/view/job/{{jobId}}/pr/{{number}}/run/{{runId}}">{{this.shortRunId}}</a></td>
       <td>
         <div class="progress">
           <div class="progress-bar progress-bar-striped progress-bar-{{this.percentColor}} active" role="progressbar" aria-valuenow="{{this.percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{this.percent}}%">
