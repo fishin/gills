@@ -92,6 +92,10 @@ var elapsedTimeCommandsGraph = function (jobId, runId, element) {
                return x(d.command.substring(0, 8));
            })
            .attr("width", x.rangeBand())
+           .on("click", function(d, i) {
+
+               window.location.href='#command' + i;
+           })
            .attr("y", function(d) {
 
                return y((d.finishTime - d.startTime) / 1000);

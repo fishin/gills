@@ -19,14 +19,11 @@
     </tr>
     {{#each newPullRequests}}
     <tr>
-      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td><a href="{{repoUrl}}/pull/{{this.number}}" title="{{this.title}}">{{this.number}}</a></td>
       <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
       <td>{{this.remoteUser}}</td>
       <td>{{this.remoteBranch}}</td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/start">Start</a></td>
-    </tr>
-    <tr>
-      <td colspan=5>{{this.title}}</td>
     </tr>
     {{/each}}
   {{/if}}
@@ -43,13 +40,12 @@
       <td>Retry</td>
     </tr>
     <tr>
-      <td colspan=2>Title</td>
-      <td colspan=2>Finished</td>
+      <td colspan=4>Finished</td>
       <td>Elapsed</td>
     </tr>
     {{#each checkedPullRequests}}
     <tr class="{{this.classColor}}">
-      <td><a href="{{repoUrl}}/pull/{{this.number}}">{{this.number}}</a></td>
+      <td><a href="{{repoUrl}}/pull/{{this.number}}" title="{{this.title}}">{{this.number}}</a></td>
       <td><a href="/view/job/{{this.jobId}}/pr/{{this.number}}/run/{{this.runId}}">{{this.shortId}}</td>
       <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
 <!--      <td><a class="btn {{this.buttonColor}}" href="/view/job/{{jobId}}/pr/{{this.number}}/merge">Merge</a></td>-->
@@ -57,8 +53,7 @@
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/retry">Retry</a></td>
     </tr>
     <tr>
-      <td colspan=2>{{this.title}}</td>
-      <td colspan=2>{{this.finishTime}}</td>
+      <td colspan=4>{{this.finishTime}}</td>
       <td>{{this.elapsedTime}} s</td>
     </tr>
     {{/each}}
