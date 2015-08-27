@@ -1,8 +1,8 @@
 node_modules
-test.lab
-test.html
-test.log
-server.js
-gills.js
-tacklebox.js
-tmp
+/test.lab
+/test.html
+/test.log
+/server.js
+/gills.js
+/tacklebox.js
+/tmp
