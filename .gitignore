@@ -1,7 +1,5 @@
 node_modules
-*.lab
-*.html
-*.log
+test.*
 server.js
 gills.js
 tacklebox.js
