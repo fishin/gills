@@ -31,7 +31,7 @@ internals.prepareServer = function (callback) {
 
 describe('tests', function () {
 
-    it('GET /view/job/{jobId}/run/{runId}/archive/lab.json', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/archive/test.lab', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -47,7 +47,7 @@ describe('tests', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/lab.json',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/test.lab',
                 file: 'index.json'
             }
         ];
@@ -62,7 +62,7 @@ describe('tests', function () {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
                     var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/lab.json' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.lab' }, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
@@ -74,7 +74,7 @@ describe('tests', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/archive/lab.html', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/archive/test.html', function (done) {
 
         var type = 'tacklebox';
         var routes = [
@@ -90,8 +90,8 @@ describe('tests', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/lab.html',
-                file: 'lab.html'
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/archive/test.html',
+                file: 'test.html'
             }
         ];
         Mock.prepareServer(type, routes, function (mockServer) {
@@ -105,7 +105,7 @@ describe('tests', function () {
 
                     var jobId = '12345678-1234-1234-1234-123456789012';
                     var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/lab.html' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.html' }, function (response) {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain('<html>');
@@ -132,7 +132,7 @@ describe('tests', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/lab.json',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/test.lab',
                 file: 'index.json'
             }
         ];
@@ -175,7 +175,7 @@ describe('tests', function () {
             },
             {
                 method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/lab.json',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/run/12345678-1234-1234-1234-123456789012/test/test.lab',
                 file: 'index.json'
             }
         ];
