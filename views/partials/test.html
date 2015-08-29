@@ -1,14 +1,15 @@
+<h1 class="page-header">Test - {{name}}
+  {{#if jobId}}
+  <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}">Run</a>
+  <a class="btn btn-info" href="/view/job/{{jobId}}">Job</a>
+  {{/if}}
+</h1>
 <table>
 <tr>
 <td id="elapsedTimeTests"></td>
 </tr>
 </table>
 <table class="table table-striped gills-table">
-  <thead>
-    <tr>
-      <th colspan=3>Test Results: <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}">Run</a> <a class="btn btn-info" href="/view/job/{{jobId}}">Job</a></th>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <th colspan=3>Tests <span class="badge">{{testResult.totalTests}}</span></th>

@@ -1,7 +1,14 @@
+<h1 class="page-header">Coverage - {{name}}
+  {{#if jobId}}
+  <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}">Run</a>
+  <a class="btn btn-info" href="/view/job/{{jobId}}">Job</a>
+  {{/if}}
+</h1>
+
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Coverage Results: <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}">Run</a> <a class="btn btn-info" href="/view/job/{{jobId}}">Job</a>
+      <th colspan=3>
         <div class="progress">
           <div class="progress-bar {{#if testResult.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResult.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
             {{testResult.coveragePercent}}%
