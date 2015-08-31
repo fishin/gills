@@ -26,7 +26,13 @@
       <td>
       {{elapsedTime}} s
       </td>
-      <td><a href="/view/queue/{{jobId}}/remove"><span class="glyphicon glyphicon-remove"></span></a></td>
+      <td>
+      {{#if pr.number}}
+        <a href="/view/queue/{{jobId}}/pr/{{pr.number}}/remove"><span class="glyphicon glyphicon-remove"></span></a>
+      {{else}}
+        <a href="/view/queue/{{jobId}}/remove"><span class="glyphicon glyphicon-remove"></span></a>
+      {{/if}}
+      </td>
     </tr>
     {{/each}}
   </tbody>

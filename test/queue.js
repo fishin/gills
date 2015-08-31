@@ -100,4 +100,39 @@ describe('queue', function () {
             });
         });
     });
+
+    it('GET /view/queue/{jobId}/pr/{number}/remove', function (done) {
+
+        var jobId = '12345678-1234-1234-1234-123456789012';
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/queue/' + jobId + '/pr/1',
+                file: 'null'
+            },
+            {
+                method: 'get',
+                path: '/api/queue',
+                file: 'index.json'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/pr/1/remove' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 });
