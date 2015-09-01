@@ -21,8 +21,8 @@
     <tr>
       <td><a href="{{repoUrl}}/pull/{{this.number}}" title="{{this.title}}">{{this.number}}</a></td>
       <td><a href="{{repoUrl}}/commit/{{this.commit}}">{{this.shortCommit}}</a></td>
-      <td>{{this.remoteUser}}</td>
-      <td>{{this.remoteBranch}}</td>
+      <td><a href="#" title="{{this.remoteUser}}">{{this.shortAuthor}}</a></td>
+      <td><a href="#" title="{{this.remoteBranch}}">{{this.shortBranch}}</a></td>
       <td><a class="btn btn-info" href="/view/job/{{jobId}}/pr/{{this.number}}/start">Start</a></td>
     </tr>
     {{/each}}

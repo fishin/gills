@@ -18,10 +18,10 @@
   },
   "scripts": {
     "clean": "rm -rf node_modules",
-    "console": "lab -a code -t 95 -v -m 10000 -L",
+    "console": "lab -a code -t 90 -v -m 10000 -L",
     "start": "./start.sh",
     "stop": "./stop.sh",
-    "test": "lab -a code -t 95 -v -m 10000 -L -r json -o test.lab -r html -o test.html -r console -o stdout -r console -o test.log"
+    "test": "lab -a code -t 90 -v -m 10000 -L -r json -o test.lab -r html -o test.html -r console -o stdout -r console -o test.log"
   },
   "dependencies": {
     "bell": "2.x.x",
