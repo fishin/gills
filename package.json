@@ -28,11 +28,13 @@
     "boom": "2.x.x",
     "dateformat": "1.0.x",
     "handlebars": "3.0.x",
-    "hapi": "8.x.x",
+    "hapi": "10.x.x",
     "hapi-auth-cookie": "2.x.x",
     "hoek": "2.x.x",
+    "inert": "3.x.x",
     "joi": "6.x.x",
-    "smelt": "git+https://github.com/fishin/smelt.git"
+    "smelt": "git+https://github.com/fishin/smelt.git",
+    "vision": "3.x.x"
   },
   "devDependencies": {
     "code": "1.x.x",
