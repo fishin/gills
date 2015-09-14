@@ -566,17 +566,7 @@ describe('job', function () {
         var routes = [
             {
                 method: 'get',
-                path: '/api/jobs',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789012/run/byname/last',
-                file: 'index.json'
-            },
-            {
-                method: 'get',
-                path: '/api/job/12345678-1234-1234-1234-123456789014/run/byname/last',
+                path: '/api/jobs/stats',
                 file: 'index.json'
             }
         ];
