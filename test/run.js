@@ -179,4 +179,31 @@ describe('run', function () {
             });
         });
     });
+
+    it('GET /view/job/{jobId}/runs/delete', function (done) {
+
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/job/12345678-1234-1234-1234-123456789012/runs/delete',
+                file: 'empty.txt'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.prepareServer(function (server) {
+
+                    var jobId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/runs/delete' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 });
