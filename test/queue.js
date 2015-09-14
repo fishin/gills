@@ -101,6 +101,36 @@ describe('queue', function () {
         });
     });
 
+    it('GET /view/queue/clear', function (done) {
+
+        var jobId = '12345678-1234-1234-1234-123456789012';
+        var type = 'tacklebox';
+        var routes = [
+            {
+                method: 'delete',
+                path: '/api/queue',
+                file: 'null'
+            }
+        ];
+        Mock.prepareServer(type, routes, function (mockServer) {
+
+            mockServer.start(function () {
+
+                internals.defaults.api = {
+                    url: mockServer.info.uri + '/api'
+                };
+                internals.prepareServer(function (server) {
+
+                    server.inject({ method: 'GET', url: '/view/queue/clear' }, function (response) {
+
+                        expect(response.statusCode).to.equal(302);
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
     it('GET /view/queue/{jobId}/pr/{number}/remove', function (done) {
 
         var jobId = '12345678-1234-1234-1234-123456789012';
