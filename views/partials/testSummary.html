@@ -6,20 +6,42 @@
   </thead>
   <tbody>
     <tr>
-      <td>Coverage <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}/coverage">Details</a></td>
+      <td>
+        {{#if testResult.coverage}}
+        Coverage <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}/coverage">Details</a>
+        {{else}}
+        Coverage
+        {{/if}}
+      </td>
       <td>duration</td>
       <td>leaks</td>
     </tr>
     <tr>
       <td>
+        {{#if testResult.coverage}}
         <div class="progress">
           <div class="progress-bar {{#if testResult.coverage.misses}}progress-bar-danger{{else}}progress-bar-success active{{/if}}" role="progressbar" aria-valuenow="{{testResult.coveragePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{testResult.coveragePercent}}%">
             {{testResult.coveragePercent}}%
           </div>
         </div>
+        {{else}}
+        N/A
+        {{/if}}
       </td>
-      <td>{{testResult.totalDuration}} ms</td>
-      <td>{{testResult.totalLeaks}} </td>
+      <td>
+        {{#if testResult.totalDuration}}
+        {{testResult.totalDuration}}
+        {{else}}
+        N/A
+        {{/if}}
+      </td>
+      <td>
+        {{#if testResult.totalLeaks}}
+        {{testResult.totalLeaks}}
+        {{else}}
+        N/A
+        {{/if}}
+      </td>
     </tr>
   </tbody>
 </table>
