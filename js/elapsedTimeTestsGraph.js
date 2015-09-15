@@ -3,12 +3,19 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
     d3.json('http://localhost:8081/api/job/'+ jobId + '/run/' + runId + '/stats', function(error, data) {
 
         var tests = data.tests;
+        // get just the top 20 longest duration
+        tests.sort(function (a, b){
+
+            return b.duration - a.duration;
+        });
+        // cut out after 20
+        tests.splice(20, tests.length);
         var margin = { top: 0, right: 0, bottom: 0, left: 0 };
         var width = 0;
         var height = 0;
         if (Object.keys(tests).length !== 0) {
             margin = { top: 40, right: 20, bottom: 70, left: 50 };
-            width = 900 - margin.right - margin.left;
+            width = 400 - margin.right - margin.left;
             height = 300 - margin.top - margin.bottom;
         }
 
@@ -39,7 +46,7 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(tests.map(function(d) { return d.num; }));
-        y.domain([0, d3.max(tests, function(d) { return (d.duration / 1000); })]);
+        y.domain([0, d3.max(tests, function(d) { return (d.duration); })]);
 
         svg.append("g")
            .attr("class", "x axis")
@@ -62,7 +69,7 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
 //           .attr("dy", ".71em")
            .attr("dy", "-4em")
            .style("text-anchor", "end")
-           .text("elapsedTime (s)");
+           .text("elapsedTime (ms)");
 
         svg.append("g")
            .append("text")
@@ -71,7 +78,7 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
            .attr("text-anchor", "middle")  
            .style("font-size", "8") 
 //       .style("text-decoration", "underline")  
-          .text("Elapsed Time (s) / Test");
+          .text("Top 20 Elapsed Time (ms) / Test");
 
         svg.selectAll("bar")
            .data(tests)
@@ -95,7 +102,7 @@ var elapsedTimeTestsGraph = function (jobId, runId, element) {
            })
            .attr("x", function(d) { return x(d.num); })
            .attr("width", x.rangeBand())
-           .attr("y", function(d) { return y(d.duration / 1000); })
-           .attr("height", function(d) { return height - y(d.duration / 1000); });
+           .attr("y", function(d) { return y(d.duration); })
+           .attr("height", function(d) { return height - y(d.duration); });
     });
 };
