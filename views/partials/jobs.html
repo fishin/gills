@@ -17,9 +17,10 @@
                   <th>Name</th>
                   <th>Id</th>
                   <th>Last Run Id</th>
-                  <th>Last Run Finish Time</th>
-                  <th>Tests (Succeeded)</th>
-                  <th>Tests (Failed)</th>
+                  <th>Finish Time</th>
+                  <th>Succeeded Tests</th>
+                  <th>Failed Tests</th>
+                  <th>Coverage</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,6 +32,7 @@
                   <td>{{finishTime}}</td>
                   <td>{{succeededTests}}</td>
                   <td>{{failedTests}}</td>
+                  <td>{{coveragePercent}}</td>
                 </tr>
                 {{/each}}
               </tbody>
