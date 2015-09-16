@@ -1,7 +1,7 @@
 <table class="table table-striped gills-table">
   <thead>
     <tr>
-      <th colspan=3>Last Test Results <span class="badge">{{testResult.totalTests}}</span> <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}/test">Details</a></th>
+      <th colspan=4>Last Test Results <span class="badge">{{testResult.totalTests}}</span> <a class="btn btn-info" href="/view/job/{{jobId}}/run/{{runId}}/test">Details</a></th>
     </tr>
   </thead>
   <tbody>
@@ -45,3 +45,5 @@
     </tr>
   </tbody>
 </table>
+
+{{> lint}}
