@@ -9,6 +9,35 @@
 <td id="elapsedTimeTests"></td>
 </tr>
 </table>
+{{#if testResult.totalTestFailures }}
+<table class="table table-striped gills-table">
+  <tbody>
+    <tr>
+      <th colspan=3>Failed Tests <span class="badge">{{testResult.totalTestFailures}}</span></th>
+    </tr>
+    <tr>
+      <td>#</td>
+      <td>test name</td>
+      <td>duration</td>
+    </tr>
+    <tr>
+    {{#each testResult.tests}}
+    {{#each this}}
+    {{#if err}}
+    <tr id="{{testNum}}" class="danger">
+      <td>{{testNum}}</td>
+      <td>{{title}}</td>
+      <td>{{duration}} ms</td>
+    </tr>
+    <tr class="danger">
+      <td colspan=3>{{err}}</td>
+    </tr>
+    {{/if}}
+    {{/each}}
+    {{/each}}
+  </tbody>
+</table>
+{{/if}}
 <table class="table table-striped gills-table">
   <tbody>
     <tr>
