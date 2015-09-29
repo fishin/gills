@@ -103,7 +103,6 @@ describe('queue', function () {
 
     it('GET /view/queue/clear', function (done) {
 
-        var jobId = '12345678-1234-1234-1234-123456789012';
         var type = 'tacklebox';
         var routes = [
             {

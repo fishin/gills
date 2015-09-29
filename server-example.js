@@ -1,5 +1,4 @@
 var Hapi = require('hapi');
-var Tacklebox = require('tacklebox');
 var Lout = require('lout');
 var Gills = require('./lib');
 
