@@ -1,27 +1,29 @@
-var Code = require('code');
-var Hapi = require('hapi');
-var Lab = require('lab');
-var Mock = require('mock');
+'use strict';
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Hapi = require('hapi');
+const Lab = require('lab');
+const Mock = require('mock');
 
-var internals = {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const internals = {
     defaults: {
     }
 };
 
 internals.prepareServer = function (callback) {
 
-    var server = new Hapi.Server();
+    const server = new Hapi.Server();
     server.connection();
 
     server.register({
         register: require('..'),
         options: internals.defaults
-    }, function (err) {
+    }, (err) => {
 
         expect(err).to.not.exist();
     });
@@ -29,12 +31,12 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('tests', function () {
+describe('tests', () => {
 
-    it('GET /view/job/{jobId}/run/{runId}/archive/test.lab', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/archive/test.lab', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012',
@@ -51,18 +53,18 @@ describe('tests', function () {
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.lab' }, function (response) {
+                    const jobId = '12345678-1234-1234-1234-123456789012';
+                    const runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.lab' }, (response) => {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
@@ -74,10 +76,10 @@ describe('tests', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/archive/test.html', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/archive/test.html', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012',
@@ -94,18 +96,18 @@ describe('tests', function () {
                 file: 'test.html'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.html' }, function (response) {
+                    const jobId = '12345678-1234-1234-1234-123456789012';
+                    const runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/archive/test.html' }, (response) => {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain('<html>');
@@ -116,10 +118,10 @@ describe('tests', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/test', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/test', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012',
@@ -136,18 +138,18 @@ describe('tests', function () {
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/test' }, function (response) {
+                    const jobId = '12345678-1234-1234-1234-123456789012';
+                    const runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/test' }, (response) => {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);
@@ -159,10 +161,10 @@ describe('tests', function () {
         });
     });
 
-    it('GET /view/job/{jobId}/run/{runId}/coverage', function (done) {
+    it('GET /view/job/{jobId}/run/{runId}/coverage', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/job/12345678-1234-1234-1234-123456789012',
@@ -179,18 +181,18 @@ describe('tests', function () {
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var jobId = '12345678-1234-1234-1234-123456789012';
-                    var runId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/coverage' }, function (response) {
+                    const jobId = '12345678-1234-1234-1234-123456789012';
+                    const runId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/job/' + jobId + '/run/' + runId + '/coverage' }, (response) => {
 
                         expect(response.statusCode).to.equal(200);
                         expect(response.result).to.contain(jobId);

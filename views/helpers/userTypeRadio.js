@@ -1,13 +1,15 @@
-var Handlebars = require('handlebars');
+'use strict';
+
+const Handlebars = require('handlebars');
 
 module.exports = function (context) {
 
-    var output = '';
-    var types = ['local', 'github'];
+    let output = '';
+    let types = ['local', 'github'];
     if (context.name === 'admin') {
         types = ['local'];
     }
-    for (var i = 0; i < types.length; i++) {
+    for (let i = 0; i < types.length; ++i) {
         output += '<div class="btn-group"><span class="input-group-addon"><input type="radio" name="type" value="' + types[i] + '"';
         if (types[i] === context.type ) {
             output += ' checked';

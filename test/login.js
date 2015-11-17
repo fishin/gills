@@ -1,40 +1,42 @@
-var Code = require('code');
-var Hapi = require('hapi');
-var Lab = require('lab');
-var Mock = require('mock');
+'use strict';
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Hapi = require('hapi');
+const Lab = require('lab');
+const Mock = require('mock');
 
-var internals = {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const internals = {
     defaults: {
     }
 };
 
 internals.prepareServer = function (callback) {
 
-    var server = new Hapi.Server();
+    const server = new Hapi.Server();
     server.connection();
 
     server.register({
         register: require('..'),
         options: internals.defaults
-    }, function (err) {
+    }, (err) => {
 
         expect(err).to.not.exist();
     });
     callback(server);
 };
 
-describe('login', function () {
+describe('login', () => {
 
-    it('GET /view/login', function (done) {
+    it('GET /view/login', (done) => {
 
-        internals.prepareServer(function (server) {
+        internals.prepareServer((server) => {
 
-            server.inject({ method: 'GET', url: '/view/login' }, function (response) {
+            server.inject({ method: 'GET', url: '/view/login' }, (response) => {
 
                 expect(response.statusCode).to.equal(200);
                 done();
@@ -42,11 +44,11 @@ describe('login', function () {
         });
     });
 
-    it('GET /view/logout nologin', function (done) {
+    it('GET /view/logout nologin', (done) => {
 
-        internals.prepareServer(function (server) {
+        internals.prepareServer((server) => {
 
-            server.inject({ method: 'GET', url: '/view/logout' }, function (response) {
+            server.inject({ method: 'GET', url: '/view/logout' }, (response) => {
 
                 expect(response.statusCode).to.equal(302);
                 done();
@@ -54,14 +56,14 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login no user', function (done) {
+    it('POST /view/login no user', (done) => {
 
-        var payload = {
+        const payload = {
             type: 'local'
         };
-        internals.prepareServer(function (server) {
+        internals.prepareServer((server) => {
 
-            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                 expect(response.statusCode).to.equal(302);
                 expect(response.request.auth.artifacts).to.not.exist();
@@ -70,15 +72,15 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login invalid user', function (done) {
+    it('POST /view/login invalid user', (done) => {
 
-        var payload = {
+        const payload = {
             name: 'invalid',
             type: 'local'
         };
-        internals.prepareServer(function (server) {
+        internals.prepareServer((server) => {
 
-            server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+            server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                 expect(response.statusCode).to.equal(302);
                 expect(response.request.auth.artifacts).to.not.exist();
@@ -87,10 +89,10 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login lloyd', function (done) {
+    it('POST /view/login lloyd', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/lloyd',
@@ -107,29 +109,29 @@ describe('login', function () {
                 file: 'true'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'lloyd',
                     type: 'local',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
-                        var artifacts = response.request.auth.artifacts;
+                        const artifacts = response.request.auth.artifacts;
                         expect(artifacts.userId.length).to.equal(36);
                         expect(artifacts.name).to.equal('lloyd');
                         expect(artifacts.displayName).to.equal('Lloyd Benson');
                         expect(artifacts.type).to.equal('local');
-                        server.inject({ method: 'GET', url: '/view/logout' }, function (response2) {
+                        server.inject({ method: 'GET', url: '/view/logout' }, (response2) => {
 
                             expect(response2.statusCode).to.equal(302);
                             expect(response2.request.auth.artifacts).to.not.exist();
@@ -141,10 +143,10 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login admin', function (done) {
+    it('POST /view/login admin', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/admin',
@@ -161,29 +163,29 @@ describe('login', function () {
                 file: 'true'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'admin',
                     type: 'local',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
-                        var artifacts = response.request.auth.artifacts;
+                        const artifacts = response.request.auth.artifacts;
                         expect(artifacts.userId.length).to.equal(36);
                         expect(artifacts.name).to.equal('admin');
                         expect(artifacts.displayName).to.equal('Admin');
                         expect(artifacts.type).to.equal('local');
-                        server.inject({ method: 'GET', url: '/view/logout' }, function (response2) {
+                        server.inject({ method: 'GET', url: '/view/logout' }, (response2) => {
 
                             expect(response2.statusCode).to.equal(302);
                             expect(response2.request.auth.artifacts).to.not.exist();
@@ -195,10 +197,10 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login admin new', function (done) {
+    it('POST /view/login admin new', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/admin',
@@ -210,24 +212,24 @@ describe('login', function () {
                 file: 'admin.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'admin',
                     type: 'local',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
-                        var artifacts = response.request.auth.artifacts;
+                        const artifacts = response.request.auth.artifacts;
                         expect(artifacts.name).to.equal('admin');
                         expect(artifacts.type).to.equal('local');
                         done();
@@ -237,10 +239,10 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login lloyd badpass', function (done) {
+    it('POST /view/login lloyd badpass', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/lloyd',
@@ -257,21 +259,21 @@ describe('login', function () {
                 file: 'false'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'lloyd',
                     type: 'local',
                     password: 'password1'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         expect(response.request.auth.artifacts).to.not.exist();
@@ -282,10 +284,10 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login admin badpass', function (done) {
+    it('POST /view/login admin badpass', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/admin',
@@ -302,21 +304,21 @@ describe('login', function () {
                 file: 'false'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'admin',
                     type: 'local',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         expect(response.request.auth.artifacts).to.not.exist();
@@ -327,31 +329,31 @@ describe('login', function () {
         });
     });
 
-    it('POST /view/login invalid', function (done) {
+    it('POST /view/login invalid', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/byname/invalid',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'invalid',
                     type: 'local',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/login', payload: payload }, (response) => {
 
 
                         expect(response.statusCode).to.equal(302);

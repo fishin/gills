@@ -1,10 +1,12 @@
-var Handlebars = require('handlebars');
+'use strict';
+
+const Handlebars = require('handlebars');
 
 module.exports = function (context) {
 
-    var output = '';
-    var types = ['none', 'maxnum', 'maxdays'];
-    for (var i = 0; i < types.length; i++) {
+    let output = '';
+    const types = ['none', 'maxnum', 'maxdays'];
+    for (let i = 0; i < types.length; ++i) {
         output += '<div class="btn-group"><span class="input-group-addon"><input type="radio" name="archiveType" value="' + types[i] + '"';
         if (types[i] === context.archiveType ) {
             output += ' checked';

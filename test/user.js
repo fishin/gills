@@ -1,27 +1,29 @@
-var Code = require('code');
-var Hapi = require('hapi');
-var Lab = require('lab');
-var Mock = require('mock');
+'use strict';
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Hapi = require('hapi');
+const Lab = require('lab');
+const Mock = require('mock');
 
-var internals = {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const internals = {
     defaults: {
     }
 };
 
 internals.prepareServer = function (callback) {
 
-    var server = new Hapi.Server();
+    const server = new Hapi.Server();
     server.connection();
 
     server.register({
         register: require('..'),
         options: internals.defaults
-    }, function (err) {
+    }, (err) => {
 
         expect(err).to.not.exist();
     });
@@ -29,28 +31,28 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('user', function () {
+describe('user', () => {
 
-    it('GET /view/user', function (done) {
+    it('GET /view/user', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user',
                 file: 'empty.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/user' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/user' }, (response) => {
 
                         expect(response.statusCode).to.equal(200);
                         done();
@@ -60,33 +62,33 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user lloyd', function (done) {
+    it('POST /view/user lloyd', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'post',
                 path: '/api/user',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'lloyd',
                     type: 'local',
                     displayName: 'Lloyd Benson',
                     email: 'lloyd.benson@gmail.com',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/user', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/user', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -96,33 +98,33 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user admin', function (done) {
+    it('POST /view/user admin', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'post',
                 path: '/api/user',
                 file: 'admin.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     name: 'admin',
                     type: 'local',
                     displayName: 'Admin',
                     email: 'admin@localhost',
                     password: 'password'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'POST', url: '/view/user', payload: payload }, function (response) {
+                    server.inject({ method: 'POST', url: '/view/user', payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -132,27 +134,27 @@ describe('user', function () {
         });
     });
 
-    it('GET /view/user/{userId} lloyd', function (done) {
+    it('GET /view/user/{userId} lloyd', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var userId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'GET', url: '/view/user/' + userId }, function (response) {
+                    const userId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'GET', url: '/view/user/' + userId }, (response) => {
 
                         //console.log(response.result);
                         expect(response.statusCode).to.equal(200);
@@ -164,27 +166,27 @@ describe('user', function () {
         });
     });
 
-    it('GET /view/user/{userId} admin', function (done) {
+    it('GET /view/user/{userId} admin', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/user/12345678-1234-1234-1234-123456789013',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var userId = '12345678-1234-1234-1234-123456789013';
-                    server.inject({ method: 'GET', url: '/view/user/' + userId }, function (response) {
+                    const userId = '12345678-1234-1234-1234-123456789013';
+                    server.inject({ method: 'GET', url: '/view/user/' + userId }, (response) => {
 
                         //console.log(response.result);
                         expect(response.statusCode).to.equal(200);
@@ -197,26 +199,26 @@ describe('user', function () {
     });
 
 
-    it('GET /view/users', function (done) {
+    it('GET /view/users', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'get',
                 path: '/api/users',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/users' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/users' }, (response) => {
 
                         //console.log(response.result);
                         expect(response.statusCode).to.equal(200);
@@ -227,32 +229,32 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user/{userId} lloyd', function (done) {
+    it('POST /view/user/{userId} lloyd', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'put',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     displayName: 'Lloyd Benson1',
                     type: 'local',
                     password: '$2a$10$6VgpayiqXWo8DB0FA6XZ5uH26WsryzRib3YJJvHzVCQC9eHRl4xea'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var userId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, function (response) {
+                    const userId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -262,32 +264,32 @@ describe('user', function () {
         });
     });
 
-    it('POST /view/user/{userId} newpass', function (done) {
+    it('POST /view/user/{userId} newpass', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'put',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                var payload = {
+                const payload = {
                     displayName: 'Lloyd Benson',
                     type: 'local',
                     password: 'password1'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    var userId = '12345678-1234-1234-1234-123456789012';
-                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, function (response) {
+                    const userId = '12345678-1234-1234-1234-123456789012';
+                    server.inject({ method: 'POST', url: '/view/user/' + userId, payload: payload }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -297,26 +299,26 @@ describe('user', function () {
         });
     });
 
-    it('GET /view/user/{userId}/delete', function (done) {
+    it('GET /view/user/{userId}/delete', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'delete',
                 path: '/api/user/12345678-1234-1234-1234-123456789012',
                 file: 'empty.txt'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/user/12345678-1234-1234-1234-123456789012/delete' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/user/12345678-1234-1234-1234-123456789012/delete' }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();

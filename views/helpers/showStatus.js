@@ -1,9 +1,11 @@
-var Handlebars = require('handlebars');
+'use strict';
+
+const Handlebars = require('handlebars');
 
 module.exports = function (context) {
 
     //console.log(context);
-    var output = '';
+    let output = '';
     if (context === 'succeeded') {
         output = '<span class="glyphicon glyphicon-ok text-success"></span>';
     }

@@ -1,13 +1,15 @@
-var Code = require('code');
-var Lab = require('lab');
-var Hapi = require('hapi');
+'use strict';
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Lab = require('lab');
+const Hapi = require('hapi');
 
-var internals = {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const internals = {
     defaults: {
         viewPath: '/view',
         job: {
@@ -21,26 +23,26 @@ var internals = {
 
 internals.prepareServer = function (callback) {
 
-    var server = new Hapi.Server();
+    const server = new Hapi.Server();
     server.connection();
 
     server.register({
         register: require('..'),
         options: internals.defaults
-    }, function (err) {
+    }, (err) => {
 
         expect(err).to.not.exist();
         callback(server);
     });
 };
 
-describe('redirect', function () {
+describe('redirect', () => {
 
-    it('GET /', function (done) {
+    it('GET /', (done) => {
 
-        internals.prepareServer(function (server) {
+        internals.prepareServer((server) => {
 
-            server.inject({ method: 'GET', url: '/' }, function (response) {
+            server.inject({ method: 'GET', url: '/' }, (response) => {
 
                 expect(response.statusCode).to.equal(302);
                 done();

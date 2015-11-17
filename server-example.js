@@ -1,8 +1,10 @@
-var Hapi = require('hapi');
-var Lout = require('lout');
-var Gills = require('./lib');
+'use strict';
 
-var server = new Hapi.Server();
+const Hapi = require('hapi');
+const Lout = require('lout');
+const Gills = require('./lib');
+
+const server = new Hapi.Server();
 server.connection({
     port: 8080,
     routes: {
@@ -10,7 +12,7 @@ server.connection({
     }
 });
 
-var options = {
+const options = {
     prs: {
         autoStart: true
     },
@@ -29,31 +31,31 @@ var options = {
     }
 };
 
-server.register({ register: Gills, options: options }, function (err) {
+server.register({ register: Gills, options: options }, (err) => {
 
     if (err) {
         console.log('gills did not load');
     }
 });
 
-server.register({ register: Lout, options: {} }, function (err) {
+server.register({ register: Lout, options: {} }, (err) => {
 
     if (err) {
         console.log('lout did not load');
     }
 });
 
-server.on('log', function (event) {
+server.on('log', (event) => {
 
     console.log(JSON.stringify(event));
 });
 
-server.on('internalError', function (request, error) {
+server.on('internalError', (request, error) => {
 
     console.error(JSON.stringify(error));
 });
 
-server.start(function () {
+server.start(() => {
 
     console.log('started server: ' + server.info.uri);
     //console.log(server.connections);

@@ -1,27 +1,29 @@
-var Code = require('code');
-var Hapi = require('hapi');
-var Lab = require('lab');
-var Mock = require('mock');
+'use strict';
 
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Hapi = require('hapi');
+const Lab = require('lab');
+const Mock = require('mock');
 
-var internals = {
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const internals = {
     defaults: {
     }
 };
 
 internals.prepareServer = function (callback) {
 
-    var server = new Hapi.Server();
+    const server = new Hapi.Server();
     server.connection();
 
     server.register({
         register: require('..'),
         options: internals.defaults
-    }, function (err) {
+    }, (err) => {
 
         expect(err).to.not.exist();
     });
@@ -29,13 +31,13 @@ internals.prepareServer = function (callback) {
 };
 
 
-describe('queue', function () {
+describe('queue', () => {
 
-    it('GET /view/queue/{jobId}/add', function (done) {
+    it('GET /view/queue/{jobId}/add', (done) => {
 
-        var jobId = '12345678-1234-1234-1234-123456789012';
-        var type = 'tacklebox';
-        var routes = [
+        const jobId = '12345678-1234-1234-1234-123456789012';
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'post',
                 path: '/api/queue',
@@ -47,16 +49,16 @@ describe('queue', function () {
                 file: 'jobs.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/add' }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -66,11 +68,11 @@ describe('queue', function () {
         });
     });
 
-    it('GET /view/queue/{jobId}/remove', function (done) {
+    it('GET /view/queue/{jobId}/remove', (done) => {
 
-        var jobId = '12345678-1234-1234-1234-123456789012';
-        var type = 'tacklebox';
-        var routes = [
+        const jobId = '12345678-1234-1234-1234-123456789012';
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'delete',
                 path: '/api/queue/' + jobId,
@@ -82,16 +84,16 @@ describe('queue', function () {
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/remove' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/remove' }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -101,26 +103,26 @@ describe('queue', function () {
         });
     });
 
-    it('GET /view/queue/clear', function (done) {
+    it('GET /view/queue/clear', (done) => {
 
-        var type = 'tacklebox';
-        var routes = [
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'delete',
                 path: '/api/queue',
                 file: 'null'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/queue/clear' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/queue/clear' }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
@@ -130,11 +132,11 @@ describe('queue', function () {
         });
     });
 
-    it('GET /view/queue/{jobId}/pr/{number}/remove', function (done) {
+    it('GET /view/queue/{jobId}/pr/{number}/remove', (done) => {
 
-        var jobId = '12345678-1234-1234-1234-123456789012';
-        var type = 'tacklebox';
-        var routes = [
+        const jobId = '12345678-1234-1234-1234-123456789012';
+        const type = 'tacklebox';
+        const routes = [
             {
                 method: 'delete',
                 path: '/api/queue/' + jobId + '/pr/1',
@@ -146,16 +148,16 @@ describe('queue', function () {
                 file: 'index.json'
             }
         ];
-        Mock.prepareServer(type, routes, function (mockServer) {
+        Mock.prepareServer(type, routes, (mockServer) => {
 
-            mockServer.start(function () {
+            mockServer.start(() => {
 
                 internals.defaults.api = {
                     url: mockServer.info.uri + '/api'
                 };
-                internals.prepareServer(function (server) {
+                internals.prepareServer((server) => {
 
-                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/pr/1/remove' }, function (response) {
+                    server.inject({ method: 'GET', url: '/view/queue/' + jobId + '/pr/1/remove' }, (response) => {
 
                         expect(response.statusCode).to.equal(302);
                         done();
