@@ -1,6 +1,6 @@
 {
   "name": "gills",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "ui for ficion",
   "main": "lib/index.js",
   "repository": {
@@ -28,7 +28,7 @@
     "boom": "2.x.x",
     "dateformat": "1.0.x",
     "handlebars": "3.0.x",
-    "hapi": "10.x.x",
+    "hapi": "11.x.x",
     "hapi-auth-cookie": "2.x.x",
     "hoek": "2.x.x",
     "inert": "3.x.x",
