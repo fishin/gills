@@ -6,7 +6,10 @@ const Gills = require('./lib');
 
 const server = new Hapi.Server();
 server.connection({
-    port: 8080
+    port: 8080,
+    routes: {
+        auth: 'session'
+    }
 });
 
 const options = {
