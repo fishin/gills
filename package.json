@@ -30,14 +30,14 @@
     "handlebars": "3.0.x",
     "hapi": "11.x.x",
     "hapi-auth-cookie": "2.x.x",
-    "hoek": "2.x.x",
+    "hoek": "3.x.x",
     "inert": "3.x.x",
     "joi": "6.x.x",
     "smelt": "git+https://github.com/fishin/smelt.git",
     "vision": "3.x.x"
   },
   "devDependencies": {
-    "code": "1.x.x",
+    "code": "2.x.x",
     "lab": "7.x.x",
     "lout": "7.x.x",
     "mock": "git+https://github.com/fishin/mock.git",
